@@ -42,6 +42,7 @@ public class GrinderBlockEntity extends BlockEntity implements Container, PowerN
         }
 
         boolean changed = false;
+        boolean isWorking = false;
 
         if (blockEntity.energy < ENERGY_CAPACITY) {
             int pulled = PowerUtil.pullEnergy(level, pos, blockEntity, PULL_PER_SIDE);
@@ -53,6 +54,7 @@ public class GrinderBlockEntity extends BlockEntity implements Container, PowerN
             blockEntity.energy -= ENERGY_PER_TICK;
             blockEntity.progress++;
             changed = true;
+            isWorking = true;
 
             if (blockEntity.progress >= RECIPE_TIME) {
                 blockEntity.inputStack.shrink(1);
@@ -70,6 +72,10 @@ public class GrinderBlockEntity extends BlockEntity implements Container, PowerN
 
         if (changed) {
             blockEntity.setChanged();
+        }
+
+        if (state.hasProperty(GrinderBlock.LIT) && state.getValue(GrinderBlock.LIT) != isWorking) {
+            level.setBlock(pos, state.setValue(GrinderBlock.LIT, isWorking), 3);
         }
     }
 

@@ -13,22 +13,18 @@ public class CoalGeneratorScreen extends AbstractContainerScreen<CoalGeneratorMe
     private static final int TEXTURE_WIDTH  = 256;
     private static final int TEXTURE_HEIGHT = 256;
 
-    // Fuel slot is at menu pos (80,35) → slot box: x+80 to x+96, y+35 to y+51
-    // Flame indicator sits directly below the slot
-    private static final int FLAME_X      = 81;   // aligned with slot left edge
-    private static final int FLAME_Y      = 54;   // 3 px below slot bottom (51+3)
-    private static final int FLAME_WIDTH  = 14;
-    private static final int FLAME_HEIGHT = 13;
+    // Fuel slot is at menu pos (82,37) -> slot box: x+82 to x+98, y+37 to y+53
+    private static final int FLAME_X      = 84;
+    private static final int FLAME_Y      = 28;
+    private static final int FLAME_WIDTH  = 7;
+    private static final int FLAME_HEIGHT = 4;
 
-    // Energy bar on the right side of the panel
-    private static final int ENERGY_X      = 155;
+    // Energy bar
+    private static final int ENERGY_X      = 130;
     private static final int ENERGY_Y      = 17;
-    private static final int ENERGY_WIDTH  = 6;
+    private static final int ENERGY_WIDTH  = 8;
     private static final int ENERGY_HEIGHT = 50;
 
-    // Steam animation: 3 columns rising above the slot
-    private static final int[] STEAM_DX  = {-2, 3, 8};   // offsets from FLAME_X
-    private static final int   STEAM_RISE = 22;           // total pixels of rise
 
     public CoalGeneratorScreen(CoalGeneratorMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
@@ -75,24 +71,13 @@ public class CoalGeneratorScreen extends AbstractContainerScreen<CoalGeneratorMe
                              0xFF44CC44);
         }
 
-        // ── Steam animation (only while burning) ─────────────────────────────
-        if (menu.getBurnTime() > 0) {
-            long t = System.currentTimeMillis();
-            for (int i = 0; i < STEAM_DX.length; i++) {
-                // each column has a phase offset so they don't all move together
-                int phase  = (int) (((t / 120) + i * 8) % STEAM_RISE);
-                int sx     = x + FLAME_X + STEAM_DX[i];
-                int sy     = y + FLAME_Y - phase;          // rises upward
-                int alpha  = (int) (200 * (1.0 - (float) phase / STEAM_RISE));
-                int colour = (alpha << 24) | 0xCCCCCC;
-                guiGraphics.fill(sx, sy, sx + 2, sy + 3, colour);   // small puff
-            }
-        }
     }
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         guiGraphics.drawString(this.font, this.title, 8, 6, 0x404040, false);
+        // Display Scalar Power
+        guiGraphics.drawString(this.font, menu.getEnergy() + " SP", 140, 6, 0x44CC44, false);
         guiGraphics.drawString(this.font, this.playerInventoryTitle, 8, this.imageHeight - 94, 0x404040, false);
     }
 

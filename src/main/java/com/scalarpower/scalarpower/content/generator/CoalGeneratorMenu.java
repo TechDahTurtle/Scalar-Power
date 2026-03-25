@@ -29,7 +29,7 @@ public class CoalGeneratorMenu extends AbstractContainerMenu {
         checkContainerDataCount(data, 4);
         addDataSlots(data);
 
-        addSlot(new Slot(blockEntity, 0, 80, 35) {
+        addSlot(new Slot(blockEntity, 0, 82, 39) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return blockEntity.isFuel(stack);

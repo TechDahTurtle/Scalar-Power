@@ -75,7 +75,7 @@ public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         guiGraphics.drawString(this.font, this.title, 8, 6, 0xFFFFFF, false);
-        guiGraphics.drawString(this.font, menu.getEnergy() + " FE", 24, 38, 0x80FF80, false);
+        guiGraphics.drawString(this.font, menu.getEnergy() + " SP", 24, 38, 0x44CC44, false);
         guiGraphics.drawString(this.font, this.playerInventoryTitle, 8, 72, 0xFFFFFF, false);
     }
 

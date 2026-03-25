@@ -66,6 +66,11 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements Container, 
         if (changed) {
             blockEntity.setChanged();
         }
+
+        boolean isWorking = blockEntity.burnTime > 0;
+        if (state.hasProperty(CoalGeneratorBlock.LIT) && state.getValue(CoalGeneratorBlock.LIT) != isWorking) {
+            level.setBlock(pos, state.setValue(CoalGeneratorBlock.LIT, isWorking), 3);
+        }
     }
 
     private static int getFuelTicks(net.minecraft.world.item.Item item) {
