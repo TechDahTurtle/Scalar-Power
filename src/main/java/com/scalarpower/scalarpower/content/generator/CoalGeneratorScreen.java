@@ -13,12 +13,6 @@ public class CoalGeneratorScreen extends AbstractContainerScreen<CoalGeneratorMe
     private static final int TEXTURE_WIDTH  = 256;
     private static final int TEXTURE_HEIGHT = 256;
 
-    // Fuel slot is at menu pos (82,37) -> slot box: x+82 to x+98, y+37 to y+53
-    private static final int FLAME_X      = 84;
-    private static final int FLAME_Y      = 28;
-    private static final int FLAME_WIDTH  = 7;
-    private static final int FLAME_HEIGHT = 4;
-
     // Energy bar
     private static final int ENERGY_X      = 130;
     private static final int ENERGY_Y      = 17;
@@ -43,18 +37,6 @@ public class CoalGeneratorScreen extends AbstractContainerScreen<CoalGeneratorMe
                 0.0F, (float) imageWidth  / TEXTURE_WIDTH,
                 0.0F, (float) imageHeight / TEXTURE_HEIGHT);
 
-        // ── Flame burn indicator (grows upward as fuel is consumed) ──────────
-        if (menu.getBurnTimeTotal() > 0 && menu.getBurnTime() > 0) {
-            int pixels = (int) ((float) FLAME_HEIGHT * menu.getBurnTime() / menu.getBurnTimeTotal());
-            int top    = y + FLAME_Y + (FLAME_HEIGHT - pixels);
-            guiGraphics.fill(x + FLAME_X, top,
-                             x + FLAME_X + FLAME_WIDTH, y + FLAME_Y + FLAME_HEIGHT,
-                             0xFFFF6600);
-            // bright tip
-            guiGraphics.fill(x + FLAME_X + 2, top,
-                             x + FLAME_X + FLAME_WIDTH - 2, top + 2,
-                             0xFFFFCC44);
-        }
 
         // ── Energy bar ───────────────────────────────────────────────────────
         // dark background

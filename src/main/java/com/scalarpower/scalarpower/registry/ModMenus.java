@@ -3,6 +3,7 @@ package com.scalarpower.scalarpower.registry;
 import com.scalarpower.scalarpower.ScalarPower;
 import com.scalarpower.scalarpower.content.generator.CoalGeneratorMenu;
 import com.scalarpower.scalarpower.content.grinder.GrinderMenu;
+import com.scalarpower.scalarpower.content.poweredfurnace.PoweredFurnaceMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;
@@ -18,6 +19,9 @@ public final class ModMenus {
 
     public static final DeferredHolder<MenuType<?>, MenuType<GrinderMenu>> GRINDER_MENU = MENUS
             .register("grinder", () -> IMenuTypeExtension.create(GrinderMenu::new));
+
+    public static final DeferredHolder<MenuType<?>, MenuType<PoweredFurnaceMenu>> POWERED_FURNACE_MENU = MENUS
+            .register("powered_furnace", () -> IMenuTypeExtension.create(PoweredFurnaceMenu::new));
 
     private ModMenus() {
     }

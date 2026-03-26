@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "top": "scalarpower:block/machine_top",
+    "bottom": "scalarpower:block/machine_top",
+    "side": "scalarpower:block/machine_side",
+    "front": "scalarpower:block/coal_generator_on",
+    "particle": "scalarpower:block/machine_side"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "up": { "texture": "#top" },
+        "down": { "texture": "#bottom" },
+        "north": { "texture": "#front" },
+        "east": { "texture": "#side" },
+        "south": { "texture": "#side" },
+        "west": { "texture": "#side" }
+      }
+    }
+  ]
+}
+

@@ -21,6 +21,8 @@ public final class ModItems {
             ModBlocks.COAL_GENERATOR);
     public static final DeferredItem<BlockItem> GRINDER_ITEM = ITEMS.registerSimpleBlockItem("grinder",
             ModBlocks.GRINDER);
+    public static final DeferredItem<BlockItem> POWERED_FURNACE_ITEM = ITEMS.registerSimpleBlockItem("powered_furnace",
+            ModBlocks.POWERED_FURNACE);
     public static final DeferredItem<BlockItem> COPPER_WIRE_ITEM = ITEMS.registerSimpleBlockItem("copper_wire",
             ModBlocks.COPPER_WIRE);
 
@@ -36,6 +38,7 @@ public final class ModItems {
                     .displayItems((parameters, output) -> {
                         output.accept(COAL_GENERATOR_ITEM.get());
                         output.accept(GRINDER_ITEM.get());
+                        output.accept(POWERED_FURNACE_ITEM.get());
                         output.accept(COPPER_WIRE_ITEM.get());
                         output.accept(IRON_DUST.get());
                         output.accept(GOLD_DUST.get());

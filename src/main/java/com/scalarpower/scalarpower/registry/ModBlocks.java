@@ -3,6 +3,7 @@ package com.scalarpower.scalarpower.registry;
 import com.scalarpower.scalarpower.ScalarPower;
 import com.scalarpower.scalarpower.content.generator.CoalGeneratorBlock;
 import com.scalarpower.scalarpower.content.grinder.GrinderBlock;
+import com.scalarpower.scalarpower.content.poweredfurnace.PoweredFurnaceBlock;
 import com.scalarpower.scalarpower.content.wire.CopperWireBlock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -26,6 +27,11 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> GRINDER = BLOCKS.register("grinder",
             () -> new GrinderBlock(
                     blockProperties("grinder", BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
+                            .strength(3.5F).sound(SoundType.STONE).requiresCorrectToolForDrops())));
+
+    public static final DeferredBlock<Block> POWERED_FURNACE = BLOCKS.register("powered_furnace",
+            () -> new PoweredFurnaceBlock(
+                    blockProperties("powered_furnace", BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
                             .strength(3.5F).sound(SoundType.STONE).requiresCorrectToolForDrops())));
 
     public static final DeferredBlock<Block> COPPER_WIRE = BLOCKS.register("copper_wire",
