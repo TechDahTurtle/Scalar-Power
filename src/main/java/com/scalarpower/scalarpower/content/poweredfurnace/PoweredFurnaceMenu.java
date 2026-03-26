@@ -30,7 +30,8 @@ public class PoweredFurnaceMenu extends AbstractContainerMenu {
         addSlot(new Slot(blockEntity, 0, 56, 35) {
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return blockEntity.canSmelt(stack);
+                // Allow manual insertion; the block entity decides whether a valid recipe can progress.
+                return true;
             }
         });
         addSlot(new Slot(blockEntity, 1, 116, 35) {

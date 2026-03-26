@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OEO",
+    "EUE",
+    "ODO"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "E": {
+      "item": "minecraft:emerald"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "U": {
+      "item": "scalarpower:clastus_upgrade"
+    }
+  },
+  "result": {
+    "id": "scalarpower:crystus_upgrade",
+    "count": 1
+  }
+}
+

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ODO",
+    "DUD",
+    "ODO"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "U": {
+      "item": "scalarpower:diamond_upgrade"
+    }
+  },
+  "result": {
+    "id": "scalarpower:clastus_upgrade",
+    "count": 1
+  }
+}
+

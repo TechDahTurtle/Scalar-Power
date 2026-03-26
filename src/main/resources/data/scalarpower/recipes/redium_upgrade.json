@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RGR",
+    "GUG",
+    "RGR"
+  ],
+  "key": {
+    "R": {
+      "item": "scalarpower:redium"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "U": {
+      "item": "scalarpower:gold_upgrade"
+    }
+  },
+  "result": {
+    "id": "scalarpower:redium_upgrade",
+    "count": 1
+  }
+}
+

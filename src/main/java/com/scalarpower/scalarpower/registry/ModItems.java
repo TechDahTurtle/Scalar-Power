@@ -30,6 +30,13 @@ public final class ModItems {
     public static final DeferredItem<Item> GOLD_DUST = ITEMS.registerSimpleItem("gold_dust");
     public static final DeferredItem<Item> COPPER_DUST = ITEMS.registerSimpleItem("copper_dust");
 
+    public static final DeferredItem<Item> GOLD_UPGRADE = ITEMS.registerSimpleItem("gold_upgrade");
+    public static final DeferredItem<Item> REDIUM = ITEMS.registerSimpleItem("redium");
+    public static final DeferredItem<Item> REDIUM_UPGRADE = ITEMS.registerSimpleItem("redium_upgrade");
+    public static final DeferredItem<Item> DIAMOND_UPGRADE = ITEMS.registerSimpleItem("diamond_upgrade");
+    public static final DeferredItem<Item> CLASTUS_UPGRADE = ITEMS.registerSimpleItem("clastus_upgrade");
+    public static final DeferredItem<Item> CRYSTUS_UPGRADE = ITEMS.registerSimpleItem("crystus_upgrade");
+
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> SCALAR_POWER_TAB = TABS.register("scalar_power",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.scalarpower.scalar_power"))
@@ -43,6 +50,12 @@ public final class ModItems {
                         output.accept(IRON_DUST.get());
                         output.accept(GOLD_DUST.get());
                         output.accept(COPPER_DUST.get());
+                        output.accept(GOLD_UPGRADE.get());
+                        output.accept(REDIUM.get());
+                        output.accept(REDIUM_UPGRADE.get());
+                        output.accept(DIAMOND_UPGRADE.get());
+                        output.accept(CLASTUS_UPGRADE.get());
+                        output.accept(CRYSTUS_UPGRADE.get());
                     })
                     .build());
 

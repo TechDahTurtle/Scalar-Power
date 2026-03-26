@@ -10,7 +10,12 @@ public final class PowerUtil {
     }
 
     public static int pushEnergy(Level level, BlockPos sourcePos, PowerNode source, int maxTransferPerSide) {
-        int totalMoved = 0;
+        if (maxTransferPerSide <= 0) {
+            return 0;
+        }
+
+        PowerNode[] targets = new PowerNode[Direction.values().length];
+        int targetCount = 0;
         for (Direction direction : Direction.values()) {
             if (!source.canConnectPower(direction)) {
                 continue;
@@ -21,17 +26,60 @@ public final class PowerUtil {
                 continue;
             }
 
-            int offer = Math.min(maxTransferPerSide, source.getEnergyStored());
-            if (offer <= 0) {
-                break;
+            if (target.receiveEnergy(1, true) > 0) {
+                targets[targetCount++] = target;
             }
+        }
 
-            int accepted = target.receiveEnergy(offer, false);
+        if (targetCount == 0) {
+            return 0;
+        }
+
+        int available = source.getEnergyStored();
+        if (available <= 0) {
+            return 0;
+        }
+
+        int budget = Math.min(available, maxTransferPerSide * targetCount);
+        int[] sent = new int[targetCount];
+        int totalMoved = 0;
+
+        // First pass: split the budget evenly so one target does not get filled first.
+        int base = budget / targetCount;
+        int remainder = budget % targetCount;
+        for (int i = 0; i < targetCount; i++) {
+            int planned = base + (i < remainder ? 1 : 0);
+            if (planned <= 0) {
+                continue;
+            }
+            int accepted = targets[i].receiveEnergy(planned, false);
             if (accepted > 0) {
                 source.extractEnergy(accepted, false);
+                sent[i] += accepted;
                 totalMoved += accepted;
             }
         }
+
+        int remainingBudget = budget - totalMoved;
+        if (remainingBudget <= 0) {
+            return totalMoved;
+        }
+
+        // Second pass: redistribute any leftover to targets that still have room this tick.
+        for (int i = 0; i < targetCount && remainingBudget > 0; i++) {
+            int roomThisTick = maxTransferPerSide - sent[i];
+            if (roomThisTick <= 0) {
+                continue;
+            }
+            int offer = Math.min(roomThisTick, remainingBudget);
+            int accepted = targets[i].receiveEnergy(offer, false);
+            if (accepted > 0) {
+                source.extractEnergy(accepted, false);
+                totalMoved += accepted;
+                remainingBudget -= accepted;
+            }
+        }
+
         return totalMoved;
     }
 

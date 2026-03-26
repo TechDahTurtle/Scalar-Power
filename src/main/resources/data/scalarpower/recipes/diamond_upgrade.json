@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DRD",
+    "RUR",
+    "DRD"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "R": {
+      "item": "scalarpower:redium"
+    },
+    "U": {
+      "item": "scalarpower:redium_upgrade"
+    }
+  },
+  "result": {
+    "id": "scalarpower:diamond_upgrade",
+    "count": 1
+  }
+}
+

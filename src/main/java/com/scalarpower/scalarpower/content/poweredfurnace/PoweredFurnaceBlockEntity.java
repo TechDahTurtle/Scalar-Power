@@ -3,6 +3,7 @@ package com.scalarpower.scalarpower.content.poweredfurnace;
 import com.scalarpower.scalarpower.power.PowerNode;
 import com.scalarpower.scalarpower.power.PowerUtil;
 import com.scalarpower.scalarpower.registry.ModBlockEntities;
+import com.scalarpower.scalarpower.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -14,7 +15,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipePropertySet;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
@@ -55,13 +58,10 @@ public class PoweredFurnaceBlockEntity extends BlockEntity implements Container,
             changed |= pulled > 0;
         }
 
-        Optional<RecipeHolder<SmeltingRecipe>> recipe = blockEntity.findRecipe(level, blockEntity.inputStack);
-        ItemStack result = recipe
-                .map(holder -> holder.value().assemble(new SingleRecipeInput(blockEntity.inputStack), level.registryAccess()))
-                .orElse(ItemStack.EMPTY);
+        ItemStack result = blockEntity.getProcessingResult(level, blockEntity.inputStack);
 
         if (!result.isEmpty() && blockEntity.canOutput(blockEntity.outputStack, result)) {
-            int newRecipeTime = recipe.map(holder -> holder.value().cookingTime()).orElse(DEFAULT_RECIPE_TIME);
+            int newRecipeTime = blockEntity.getProcessingTime(level, blockEntity.inputStack);
             if (newRecipeTime <= 0) {
                 newRecipeTime = DEFAULT_RECIPE_TIME;
             }
@@ -117,6 +117,39 @@ public class PoweredFurnaceBlockEntity extends BlockEntity implements Container,
         return serverLevel.recipeAccess().getRecipeFor(RecipeType.SMELTING, new SingleRecipeInput(input), serverLevel);
     }
 
+    private ItemStack getProcessingResult(Level level, ItemStack input) {
+        ItemStack manual = getManualDustResult(input);
+        if (!manual.isEmpty()) {
+            return manual;
+        }
+        return findRecipe(level, input)
+                .map(holder -> holder.value().assemble(new SingleRecipeInput(input), level.registryAccess()))
+                .orElse(ItemStack.EMPTY);
+    }
+
+    private int getProcessingTime(Level level, ItemStack input) {
+        if (!getManualDustResult(input).isEmpty()) {
+            return DEFAULT_RECIPE_TIME;
+        }
+        return findRecipe(level, input)
+                .map(holder -> holder.value().cookingTime())
+                .filter(time -> time > 0)
+                .orElse(DEFAULT_RECIPE_TIME);
+    }
+
+    private ItemStack getManualDustResult(ItemStack input) {
+        if (input.is(ModItems.IRON_DUST.get())) {
+            return new ItemStack(Items.IRON_INGOT);
+        }
+        if (input.is(ModItems.GOLD_DUST.get())) {
+            return new ItemStack(Items.GOLD_INGOT);
+        }
+        if (input.is(ModItems.COPPER_DUST.get())) {
+            return new ItemStack(Items.COPPER_INGOT);
+        }
+        return ItemStack.EMPTY;
+    }
+
     private boolean canOutput(ItemStack current, ItemStack recipe) {
         if (current.isEmpty()) {
             return true;
@@ -128,7 +161,14 @@ public class PoweredFurnaceBlockEntity extends BlockEntity implements Container,
     }
 
     public boolean canSmelt(ItemStack stack) {
-        return level != null && findRecipe(level, stack).isPresent();
+        if (stack.isEmpty() || level == null) {
+            return false;
+        }
+        if (!getManualDustResult(stack).isEmpty()) {
+            return true;
+        }
+        // Works on both client and server so slot filtering stays responsive.
+        return level.recipeAccess().propertySet(RecipePropertySet.FURNACE_INPUT).test(stack);
     }
 
     @Override
