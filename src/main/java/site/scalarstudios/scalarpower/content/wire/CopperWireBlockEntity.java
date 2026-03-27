@@ -1,7 +1,6 @@
 package site.scalarstudios.scalarpower.content.wire;
 
-import site.scalarstudios.scalarpower.power.PowerNode;
-import site.scalarstudios.scalarpower.power.PowerUtil;
+import site.scalarstudios.scalarpower.power.NeoEnergyTransferUtil;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,8 +9,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 
-public class CopperWireBlockEntity extends BlockEntity implements PowerNode {
+public class CopperWireBlockEntity extends BlockEntity {
     private static final int ENERGY_CAPACITY = 2000;
     private static final int PUSH_PER_SIDE = 90;
 
@@ -31,7 +31,7 @@ public class CopperWireBlockEntity extends BlockEntity implements PowerNode {
             return;
         }
 
-        int moved = PowerUtil.pushEnergy(level, pos, blockEntity, PUSH_PER_SIDE);
+        int moved = NeoEnergyTransferUtil.pushEnergy(level, pos, blockEntity.energyHandler, PUSH_PER_SIDE);
         if (moved > 0) {
             blockEntity.setChanged();
         }
@@ -49,29 +49,5 @@ public class CopperWireBlockEntity extends BlockEntity implements PowerNode {
         energyHandler.deserialize(input);
     }
 
-    @Override
-    public int getEnergyStored() { return (int)energyHandler.getAmountAsLong(); }
-    @Override
-    public int getEnergyCapacity() { return (int)energyHandler.getCapacityAsLong(); }
-    @Override
-    public int receiveEnergy(int amount, boolean simulate) {
-        if (simulate) {
-            return Math.min(amount, (int)(energyHandler.getCapacityAsLong() - energyHandler.getAmountAsLong()));
-        }
-        int inserted;
-        try (var tx = net.neoforged.neoforge.transfer.transaction.Transaction.openRoot()) {
-            inserted = energyHandler.insert(amount, tx);
-        }
-        return inserted;
-    }
-    @Override
-    public int extractEnergy(int amount, boolean simulate) {
-        int extracted = Math.min(amount, (int)energyHandler.getAmountAsLong());
-        if (!simulate && extracted > 0) {
-            energyHandler.set((int)(energyHandler.getAmountAsLong() - extracted));
-        }
-        return extracted;
-    }
-    @Override
-    public boolean canConnectPower(Direction side) { return true; }
+    public EnergyHandler getEnergyHandler(Direction side) { return energyHandler; }
 }

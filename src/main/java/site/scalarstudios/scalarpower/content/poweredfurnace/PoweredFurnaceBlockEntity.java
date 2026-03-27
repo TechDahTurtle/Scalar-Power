@@ -1,7 +1,6 @@
 package site.scalarstudios.scalarpower.content.poweredfurnace;
 
-import site.scalarstudios.scalarpower.power.PowerNode;
-import site.scalarstudios.scalarpower.power.PowerUtil;
+import site.scalarstudios.scalarpower.power.NeoEnergyTransferUtil;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 import site.scalarstudios.scalarpower.item.ScalarPowerItems;
 import net.minecraft.core.BlockPos;
@@ -26,10 +25,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 
 import java.util.Optional;
 
-public class PoweredFurnaceBlockEntity extends BlockEntity implements Container, PowerNode, MenuProvider {
+public class PoweredFurnaceBlockEntity extends BlockEntity implements Container, MenuProvider {
     private static final int ENERGY_CAPACITY = 20000;
     private static final int ENERGY_PER_TICK = 25;
     private static final int DEFAULT_RECIPE_TIME = 200;
@@ -55,7 +55,7 @@ public class PoweredFurnaceBlockEntity extends BlockEntity implements Container,
         boolean isWorking = false;
 
         if (blockEntity.energyHandler.getAmountAsLong() < blockEntity.energyHandler.getCapacityAsLong()) {
-            int pulled = PowerUtil.pullEnergy(level, pos, blockEntity, PULL_PER_SIDE);
+            int pulled = NeoEnergyTransferUtil.pullEnergy(level, pos, blockEntity.energyHandler, PULL_PER_SIDE);
             changed |= pulled > 0;
         }
 
@@ -297,38 +297,8 @@ public class PoweredFurnaceBlockEntity extends BlockEntity implements Container,
         outputStack = ItemStack.EMPTY;
     }
 
-    @Override
-    public int getEnergyStored() {
-        return (int)energyHandler.getAmountAsLong();
-    }
-
-    @Override
-    public int getEnergyCapacity() {
-        return (int)energyHandler.getCapacityAsLong();
-    }
-
-    @Override
-    public int receiveEnergy(int amount, boolean simulate) {
-        if (simulate) {
-            return Math.min(amount, (int)(energyHandler.getCapacityAsLong() - energyHandler.getAmountAsLong()));
-        }
-        int inserted;
-        try (var tx = net.neoforged.neoforge.transfer.transaction.Transaction.openRoot()) {
-            inserted = energyHandler.insert(amount, tx);
-            // tx is committed on close
-        }
-        return inserted;
-    }
-
-    @Override
-    public int extractEnergy(int amount, boolean simulate) {
-        // Powered furnace does not output energy
-        return 0;
-    }
-
-    @Override
-    public boolean canConnectPower(Direction side) {
-        return true;
+    public EnergyHandler getEnergyHandler(Direction side) {
+        return energyHandler;
     }
 }
 

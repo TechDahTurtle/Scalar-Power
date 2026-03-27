@@ -1,6 +1,5 @@
 package site.scalarstudios.scalarpower.content.wire;
 
-import site.scalarstudios.scalarpower.power.PowerNode;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -24,6 +23,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.capabilities.Capabilities;
 
 public class CopperWireBlock extends BaseEntityBlock {
     public static final MapCodec<CopperWireBlock> CODEC = simpleCodec(CopperWireBlock::new);
@@ -96,8 +96,10 @@ public class CopperWireBlock extends BaseEntityBlock {
     }
 
     private static boolean canConnectTo(LevelReader level, BlockPos pos, Direction incomingSide) {
-        BlockEntity blockEntity = level.getBlockEntity(pos);
-        return blockEntity instanceof PowerNode powerNode && powerNode.canConnectPower(incomingSide);
+        if (!(level instanceof Level actualLevel)) {
+            return false;
+        }
+        return actualLevel.getCapability(Capabilities.Energy.BLOCK, pos, incomingSide) != null;
     }
 
     private static BooleanProperty propertyFor(Direction direction) {

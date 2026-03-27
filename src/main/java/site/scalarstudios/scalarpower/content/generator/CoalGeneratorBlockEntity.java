@@ -1,7 +1,6 @@
 package site.scalarstudios.scalarpower.content.generator;
 
-import site.scalarstudios.scalarpower.power.PowerNode;
-import site.scalarstudios.scalarpower.power.PowerUtil;
+import site.scalarstudios.scalarpower.power.NeoEnergyTransferUtil;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,8 +18,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 
-public class CoalGeneratorBlockEntity extends BlockEntity implements Container, PowerNode, MenuProvider {
+public class CoalGeneratorBlockEntity extends BlockEntity implements Container, MenuProvider {
     private static final int ENERGY_CAPACITY = 20000;
     private static final int ENERGY_PER_TICK = 40;
     private static final int PUSH_PER_SIDE = 120;
@@ -66,7 +66,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements Container, 
         }
 
         if (blockEntity.energyHandler.getAmountAsLong() > 0) {
-            int moved = PowerUtil.pushEnergy(level, pos, blockEntity, PUSH_PER_SIDE);
+            int moved = NeoEnergyTransferUtil.pushEnergy(level, pos, blockEntity.energyHandler, PUSH_PER_SIDE);
             changed |= moved > 0;
         }
 
@@ -171,25 +171,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements Container, 
     @Override
     public void clearContent() { fuelStack = ItemStack.EMPTY; }
 
-    @Override
-    public int getEnergyStored() { return (int)energyHandler.getAmountAsLong(); }
-    @Override
-    public int getEnergyCapacity() { return (int)energyHandler.getCapacityAsLong(); }
-    @Override
-    public int receiveEnergy(int amount, boolean simulate) {
-        // Generator does not accept energy from outside
-        return 0;
-    }
-    @Override
-    public int extractEnergy(int amount, boolean simulate) {
-        int extracted = Math.min(amount, (int)energyHandler.getAmountAsLong());
-        if (!simulate && extracted > 0) {
-            energyHandler.set((int)(energyHandler.getAmountAsLong() - extracted));
-        }
-        return extracted;
-    }
-    @Override
-    public boolean canConnectPower(Direction side) { return true; }
+    public EnergyHandler getEnergyHandler(Direction side) { return energyHandler; }
 
     public int getBurnTime() { return burnTime; }
     public int getBurnTimeTotal() { return burnTimeTotal; }
