@@ -1,9 +1,9 @@
 {
   "parent": "minecraft:block/orientable",
   "textures": {
-    "top": "scalarpower:block/grinder_side",
-    "bottom": "scalarpower:block/grinder_side",
-    "side": "scalarpower:block/grinder_side",
+    "top": "scalarpower:block/machine_top",
+    "bottom": "scalarpower:block/machine_bottom",
+    "side": "scalarpower:block/machine_side",
     "front": "scalarpower:block/grinder_on"
   }
 }
