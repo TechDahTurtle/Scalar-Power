@@ -7,6 +7,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 
+import java.util.Locale;
+
 public class PoweredFurnaceScreen extends AbstractContainerScreen<PoweredFurnaceMenu> {
     // Reuse grinder GUI art until a dedicated powered furnace texture is restored.
     private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath("scalarpower", "textures/gui/grinder.png");
@@ -17,7 +19,11 @@ public class PoweredFurnaceScreen extends AbstractContainerScreen<PoweredFurnace
     private static final int ENERGY_X = 10;
     private static final int ENERGY_Y = 20;
     private static final int ENERGY_WIDTH = 8;
-    private static final int ENERGY_HEIGHT = 50;
+    private static final int ENERGY_HEIGHT = 42;
+    private static final int ENERGY_TEXT_Y_OFFSET = 2;
+    private static final int ENERGY_TEXT_COLOR = 0xFF4A4A4A;
+    private static final float ENERGY_TEXT_SCALE = 0.85F;
+    private static final int ENERGY_TEXT_X_OFFSET = -2;
 
     private static final int PROGRESS_X = 80;
     private static final int PROGRESS_Y = 32;
@@ -63,6 +69,32 @@ public class PoweredFurnaceScreen extends AbstractContainerScreen<PoweredFurnace
                     y + ENERGY_Y + ENERGY_HEIGHT,
                     0xFF44CC44);
         }
+
+        String energyText = formatEnergy(menu.getEnergy()) + " / " + formatEnergy(menu.getEnergyCapacity());
+        float scaledTextWidth = this.font.width(energyText) * ENERGY_TEXT_SCALE;
+        int preferredTextX = x + ENERGY_X + ENERGY_TEXT_X_OFFSET;
+        int minTextX = x + 4;
+        int maxTextX = x + this.imageWidth - 4 - Math.round(scaledTextWidth);
+        int energyTextX = Math.max(minTextX, Math.min(preferredTextX, maxTextX));
+        int energyTextY = y + ENERGY_Y + ENERGY_HEIGHT + ENERGY_TEXT_Y_OFFSET;
+
+        graphics.pose().pushMatrix();
+        graphics.pose().scale(ENERGY_TEXT_SCALE, ENERGY_TEXT_SCALE);
+        graphics.text(
+                this.font,
+                energyText,
+                Math.round(energyTextX / ENERGY_TEXT_SCALE),
+                Math.round(energyTextY / ENERGY_TEXT_SCALE),
+                ENERGY_TEXT_COLOR,
+                false);
+        graphics.pose().popMatrix();
+    }
+
+    private static String formatEnergy(int value) {
+        if (value >= 1000) {
+            return String.format(Locale.ROOT, "%.1fk", value / 1000.0);
+        }
+        return Integer.toString(value);
     }
 }
 
