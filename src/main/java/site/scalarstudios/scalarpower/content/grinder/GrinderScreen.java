@@ -21,7 +21,7 @@ public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
     private static final int PROGRESS_X = 80;
     private static final int PROGRESS_Y = 32;
     private static final int PROGRESS_WIDTH = 24;
-    private static final int PROGRESS_HEIGHT = 16;
+    private static final int PROGRESS_HEIGHT = 18;
     private static final int PROGRESS_U = 176;
     private static final int PROGRESS_V = 0;
 
@@ -44,8 +44,8 @@ public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
                     TEXTURE,
                     x + PROGRESS_X,
                     y + PROGRESS_Y,
-                    (float) PROGRESS_U / TEXTURE_WIDTH,
-                    (float) PROGRESS_V / TEXTURE_HEIGHT,
+                    PROGRESS_U,
+                    PROGRESS_V,
                     progressPixels,
                     PROGRESS_HEIGHT,
                     TEXTURE_WIDTH,

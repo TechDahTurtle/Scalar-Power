@@ -19,10 +19,12 @@ public class PoweredFurnaceScreen extends AbstractContainerScreen<PoweredFurnace
     private static final int ENERGY_WIDTH = 8;
     private static final int ENERGY_HEIGHT = 50;
 
-    private static final int PROGRESS_X = 79;
-    private static final int PROGRESS_Y = 34;
+    private static final int PROGRESS_X = 80;
+    private static final int PROGRESS_Y = 32;
     private static final int PROGRESS_WIDTH = 24;
-    private static final int PROGRESS_HEIGHT = 16;
+    private static final int PROGRESS_HEIGHT = 18;
+    private static final int PROGRESS_U = 176;
+    private static final int PROGRESS_V = 0;
 
     public PoweredFurnaceScreen(PoweredFurnaceMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title, 176, 166);
@@ -38,7 +40,17 @@ public class PoweredFurnaceScreen extends AbstractContainerScreen<PoweredFurnace
 
         int progressPixels = menu.getMaxProgress() > 0 ? (int) ((float) PROGRESS_WIDTH * menu.getProgress() / menu.getMaxProgress()) : 0;
         if (progressPixels > 0) {
-            graphics.fill(x + PROGRESS_X, y + PROGRESS_Y, x + PROGRESS_X + progressPixels, y + PROGRESS_Y + PROGRESS_HEIGHT, 0xFFCC8A33);
+            graphics.blit(
+                    RenderPipelines.GUI_TEXTURED,
+                    TEXTURE,
+                    x + PROGRESS_X,
+                    y + PROGRESS_Y,
+                    PROGRESS_U,
+                    PROGRESS_V,
+                    progressPixels,
+                    PROGRESS_HEIGHT,
+                    TEXTURE_WIDTH,
+                    TEXTURE_HEIGHT);
         }
 
         graphics.fill(x + ENERGY_X, y + ENERGY_Y, x + ENERGY_X + ENERGY_WIDTH, y + ENERGY_Y + ENERGY_HEIGHT, 0x66000000);
