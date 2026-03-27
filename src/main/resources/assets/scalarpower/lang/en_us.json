@@ -1,0 +1,19 @@
+{
+  "itemGroup.scalarpower.scalar_power": "Scalar Power",
+  "block.scalarpower.coal_generator": "Coal Generator",
+  "block.scalarpower.grinder": "Grinder",
+  "block.scalarpower.powered_furnace": "Powered Furnace",
+  "block.scalarpower.copper_wire": "Copper Wire",
+  "item.scalarpower.iron_dust": "Iron Dust",
+  "item.scalarpower.gold_dust": "Gold Dust",
+  "item.scalarpower.copper_dust": "Copper Dust",
+  "item.scalarpower.gold_upgrade": "Gold Upgrade",
+  "item.scalarpower.redium": "Redium Ingot",
+  "item.scalarpower.redium_upgrade": "Redium Upgrade",
+  "item.scalarpower.diamond_upgrade": "Diamond Upgrade",
+  "item.scalarpower.clastus_upgrade": "Clastus Upgrade",
+  "item.scalarpower.crystus_upgrade": "Crystus Upgrade",
+  "container.scalarpower.coal_generator": "Coal Generator",
+  "container.scalarpower.grinder": "Grinder",
+  "container.scalarpower.powered_furnace": "Powered Furnace"
+}

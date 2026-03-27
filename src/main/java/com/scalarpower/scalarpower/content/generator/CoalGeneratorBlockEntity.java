@@ -2,7 +2,7 @@ package com.scalarpower.scalarpower.content.generator;
 
 import com.scalarpower.scalarpower.power.PowerNode;
 import com.scalarpower.scalarpower.power.PowerUtil;
-import com.scalarpower.scalarpower.registry.ModBlockEntities;
+import com.scalarpower.scalarpower.registry.ScalarPowerEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -31,7 +31,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements Container, 
     private int energy;
 
     public CoalGeneratorBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.COAL_GENERATOR.get(), pos, blockState);
+        super(ScalarPowerEntities.COAL_GENERATOR.get(), pos, blockState);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, CoalGeneratorBlockEntity blockEntity) {

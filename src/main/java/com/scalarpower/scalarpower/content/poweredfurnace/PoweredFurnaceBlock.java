@@ -1,7 +1,7 @@
 package com.scalarpower.scalarpower.content.poweredfurnace;
 
 import com.mojang.serialization.MapCodec;
-import com.scalarpower.scalarpower.registry.ModBlockEntities;
+import com.scalarpower.scalarpower.registry.ScalarPowerEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
@@ -69,7 +69,7 @@ public class PoweredFurnaceBlock extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
             BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, ModBlockEntities.POWERED_FURNACE.get(), PoweredFurnaceBlockEntity::tick);
+        return createTickerHelper(blockEntityType, ScalarPowerEntities.POWERED_FURNACE.get(), PoweredFurnaceBlockEntity::tick);
     }
 }
 

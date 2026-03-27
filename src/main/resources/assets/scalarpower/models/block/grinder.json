@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "top": "scalarpower:block/grinder_side",
+    "bottom": "scalarpower:block/grinder_side",
+    "side": "scalarpower:block/grinder_side",
+    "front": "scalarpower:block/grinder",
+    "particle": "scalarpower:block/grinder_side"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "up": { "texture": "#top" },
+        "down": { "texture": "#bottom" },
+        "north": { "texture": "#front" },
+        "east": { "texture": "#side" },
+        "south": { "texture": "#side" },
+        "west": { "texture": "#side" }
+      }
+    }
+  ]
+}
+

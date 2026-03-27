@@ -6,8 +6,8 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
-public final class ModTags {
-    private ModTags() {
+public final class ScalarPowerTags {
+    private ScalarPowerTags() {
     }
 
     public static final class Items {

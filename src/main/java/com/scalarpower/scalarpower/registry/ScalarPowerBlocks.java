@@ -16,7 +16,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public final class ModBlocks {
+public final class ScalarPowerBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(ScalarPower.MODID);
 
     public static final DeferredBlock<Block> COAL_GENERATOR = BLOCKS.register("coal_generator",
@@ -45,7 +45,7 @@ public final class ModBlocks {
         return properties.setId(blockKey);
     }
 
-    private ModBlocks() {
+    private ScalarPowerBlocks() {
     }
 
     public static void register(IEventBus eventBus) {

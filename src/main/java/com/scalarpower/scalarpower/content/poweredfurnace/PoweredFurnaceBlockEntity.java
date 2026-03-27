@@ -2,8 +2,8 @@ package com.scalarpower.scalarpower.content.poweredfurnace;
 
 import com.scalarpower.scalarpower.power.PowerNode;
 import com.scalarpower.scalarpower.power.PowerUtil;
-import com.scalarpower.scalarpower.registry.ModBlockEntities;
-import com.scalarpower.scalarpower.registry.ModItems;
+import com.scalarpower.scalarpower.registry.ScalarPowerEntities;
+import com.scalarpower.scalarpower.registry.ScalarPowerItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -42,7 +42,7 @@ public class PoweredFurnaceBlockEntity extends BlockEntity implements Container,
     private int recipeTime = DEFAULT_RECIPE_TIME;
 
     public PoweredFurnaceBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.POWERED_FURNACE.get(), pos, blockState);
+        super(ScalarPowerEntities.POWERED_FURNACE.get(), pos, blockState);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, PoweredFurnaceBlockEntity blockEntity) {
@@ -138,13 +138,13 @@ public class PoweredFurnaceBlockEntity extends BlockEntity implements Container,
     }
 
     private ItemStack getManualDustResult(ItemStack input) {
-        if (input.is(ModItems.IRON_DUST.get())) {
+        if (input.is(ScalarPowerItems.IRON_DUST.get())) {
             return new ItemStack(Items.IRON_INGOT);
         }
-        if (input.is(ModItems.GOLD_DUST.get())) {
+        if (input.is(ScalarPowerItems.GOLD_DUST.get())) {
             return new ItemStack(Items.GOLD_INGOT);
         }
-        if (input.is(ModItems.COPPER_DUST.get())) {
+        if (input.is(ScalarPowerItems.COPPER_DUST.get())) {
             return new ItemStack(Items.COPPER_INGOT);
         }
         return ItemStack.EMPTY;

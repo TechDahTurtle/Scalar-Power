@@ -1,6 +1,6 @@
 package com.scalarpower.scalarpower.content.poweredfurnace;
 
-import com.scalarpower.scalarpower.registry.ModMenus;
+import com.scalarpower.scalarpower.registry.ScalarPowerMenus;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -21,7 +21,7 @@ public class PoweredFurnaceMenu extends AbstractContainerMenu {
     }
 
     public PoweredFurnaceMenu(int id, Inventory inventory, PoweredFurnaceBlockEntity blockEntity, ContainerData data) {
-        super(ModMenus.POWERED_FURNACE_MENU.get(), id);
+        super(ScalarPowerMenus.POWERED_FURNACE_MENU.get(), id);
         this.blockEntity = blockEntity;
         this.data = data;
         checkContainerDataCount(data, 4);

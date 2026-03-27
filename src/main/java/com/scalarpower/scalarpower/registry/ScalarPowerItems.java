@@ -12,19 +12,19 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public final class ModItems {
+public final class ScalarPowerItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(ScalarPower.MODID);
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB,
             ScalarPower.MODID);
 
     public static final DeferredItem<BlockItem> COAL_GENERATOR_ITEM = ITEMS.registerSimpleBlockItem("coal_generator",
-            ModBlocks.COAL_GENERATOR);
+            ScalarPowerBlocks.COAL_GENERATOR);
     public static final DeferredItem<BlockItem> GRINDER_ITEM = ITEMS.registerSimpleBlockItem("grinder",
-            ModBlocks.GRINDER);
+            ScalarPowerBlocks.GRINDER);
     public static final DeferredItem<BlockItem> POWERED_FURNACE_ITEM = ITEMS.registerSimpleBlockItem("powered_furnace",
-            ModBlocks.POWERED_FURNACE);
+            ScalarPowerBlocks.POWERED_FURNACE);
     public static final DeferredItem<BlockItem> COPPER_WIRE_ITEM = ITEMS.registerSimpleBlockItem("copper_wire",
-            ModBlocks.COPPER_WIRE);
+            ScalarPowerBlocks.COPPER_WIRE);
 
     public static final DeferredItem<Item> IRON_DUST = ITEMS.registerSimpleItem("iron_dust");
     public static final DeferredItem<Item> GOLD_DUST = ITEMS.registerSimpleItem("gold_dust");
@@ -59,7 +59,7 @@ public final class ModItems {
                     })
                     .build());
 
-    private ModItems() {
+    private ScalarPowerItems() {
     }
 
     public static void register(IEventBus eventBus) {

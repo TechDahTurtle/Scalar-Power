@@ -1,7 +1,7 @@
 package com.scalarpower.scalarpower.content.wire;
 
 import com.scalarpower.scalarpower.power.PowerNode;
-import com.scalarpower.scalarpower.registry.ModBlockEntities;
+import com.scalarpower.scalarpower.registry.ScalarPowerEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -124,7 +124,7 @@ public class CopperWireBlock extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
             BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, ModBlockEntities.COPPER_WIRE.get(), CopperWireBlockEntity::tick);
+        return createTickerHelper(blockEntityType, ScalarPowerEntities.COPPER_WIRE.get(), CopperWireBlockEntity::tick);
     }
 }
 

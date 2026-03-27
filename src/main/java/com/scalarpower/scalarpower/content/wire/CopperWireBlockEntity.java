@@ -2,7 +2,7 @@ package com.scalarpower.scalarpower.content.wire;
 
 import com.scalarpower.scalarpower.power.PowerNode;
 import com.scalarpower.scalarpower.power.PowerUtil;
-import com.scalarpower.scalarpower.registry.ModBlockEntities;
+import com.scalarpower.scalarpower.registry.ScalarPowerEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
@@ -18,7 +18,7 @@ public class CopperWireBlockEntity extends BlockEntity implements PowerNode {
     private int energy;
 
     public CopperWireBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.COPPER_WIRE.get(), pos, blockState);
+        super(ScalarPowerEntities.COPPER_WIRE.get(), pos, blockState);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, CopperWireBlockEntity blockEntity) {

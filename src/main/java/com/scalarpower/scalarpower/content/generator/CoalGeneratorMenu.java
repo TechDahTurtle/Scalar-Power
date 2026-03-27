@@ -1,6 +1,6 @@
 package com.scalarpower.scalarpower.content.generator;
 
-import com.scalarpower.scalarpower.registry.ModMenus;
+import com.scalarpower.scalarpower.registry.ScalarPowerMenus;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +23,7 @@ public class CoalGeneratorMenu extends AbstractContainerMenu {
 
     // Server-side: called from CoalGeneratorBlockEntity.createMenu
     public CoalGeneratorMenu(int id, Inventory inventory, CoalGeneratorBlockEntity blockEntity, ContainerData data) {
-        super(ModMenus.COAL_GENERATOR_MENU.get(), id);
+        super(ScalarPowerMenus.COAL_GENERATOR_MENU.get(), id);
         this.blockEntity = blockEntity;
         this.data = data;
         checkContainerDataCount(data, 4);

@@ -2,9 +2,9 @@ package com.scalarpower.scalarpower.content.grinder;
 
 import com.scalarpower.scalarpower.power.PowerNode;
 import com.scalarpower.scalarpower.power.PowerUtil;
-import com.scalarpower.scalarpower.registry.ModBlockEntities;
-import com.scalarpower.scalarpower.registry.ModItems;
-import com.scalarpower.scalarpower.registry.ModTags;
+import com.scalarpower.scalarpower.registry.ScalarPowerEntities;
+import com.scalarpower.scalarpower.registry.ScalarPowerItems;
+import com.scalarpower.scalarpower.registry.ScalarPowerTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -33,7 +33,7 @@ public class GrinderBlockEntity extends BlockEntity implements Container, PowerN
     private int progress;
 
     public GrinderBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.GRINDER.get(), pos, blockState);
+        super(ScalarPowerEntities.GRINDER.get(), pos, blockState);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, GrinderBlockEntity blockEntity) {
@@ -86,9 +86,9 @@ public class GrinderBlockEntity extends BlockEntity implements Container, PowerN
     }
 
     public ItemStack getGrindingOutput(ItemStack stack) {
-        if (stack.is(ModTags.Items.RAW_IRON_GRINDABLE)) return new ItemStack(ModItems.IRON_DUST.get(), 2);
-        if (stack.is(ModTags.Items.RAW_GOLD_GRINDABLE)) return new ItemStack(ModItems.GOLD_DUST.get(), 2);
-        if (stack.is(ModTags.Items.RAW_COPPER_GRINDABLE)) return new ItemStack(ModItems.COPPER_DUST.get(), 2);
+        if (stack.is(ScalarPowerTags.Items.RAW_IRON_GRINDABLE)) return new ItemStack(ScalarPowerItems.IRON_DUST.get(), 2);
+        if (stack.is(ScalarPowerTags.Items.RAW_GOLD_GRINDABLE)) return new ItemStack(ScalarPowerItems.GOLD_DUST.get(), 2);
+        if (stack.is(ScalarPowerTags.Items.RAW_COPPER_GRINDABLE)) return new ItemStack(ScalarPowerItems.COPPER_DUST.get(), 2);
         return ItemStack.EMPTY;
     }
 

@@ -11,7 +11,7 @@ import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public final class ModMenus {
+public final class ScalarPowerMenus {
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(Registries.MENU, ScalarPower.MODID);
 
     public static final DeferredHolder<MenuType<?>, MenuType<CoalGeneratorMenu>> COAL_GENERATOR_MENU = MENUS
@@ -23,7 +23,7 @@ public final class ModMenus {
     public static final DeferredHolder<MenuType<?>, MenuType<PoweredFurnaceMenu>> POWERED_FURNACE_MENU = MENUS
             .register("powered_furnace", () -> IMenuTypeExtension.create(PoweredFurnaceMenu::new));
 
-    private ModMenus() {
+    private ScalarPowerMenus() {
     }
 
     public static void register(IEventBus eventBus) {

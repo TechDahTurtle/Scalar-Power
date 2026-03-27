@@ -1,9 +1,9 @@
 package com.scalarpower.scalarpower;
 
-import com.scalarpower.scalarpower.registry.ModBlockEntities;
-import com.scalarpower.scalarpower.registry.ModBlocks;
-import com.scalarpower.scalarpower.registry.ModItems;
-import com.scalarpower.scalarpower.registry.ModMenus;
+import com.scalarpower.scalarpower.registry.ScalarPowerEntities;
+import com.scalarpower.scalarpower.registry.ScalarPowerBlocks;
+import com.scalarpower.scalarpower.registry.ScalarPowerItems;
+import com.scalarpower.scalarpower.registry.ScalarPowerMenus;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -16,10 +16,10 @@ public class ScalarPower {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public ScalarPower(IEventBus modEventBus, ModContainer modContainer) {
-        ModBlocks.register(modEventBus);
-        ModItems.register(modEventBus);
-        ModBlockEntities.register(modEventBus);
-        ModMenus.register(modEventBus);
+        ScalarPowerBlocks.register(modEventBus);
+        ScalarPowerItems.register(modEventBus);
+        ScalarPowerEntities.register(modEventBus);
+        ScalarPowerMenus.register(modEventBus);
 
         LOGGER.info("Scalar Power content registered.");
     }

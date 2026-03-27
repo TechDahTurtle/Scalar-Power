@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "facing=north,lit=false": { "model": "scalarpower:block/grinder" },
+    "facing=east,lit=false": { "model": "scalarpower:block/grinder", "y": 90 },
+    "facing=south,lit=false": { "model": "scalarpower:block/grinder", "y": 180 },
+    "facing=west,lit=false": { "model": "scalarpower:block/grinder", "y": 270 },
+
+    "facing=north,lit=true": { "model": "scalarpower:block/grinder_on" },
+    "facing=east,lit=true": { "model": "scalarpower:block/grinder_on", "y": 90 },
+    "facing=south,lit=true": { "model": "scalarpower:block/grinder_on", "y": 180 },
+    "facing=west,lit=true": { "model": "scalarpower:block/grinder_on", "y": 270 }
+  }
+}
+
