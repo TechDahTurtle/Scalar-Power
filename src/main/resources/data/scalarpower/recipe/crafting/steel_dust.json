@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "scalarpower:iron_dust",
+    "scalarpower:coal_dust",
+    "scalarpower:coal_dust"
+  ],
+  "result": {
+    "id": "scalarpower:steel_dust",
+    "count": 1
+  }
+}
+

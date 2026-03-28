@@ -1,0 +1,11 @@
+{
+  "type": "scalarpower:alloy_smelting",
+  "ingredient1": "minecraft:iron_ingot",
+  "ingredient2": "scalarpower:coal_dust",
+  "ingredient3": "scalarpower:coal_dust",
+  "result": {
+    "id": "scalarpower:steel_ingot",
+    "count": 1
+  }
+}
+

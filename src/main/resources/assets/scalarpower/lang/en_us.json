@@ -23,8 +23,10 @@
   "item.scalarpower.gold_dust": "Gold Dust",
   "item.scalarpower.iron_dust": "Iron Dust",
   "item.scalarpower.obsidian_dust": "Obsidian Dust",
+  "item.scalarpower.steel_dust": "Steel Dust",
 
   "item.scalarpower.redium_ingot": "Redium Ingot",
+  "item.scalarpower.steel_ingot": "Steel Ingot",
 
   "item.scalarpower.gold_upgrade": "Gold Upgrade",
   "item.scalarpower.redium_upgrade": "Redium Upgrade",

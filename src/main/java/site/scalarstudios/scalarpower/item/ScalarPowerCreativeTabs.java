@@ -45,9 +45,11 @@ public class ScalarPowerCreativeTabs {
             event.accept(ScalarPowerItems.GOLD_DUST.get());
             event.accept(ScalarPowerItems.IRON_DUST.get());
             event.accept(ScalarPowerItems.OBSIDIAN_DUST.get());
+            event.accept(ScalarPowerItems.STEEL_DUST.get());
 
             /* Ingots */
             event.accept(ScalarPowerItems.REDIUM_INGOT.get());
+            event.accept(ScalarPowerItems.STEEL_INGOT.get());
 
             /* Upgrades */
             event.accept(ScalarPowerItems.GOLD_UPGRADE.get());

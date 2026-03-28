@@ -1,0 +1,11 @@
+{
+  "type": "scalarpower:grinding",
+  "ingredient": "scalarpower:steel_ingot",
+  "result": {
+    "id": "scalarpower:steel_dust",
+    "count": 1
+  },
+  "bonus_chance": 0.0,
+  "bonus_count": 1
+}
+
