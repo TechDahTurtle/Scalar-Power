@@ -8,6 +8,7 @@ import site.scalarstudios.scalarpower.content.generator.culinary.CulinaryGenerat
 import site.scalarstudios.scalarpower.content.grinder.GrinderBlockEntity;
 import site.scalarstudios.scalarpower.content.poweredfurnace.PoweredFurnaceBlockEntity;
 import site.scalarstudios.scalarpower.content.wire.copper.CopperWireBlockEntity;
+import site.scalarstudios.scalarpower.content.wire.copper.InsulatedCopperWireBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -42,6 +43,9 @@ public final class ScalarPowerBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CopperWireBlockEntity>> COPPER_WIRE = BLOCK_ENTITY_TYPES
             .register("copper_wire", () -> new BlockEntityType<>(CopperWireBlockEntity::new, ScalarPowerBlocks.COPPER_WIRE.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InsulatedCopperWireBlockEntity>> INSULATED_COPPER_WIRE = BLOCK_ENTITY_TYPES
+            .register("insulated_copper_wire", () -> new BlockEntityType<>(InsulatedCopperWireBlockEntity::new, ScalarPowerBlocks.INSULATED_COPPER_WIRE.get()));
     private ScalarPowerBlockEntities() {
     }
 
@@ -49,5 +53,3 @@ public final class ScalarPowerBlockEntities {
         BLOCK_ENTITY_TYPES.register(eventBus);
     }
 }
-
-

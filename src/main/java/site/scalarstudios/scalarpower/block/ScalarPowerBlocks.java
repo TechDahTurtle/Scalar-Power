@@ -15,6 +15,7 @@ import site.scalarstudios.scalarpower.content.generator.culinary.CulinaryGenerat
 import site.scalarstudios.scalarpower.content.grinder.GrinderBlock;
 import site.scalarstudios.scalarpower.content.poweredfurnace.PoweredFurnaceBlock;
 import site.scalarstudios.scalarpower.content.wire.copper.CopperWireBlock;
+import site.scalarstudios.scalarpower.content.wire.copper.InsulatedCopperWireBlock;
 import site.scalarstudios.scalarpower.item.ScalarPowerItems;
 import site.scalarstudios.scalarpower.item.custom.TooltipBlockItem;
 
@@ -50,6 +51,10 @@ public class ScalarPowerBlocks {
 
     public static final DeferredBlock<CopperWireBlock> COPPER_WIRE = registerTooltipBlockItem("copper_wire",
             CopperWireBlock::new,
+            properties -> properties.strength(0.5F, 0.5F).noOcclusion().sound(SoundType.COPPER).mapColor(MapColor.COLOR_ORANGE));
+
+    public static final DeferredBlock<InsulatedCopperWireBlock> INSULATED_COPPER_WIRE = registerTooltipBlockItem("insulated_copper_wire",
+            InsulatedCopperWireBlock::new,
             properties -> properties.strength(0.5F, 0.5F).noOcclusion().sound(SoundType.COPPER).mapColor(MapColor.COLOR_ORANGE));
 
     // Registry Shortcuts
