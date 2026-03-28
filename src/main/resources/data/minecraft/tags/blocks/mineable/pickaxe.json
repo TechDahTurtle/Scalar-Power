@@ -6,6 +6,7 @@
     "scalarpower:culinary_generator",
     "scalarpower:grinder",
     "scalarpower:powered_furnace",
-    "scalarpower:copper_wire"
+    "scalarpower:copper_wire",
+    "scalarpower:insulated_copper_wire"
   ]
 }

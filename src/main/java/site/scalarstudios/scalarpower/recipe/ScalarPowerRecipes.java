@@ -18,6 +18,10 @@ public final class ScalarPowerRecipes {
     public static final RecipeType<AlloySmeltingRecipe> ALLOY_SMELTING_RECIPE_TYPE = RecipeType.simple(ALLOY_SMELTING_ID);
     public static final RecipeSerializer<AlloySmeltingRecipe> ALLOY_SMELTING_RECIPE_SERIALIZER = AlloySmeltingRecipe.SERIALIZER;
 
+    public static final Identifier EXTRACTION_ID = Identifier.fromNamespaceAndPath(ScalarPower.MODID, "extracting");
+    public static final RecipeType<ExtractionRecipe> EXTRACTION_RECIPE_TYPE = RecipeType.simple(EXTRACTION_ID);
+    public static final RecipeSerializer<ExtractionRecipe> EXTRACTION_RECIPE_SERIALIZER = ExtractionRecipe.SERIALIZER;
+
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, ScalarPower.MODID);
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, ScalarPower.MODID);
 
@@ -36,6 +40,14 @@ public final class ScalarPowerRecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<AlloySmeltingRecipe>> ALLOY_SMELTING_SERIALIZER = RECIPE_SERIALIZERS.register(
             "alloy_smelting",
             () -> ALLOY_SMELTING_RECIPE_SERIALIZER);
+
+    public static final DeferredHolder<RecipeType<?>, RecipeType<ExtractionRecipe>> EXTRACTION_TYPE = RECIPE_TYPES.register(
+            "extracting",
+            () -> EXTRACTION_RECIPE_TYPE);
+
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ExtractionRecipe>> EXTRACTION_SERIALIZER = RECIPE_SERIALIZERS.register(
+            "extracting",
+            () -> EXTRACTION_RECIPE_SERIALIZER);
 
     private ScalarPowerRecipes() {
     }

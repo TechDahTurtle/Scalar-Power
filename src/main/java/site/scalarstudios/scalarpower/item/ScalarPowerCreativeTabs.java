@@ -30,6 +30,7 @@ public class ScalarPowerCreativeTabs {
             /* Machines */
             event.accept(ScalarPowerBlocks.ALLOY_SMELTER.get());
             event.accept(ScalarPowerBlocks.GRINDER.get());
+            event.accept(ScalarPowerBlocks.EXTRACTOR.get());
             event.accept(ScalarPowerBlocks.POWERED_FURNACE.get());
 
             /* Energy Storage & Transfer */
@@ -51,6 +52,10 @@ public class ScalarPowerCreativeTabs {
             /* Ingots */
             event.accept(ScalarPowerItems.REDIUM_INGOT.get());
             event.accept(ScalarPowerItems.STEEL_INGOT.get());
+
+            /* Other Resources */
+            event.accept(ScalarPowerItems.RUBBER.get());
+            event.accept(ScalarPowerItems.SYNTHETIC_RESIN.get());
 
             /* Upgrades */
             event.accept(ScalarPowerItems.GOLD_UPGRADE.get());

@@ -1,0 +1,8 @@
+{
+  "type": "scalarpower:extracting",
+  "ingredient": "#c:resin",
+  "result": {
+    "id": "scalarpower:rubber",
+    "count": 3
+  }
+}

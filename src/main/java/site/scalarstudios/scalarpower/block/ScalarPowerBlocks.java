@@ -13,6 +13,7 @@ import site.scalarstudios.scalarpower.content.battery.BatteryBlock;
 import site.scalarstudios.scalarpower.content.generator.coal.CoalGeneratorBlock;
 import site.scalarstudios.scalarpower.content.generator.culinary.CulinaryGeneratorBlock;
 import site.scalarstudios.scalarpower.content.grinder.GrinderBlock;
+import site.scalarstudios.scalarpower.content.extractor.ExtractorBlock;
 import site.scalarstudios.scalarpower.content.poweredfurnace.PoweredFurnaceBlock;
 import site.scalarstudios.scalarpower.content.wire.copper.CopperWireBlock;
 import site.scalarstudios.scalarpower.content.wire.copper.InsulatedCopperWireBlock;
@@ -35,6 +36,10 @@ public class ScalarPowerBlocks {
 
     public static final DeferredBlock<GrinderBlock> GRINDER = registerBlock("grinder",
             GrinderBlock::new,
+            properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.STONE));
+
+    public static final DeferredBlock<ExtractorBlock> EXTRACTOR = registerBlock("extractor",
+            ExtractorBlock::new,
             properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.STONE));
 
     public static final DeferredBlock<PoweredFurnaceBlock> POWERED_FURNACE = registerBlock("powered_furnace",

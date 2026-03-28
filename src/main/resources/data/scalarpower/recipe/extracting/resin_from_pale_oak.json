@@ -1,0 +1,8 @@
+{
+  "type": "scalarpower:extracting",
+  "ingredient": "#scalarpower:extractable_resin_wood",
+  "result": {
+    "id": "minecraft:resin_clump",
+    "count": 3
+  }
+}

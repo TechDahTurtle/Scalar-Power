@@ -6,6 +6,7 @@ import site.scalarstudios.scalarpower.content.battery.BatteryBlockEntity;
 import site.scalarstudios.scalarpower.content.generator.coal.CoalGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.content.generator.culinary.CulinaryGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.content.grinder.GrinderBlockEntity;
+import site.scalarstudios.scalarpower.content.extractor.ExtractorBlockEntity;
 import site.scalarstudios.scalarpower.content.poweredfurnace.PoweredFurnaceBlockEntity;
 import site.scalarstudios.scalarpower.content.wire.copper.CopperWireBlockEntity;
 import site.scalarstudios.scalarpower.content.wire.copper.InsulatedCopperWireBlockEntity;
@@ -29,6 +30,10 @@ public final class ScalarPowerBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GrinderBlockEntity>> GRINDER = BLOCK_ENTITY_TYPES
             .register("grinder",
                     () -> new BlockEntityType<>(GrinderBlockEntity::new, ScalarPowerBlocks.GRINDER.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ExtractorBlockEntity>> EXTRACTOR = BLOCK_ENTITY_TYPES
+            .register("extractor",
+                    () -> new BlockEntityType<>(ExtractorBlockEntity::new, ScalarPowerBlocks.EXTRACTOR.get()));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PoweredFurnaceBlockEntity>> POWERED_FURNACE = BLOCK_ENTITY_TYPES
             .register("powered_furnace",

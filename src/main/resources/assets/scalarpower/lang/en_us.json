@@ -4,6 +4,7 @@
   "block.scalarpower.coal_generator": "Coal Generator",
   "block.scalarpower.copper_wire": "Copper Wire",
   "block.scalarpower.culinary_generator": "Culinary Generator",
+  "block.scalarpower.extractor": "Extractor",
   "block.scalarpower.grinder": "Grinder",
   "block.scalarpower.powered_furnace": "Powered Furnace",
   "block.scalarpower.insulated_copper_wire": "Insulated Copper Wire",
@@ -12,6 +13,7 @@
   "container.scalarpower.battery": "Battery",
   "container.scalarpower.coal_generator": "Coal Generator",
   "container.scalarpower.culinary_generator": "Culinary Generator",
+  "container.scalarpower.extractor": "Extractor",
   "container.scalarpower.grinder": "Grinder",
   "container.scalarpower.powered_furnace": "Powered Furnace",
 
@@ -31,6 +33,9 @@
 
   "item.scalarpower.redium_ingot": "Redium Ingot",
   "item.scalarpower.steel_ingot": "Steel Ingot",
+
+  "item.scalarpower.synthetic_resin": "Synthetic Resin",
+  "item.scalarpower.rubber": "Rubber",
 
   "item.scalarpower.copper_wire": "Copper Wire",
   "item.scalarpower.insulated_copper_wire": "Insulated Copper Wire",
