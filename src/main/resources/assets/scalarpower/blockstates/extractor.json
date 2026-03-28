@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "facing=north,lit=false": { "model": "scalarpower:block/extractor" },
+    "facing=east,lit=false": { "model": "scalarpower:block/extractor", "y": 90, "uvlock": true },
+    "facing=south,lit=false": { "model": "scalarpower:block/extractor", "y": 180, "uvlock": true },
+    "facing=west,lit=false": { "model": "scalarpower:block/extractor", "y": 270, "uvlock": true },
+
+    "facing=north,lit=true": { "model": "scalarpower:block/extractor_on" },
+    "facing=east,lit=true": { "model": "scalarpower:block/extractor_on", "y": 90, "uvlock": true },
+    "facing=south,lit=true": { "model": "scalarpower:block/extractor_on", "y": 180, "uvlock": true },
+    "facing=west,lit=true": { "model": "scalarpower:block/extractor_on", "y": 270, "uvlock": true }
+  }
+}
+
