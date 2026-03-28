@@ -1,4 +1,4 @@
-package site.scalarstudios.scalarpower.content.generator.coal;
+package site.scalarstudios.scalarpower.content.generator.culinary;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -9,8 +9,8 @@ import net.minecraft.world.entity.player.Inventory;
 
 import java.util.Locale;
 
-public class CoalGeneratorScreen extends AbstractContainerScreen<CoalGeneratorMenu> {
-    private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath("scalarpower", "textures/gui/coal_generator.png");
+public class CulinaryGeneratorScreen extends AbstractContainerScreen<CulinaryGeneratorMenu> {
+    private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath("scalarpower", "textures/gui/culinary_generator.png");
 
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
@@ -24,7 +24,7 @@ public class CoalGeneratorScreen extends AbstractContainerScreen<CoalGeneratorMe
     private static final float ENERGY_TEXT_SCALE = 0.85F;
     private static final int LEFT_INFO_Y = 34;
 
-    public CoalGeneratorScreen(CoalGeneratorMenu menu, Inventory inventory, Component title) {
+    public CulinaryGeneratorScreen(CulinaryGeneratorMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title, 176, 166);
     }
 
@@ -66,11 +66,9 @@ public class CoalGeneratorScreen extends AbstractContainerScreen<CoalGeneratorMe
         int spuTextX = x + (82 - this.font.width(spuText)) / 2;
         graphics.text(this.font, spuText, spuTextX, y + LEFT_INFO_Y, ENERGY_TEXT_COLOR, false);
 
-        // Draw seconds remaining to the left of the fuel slot (slot is at x+82, y+39)
         if (menu.getBurnTime() > 0) {
             int seconds = Math.max(1, Math.round(menu.getBurnTime() / 20.0f));
             String burnText = seconds + "s";
-            // Center the text horizontally in the left area (0–82) at the vertical centre of the fuel slot
             int burnTextX = x + (82 - this.font.width(burnText)) / 2;
             int burnTextY = y + 44;
             graphics.text(this.font, burnText, burnTextX, burnTextY, ENERGY_TEXT_COLOR, false);

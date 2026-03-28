@@ -123,6 +123,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements Container, 
                     case 1 -> burnTimeTotal;
                     case 2 -> (int)energyHandler.getAmountAsLong();
                     case 3 -> (int)energyHandler.getCapacityAsLong();
+                    case 4 -> ENERGY_PER_TICK;
                     default -> 0;
                 };
             }
@@ -132,11 +133,12 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements Container, 
                     case 0 -> burnTime = value;
                     case 1 -> burnTimeTotal = value;
                     case 2 -> energyHandler.set(value);
+                    case 4 -> {}
                     default -> {}
                 }
             }
             @Override
-            public int getCount() { return 4; }
+            public int getCount() { return 5; }
         });
     }
 

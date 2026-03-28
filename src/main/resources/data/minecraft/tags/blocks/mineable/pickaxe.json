@@ -1,0 +1,11 @@
+{
+  "values": [
+    "scalarpower:alloy_smelter",
+    "scalarpower:battery",
+    "scalarpower:coal_generator",
+    "scalarpower:culinary_generator",
+    "scalarpower:grinder",
+    "scalarpower:powered_furnace",
+    "scalarpower:copper_wire"
+  ]
+}

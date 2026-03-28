@@ -23,6 +23,7 @@ public class ScalarPowerCreativeTabs {
     public static void registerTabs(BuildCreativeModeTabContentsEvent event) {
         if (event.getTab() == SCALAR_POWER_TAB.get()) {
             event.accept(ScalarPowerBlocks.COAL_GENERATOR.get());
+            event.accept(ScalarPowerBlocks.CULINARY_GENERATOR.get());
             event.accept(ScalarPowerBlocks.GRINDER.get());
             event.accept(ScalarPowerBlocks.POWERED_FURNACE.get());
             event.accept(ScalarPowerBlocks.ALLOY_SMELTER.get());

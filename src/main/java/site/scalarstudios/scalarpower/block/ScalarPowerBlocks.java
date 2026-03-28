@@ -11,9 +11,10 @@ import site.scalarstudios.scalarpower.ScalarPower;
 import site.scalarstudios.scalarpower.content.alloysmelter.AlloySmelterBlock;
 import site.scalarstudios.scalarpower.content.battery.BatteryBlock;
 import site.scalarstudios.scalarpower.content.generator.coal.CoalGeneratorBlock;
+import site.scalarstudios.scalarpower.content.generator.culinary.CulinaryGeneratorBlock;
 import site.scalarstudios.scalarpower.content.grinder.GrinderBlock;
 import site.scalarstudios.scalarpower.content.poweredfurnace.PoweredFurnaceBlock;
-import site.scalarstudios.scalarpower.content.wire.CopperWireBlock;
+import site.scalarstudios.scalarpower.content.wire.copper.CopperWireBlock;
 import site.scalarstudios.scalarpower.item.ScalarPowerItems;
 
 import java.util.function.Function;
@@ -24,6 +25,10 @@ public class ScalarPowerBlocks {
 
     public static final DeferredBlock<CoalGeneratorBlock> COAL_GENERATOR = registerBlock("coal_generator",
             CoalGeneratorBlock::new,
+            properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.IRON).mapColor(MapColor.STONE));
+
+    public static final DeferredBlock<CulinaryGeneratorBlock> CULINARY_GENERATOR = registerBlock("culinary_generator",
+            CulinaryGeneratorBlock::new,
             properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.IRON).mapColor(MapColor.STONE));
 
     public static final DeferredBlock<GrinderBlock> GRINDER = registerBlock("grinder",

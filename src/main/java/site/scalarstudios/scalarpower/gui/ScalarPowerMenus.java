@@ -3,6 +3,7 @@ package site.scalarstudios.scalarpower.gui;
 import site.scalarstudios.scalarpower.content.alloysmelter.AlloySmelterMenu;
 import site.scalarstudios.scalarpower.content.battery.BatteryMenu;
 import site.scalarstudios.scalarpower.content.generator.coal.CoalGeneratorMenu;
+import site.scalarstudios.scalarpower.content.generator.culinary.CulinaryGeneratorMenu;
 import site.scalarstudios.scalarpower.content.grinder.GrinderMenu;
 import site.scalarstudios.scalarpower.content.poweredfurnace.PoweredFurnaceMenu;
 import net.minecraft.core.registries.Registries;
@@ -18,6 +19,9 @@ public final class ScalarPowerMenus {
 
     public static final DeferredHolder<MenuType<?>, MenuType<CoalGeneratorMenu>> COAL_GENERATOR_MENU = MENUS
             .register("coal_generator", () -> IMenuTypeExtension.create(CoalGeneratorMenu::new));
+
+    public static final DeferredHolder<MenuType<?>, MenuType<CulinaryGeneratorMenu>> CULINARY_GENERATOR_MENU = MENUS
+            .register("culinary_generator", () -> IMenuTypeExtension.create(CulinaryGeneratorMenu::new));
 
     public static final DeferredHolder<MenuType<?>, MenuType<GrinderMenu>> GRINDER_MENU = MENUS
             .register("grinder", () -> IMenuTypeExtension.create(GrinderMenu::new));

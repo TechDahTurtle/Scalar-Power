@@ -18,7 +18,7 @@ public class CoalGeneratorMenu extends AbstractContainerMenu {
     public CoalGeneratorMenu(int id, Inventory inventory, FriendlyByteBuf buf) {
         this(id, inventory,
                 (CoalGeneratorBlockEntity) inventory.player.level().getBlockEntity(buf.readBlockPos()),
-                new SimpleContainerData(4));
+                new SimpleContainerData(5));
     }
 
     // Server-side: called from CoalGeneratorBlockEntity.createMenu
@@ -26,7 +26,7 @@ public class CoalGeneratorMenu extends AbstractContainerMenu {
         super(ScalarPowerMenus.COAL_GENERATOR_MENU.get(), id);
         this.blockEntity = blockEntity;
         this.data = data;
-        checkContainerDataCount(data, 4);
+        checkContainerDataCount(data, 5);
         addDataSlots(data);
 
         addSlot(new Slot(blockEntity, 0, 82, 39) {
@@ -80,4 +80,5 @@ public class CoalGeneratorMenu extends AbstractContainerMenu {
     public int getBurnTimeTotal(){ return data.get(1); }
     public int getEnergy()       { return data.get(2); }
     public int getEnergyCapacity(){ return data.get(3); }
+    public int getSpuPerTick()   { return data.get(4); }
 }

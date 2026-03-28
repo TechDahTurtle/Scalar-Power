@@ -1,5 +1,6 @@
 {
   "block.scalarpower.coal_generator": "Coal Generator",
+  "block.scalarpower.culinary_generator": "Culinary Generator",
   "block.scalarpower.grinder": "Grinder",
   "block.scalarpower.powered_furnace": "Powered Furnace",
   "block.scalarpower.alloy_smelter": "Alloy Smelter",
@@ -9,6 +10,7 @@
   "container.scalarpower.alloy_smelter": "Alloy Smelter",
   "container.scalarpower.battery": "Battery",
   "container.scalarpower.coal_generator": "Coal Generator",
+  "container.scalarpower.culinary_generator": "Culinary Generator",
   "container.scalarpower.grinder": "Grinder",
   "container.scalarpower.powered_furnace": "Powered Furnace",
 

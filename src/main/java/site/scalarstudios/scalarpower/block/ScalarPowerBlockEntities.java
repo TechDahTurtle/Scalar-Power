@@ -4,9 +4,10 @@ import site.scalarstudios.scalarpower.ScalarPower;
 import site.scalarstudios.scalarpower.content.alloysmelter.AlloySmelterBlockEntity;
 import site.scalarstudios.scalarpower.content.battery.BatteryBlockEntity;
 import site.scalarstudios.scalarpower.content.generator.coal.CoalGeneratorBlockEntity;
+import site.scalarstudios.scalarpower.content.generator.culinary.CulinaryGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.content.grinder.GrinderBlockEntity;
 import site.scalarstudios.scalarpower.content.poweredfurnace.PoweredFurnaceBlockEntity;
-import site.scalarstudios.scalarpower.content.wire.CopperWireBlockEntity;
+import site.scalarstudios.scalarpower.content.wire.copper.CopperWireBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -19,6 +20,10 @@ public final class ScalarPowerBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CoalGeneratorBlockEntity>> COAL_GENERATOR = BLOCK_ENTITY_TYPES
             .register("coal_generator",
                     () -> new BlockEntityType<>(CoalGeneratorBlockEntity::new, ScalarPowerBlocks.COAL_GENERATOR.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CulinaryGeneratorBlockEntity>> CULINARY_GENERATOR = BLOCK_ENTITY_TYPES
+            .register("culinary_generator",
+                    () -> new BlockEntityType<>(CulinaryGeneratorBlockEntity::new, ScalarPowerBlocks.CULINARY_GENERATOR.get()));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GrinderBlockEntity>> GRINDER = BLOCK_ENTITY_TYPES
             .register("grinder",

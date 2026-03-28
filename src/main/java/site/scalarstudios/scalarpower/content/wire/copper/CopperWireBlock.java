@@ -1,4 +1,4 @@
-package site.scalarstudios.scalarpower.content.wire;
+package site.scalarstudios.scalarpower.content.wire.copper;
 
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 import com.mojang.serialization.MapCodec;

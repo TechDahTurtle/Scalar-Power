@@ -1,4 +1,4 @@
-package site.scalarstudios.scalarpower.content.wire;
+package site.scalarstudios.scalarpower.content.wire.copper;
 
 import site.scalarstudios.scalarpower.power.NeoEnergyTransferUtil;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
