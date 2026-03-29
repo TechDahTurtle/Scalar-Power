@@ -86,31 +86,43 @@ public class AlloySmeltingRecipe implements Recipe<AlloySmeltingInput> {
 
     public int[] findMatchingSlots(AlloySmeltingInput input) {
         List<Ingredient> ingredients = requiredIngredients();
-        if (input.nonEmptyCount() != ingredients.size()) {
+        if (input.nonEmptyCount() > ingredients.size()) {
             return new int[0];
         }
 
-        boolean[] usedSlots = new boolean[input.size()];
+        int[] remainingPerSlot = new int[input.size()];
+        boolean[] consumedFromSlot = new boolean[input.size()];
+        for (int slot = 0; slot < input.size(); slot++) {
+            remainingPerSlot[slot] = input.getItem(slot).getCount();
+        }
+
         int[] matchedSlots = new int[ingredients.size()];
 
         for (int ingredientIndex = 0; ingredientIndex < ingredients.size(); ingredientIndex++) {
             Ingredient ingredient = ingredients.get(ingredientIndex);
             boolean found = false;
             for (int slot = 0; slot < input.size(); slot++) {
-                if (usedSlots[slot]) {
+                if (remainingPerSlot[slot] <= 0) {
                     continue;
                 }
                 if (!ingredient.test(input.getItem(slot))) {
                     continue;
                 }
 
-                usedSlots[slot] = true;
+                remainingPerSlot[slot]--;
+                consumedFromSlot[slot] = true;
                 matchedSlots[ingredientIndex] = slot;
                 found = true;
                 break;
             }
 
             if (!found) {
+                return new int[0];
+            }
+        }
+
+        for (int slot = 0; slot < input.size(); slot++) {
+            if (!input.getItem(slot).isEmpty() && !consumedFromSlot[slot]) {
                 return new int[0];
             }
         }

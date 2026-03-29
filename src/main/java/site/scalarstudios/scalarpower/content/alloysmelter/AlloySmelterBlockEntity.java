@@ -155,6 +155,34 @@ public class AlloySmelterBlockEntity extends BlockEntity implements Container, M
             return Optional.of(new RecipeMatch(new ItemStack(Items.EMERALD), emeraldSlots.get()));
         }
 
+        Optional<int[]> steelFromIngotCoalDustSlots = findMatchingSlots(
+                input,
+                Items.IRON_INGOT,
+                ScalarPowerItems.COAL_DUST.get(),
+                ScalarPowerItems.COAL_DUST.get());
+        if (steelFromIngotCoalDustSlots.isPresent()) {
+            return Optional.of(new RecipeMatch(new ItemStack(ScalarPowerItems.STEEL_INGOT.get()), steelFromIngotCoalDustSlots.get()));
+        }
+
+        Optional<int[]> steelFromIronDustCoalDustSlots = findMatchingSlots(
+                input,
+                ScalarPowerItems.IRON_DUST.get(),
+                ScalarPowerItems.COAL_DUST.get(),
+                ScalarPowerItems.COAL_DUST.get());
+        if (steelFromIronDustCoalDustSlots.isPresent()) {
+            return Optional.of(new RecipeMatch(new ItemStack(ScalarPowerItems.STEEL_INGOT.get()), steelFromIronDustCoalDustSlots.get()));
+        }
+
+        Optional<int[]> steelFromIngotCoalSlots = findMatchingSlots(input, Items.IRON_INGOT, Items.COAL, Items.COAL);
+        if (steelFromIngotCoalSlots.isPresent()) {
+            return Optional.of(new RecipeMatch(new ItemStack(ScalarPowerItems.STEEL_INGOT.get()), steelFromIngotCoalSlots.get()));
+        }
+
+        Optional<int[]> steelFromIronDustCoalSlots = findMatchingSlots(input, ScalarPowerItems.IRON_DUST.get(), Items.COAL, Items.COAL);
+        if (steelFromIronDustCoalSlots.isPresent()) {
+            return Optional.of(new RecipeMatch(new ItemStack(ScalarPowerItems.STEEL_INGOT.get()), steelFromIronDustCoalSlots.get()));
+        }
+
         Optional<int[]> rediumSlots = findMatchingSlots(input, Items.GOLD_INGOT, Items.COPPER_INGOT, Items.REDSTONE);
         if (rediumSlots.isPresent()) {
             return Optional.of(new RecipeMatch(new ItemStack(ScalarPowerItems.REDIUM_INGOT.get(), 2), rediumSlots.get()));
@@ -165,30 +193,42 @@ public class AlloySmelterBlockEntity extends BlockEntity implements Container, M
 
 
     private static Optional<int[]> findMatchingSlots(AlloySmeltingInput input, net.minecraft.world.item.Item... requiredItems) {
-        if (input.nonEmptyCount() != requiredItems.length) {
+        if (input.nonEmptyCount() > requiredItems.length) {
             return Optional.empty();
         }
 
-        boolean[] usedSlots = new boolean[input.size()];
+        int[] remainingPerSlot = new int[input.size()];
+        boolean[] consumedFromSlot = new boolean[input.size()];
+        for (int slot = 0; slot < input.size(); slot++) {
+            remainingPerSlot[slot] = input.getItem(slot).getCount();
+        }
+
         int[] matchedSlots = new int[requiredItems.length];
 
         for (int ingredientIndex = 0; ingredientIndex < requiredItems.length; ingredientIndex++) {
             boolean found = false;
             for (int slot = 0; slot < input.size(); slot++) {
-                if (usedSlots[slot]) {
+                if (remainingPerSlot[slot] <= 0) {
                     continue;
                 }
                 if (!input.getItem(slot).is(requiredItems[ingredientIndex])) {
                     continue;
                 }
 
-                usedSlots[slot] = true;
+                remainingPerSlot[slot]--;
+                consumedFromSlot[slot] = true;
                 matchedSlots[ingredientIndex] = slot;
                 found = true;
                 break;
             }
 
             if (!found) {
+                return Optional.empty();
+            }
+        }
+
+        for (int slot = 0; slot < input.size(); slot++) {
+            if (!input.getItem(slot).isEmpty() && !consumedFromSlot[slot]) {
                 return Optional.empty();
             }
         }
