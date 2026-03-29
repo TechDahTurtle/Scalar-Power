@@ -12,13 +12,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import net.minecraft.tags.ItemTags;
 import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 
 public class CoalGeneratorBlockEntity extends BlockEntity implements Container, MenuProvider {
@@ -63,7 +61,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements Container, 
 
         // Don't consume new fuel while storage is full; wait until there is room again.
         if (blockEntity.burnTime <= 0 && hasEnergyRoom) {
-            int newBurnTime = getFuelTicks(blockEntity.fuelStack.getItem());
+            int newBurnTime = getFuelTicks(blockEntity.fuelStack, level);
             if (!blockEntity.fuelStack.isEmpty() && newBurnTime > 0) {
                 blockEntity.fuelStack.shrink(1);
                 blockEntity.burnTime = newBurnTime;
@@ -87,40 +85,11 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements Container, 
         }
     }
 
-    @SuppressWarnings("deprecation")
-    private static int getFuelTicks(net.minecraft.world.item.Item item) {
-        // Coal and Charcoal
-        if (item == Items.COAL || item == Items.CHARCOAL) return 1600;
-        // Coal Block
-        if (item == Items.COAL_BLOCK) return 16000;
-        // Charcoal Block (if present in modpack)
-        if (item.getDescriptionId().equals("block.scalarpower.charcoal_block")) return 16000;
-        // Sticks
-        if (item == Items.STICK) return 100;
-        // Planks
-        if (item.builtInRegistryHolder().is(ItemTags.PLANKS)) return 300;
-        // Logs
-        if (item.builtInRegistryHolder().is(ItemTags.LOGS)) return 300;
-        // Wooden Slabs
-        if (item.builtInRegistryHolder().is(ItemTags.WOODEN_SLABS)) return 150;
-        // Wooden Stairs
-        if (item.builtInRegistryHolder().is(ItemTags.WOODEN_STAIRS)) return 300;
-        // Wooden Fences
-        if (item.builtInRegistryHolder().is(ItemTags.WOODEN_FENCES)) return 300;
-        // Wooden Pressure Plates
-        if (item.builtInRegistryHolder().is(ItemTags.WOODEN_PRESSURE_PLATES)) return 300;
-        // Wooden Buttons
-        if (item.builtInRegistryHolder().is(ItemTags.WOODEN_BUTTONS)) return 100;
-        // Wooden Trapdoors
-        if (item.builtInRegistryHolder().is(ItemTags.WOODEN_TRAPDOORS)) return 300;
-        // Wooden Doors
-        if (item.builtInRegistryHolder().is(ItemTags.WOODEN_DOORS)) return 200;
-        // Bamboo (if present)
-        if (item == Items.BAMBOO) return 50;
-        // Bamboo Block (if present)
-        if (item == Items.BAMBOO_BLOCK) return 300;
-        // Default: not fuel
-        return 0;
+    private static int getFuelTicks(ItemStack stack, Level level) {
+        if (stack.isEmpty() || level == null) {
+            return 0;
+        }
+        return stack.getBurnTime(null, level.fuelValues());
     }
 
     @Override
@@ -217,5 +186,5 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements Container, 
     public int getBurnTime() { return burnTime; }
     public int getBurnTimeTotal() { return burnTimeTotal; }
     public int getEnergy() { return (int)energyHandler.getAmountAsLong(); }
-    public boolean isFuel(ItemStack stack) { return getFuelTicks(stack.getItem()) > 0; }
+    public boolean isFuel(ItemStack stack) { return getFuelTicks(stack, level) > 0; }
 }
