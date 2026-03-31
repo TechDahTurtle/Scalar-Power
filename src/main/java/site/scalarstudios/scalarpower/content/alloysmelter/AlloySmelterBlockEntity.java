@@ -1,5 +1,6 @@
 package site.scalarstudios.scalarpower.content.alloysmelter;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -11,7 +12,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
@@ -23,13 +23,16 @@ import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 import net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 import site.scalarstudios.scalarpower.recipe.AlloySmeltingRecipe;
-import site.scalarstudios.scalarpower.item.ScalarPowerItems;
+import site.scalarstudios.scalarpower.recipe.ExternalRecipeCompat;
 import site.scalarstudios.scalarpower.power.NeoEnergyTransferUtil;
 import site.scalarstudios.scalarpower.recipe.ScalarPowerRecipes;
+import org.slf4j.Logger;
 
 import java.util.Optional;
 
 public class AlloySmelterBlockEntity extends BlockEntity implements Container, MenuProvider {
+    private static final Logger LOGGER = LogUtils.getLogger();
+    private static final long RECIPE_MISS_LOG_INTERVAL_TICKS = 100;
     private static final int ENERGY_CAPACITY = 20000;
     private static final int ENERGY_PER_TICK = 25;
     private static final int RECIPE_TIME = 120;
@@ -40,6 +43,7 @@ public class AlloySmelterBlockEntity extends BlockEntity implements Container, M
     private ItemStack inputStack2 = ItemStack.EMPTY;
     private ItemStack outputStack = ItemStack.EMPTY;
     private int progress;
+    private long lastRecipeMissLogTick = -RECIPE_MISS_LOG_INTERVAL_TICKS;
 
     private final SimpleEnergyHandler energyHandler = new SimpleEnergyHandler(ENERGY_CAPACITY, ENERGY_CAPACITY, ENERGY_CAPACITY, 0) {
         @Override
@@ -115,8 +119,7 @@ public class AlloySmelterBlockEntity extends BlockEntity implements Container, M
                     AlloySmeltingRecipe recipe = holder.value();
                     return new RecipeMatch(recipe.assemble(input), recipe.findMatchingSlots(input));
                 })
-                .filter(match -> !match.result().isEmpty() && match.matchedSlots().length > 0)
-                .or(() -> findTemporaryRecipeMatch(input));
+                .filter(match -> !match.result().isEmpty() && match.matchedSlots().length > 0);
     }
 
     public boolean canAlloy(ItemStack stack) {
@@ -138,102 +141,38 @@ public class AlloySmelterBlockEntity extends BlockEntity implements Container, M
 
         // Fallback scan covers edge-cases where typed lookups miss custom recipe entries.
         RecipeManager recipeManager = serverLevel.recipeAccess();
-        return recipeManager.getRecipes().stream()
-                .filter(holder -> holder.value() instanceof AlloySmeltingRecipe recipe && recipe.matches(input, serverLevel))
-                .findFirst()
-                .map(holder -> (RecipeHolder<AlloySmeltingRecipe>) holder);
-    }
+        Optional<RecipeHolder<AlloySmeltingRecipe>> fallback = recipeManager.getRecipes().stream()
+                .filter(holder -> holder.value().getType() == ScalarPowerRecipes.ALLOY_SMELTING_RECIPE_TYPE)
+                .map(holder -> (RecipeHolder<AlloySmeltingRecipe>) holder)
+                .filter(holder -> holder.value().matches(input, serverLevel))
+                .findFirst();
 
-    private Optional<RecipeMatch> findTemporaryRecipeMatch(AlloySmeltingInput input) {
-        Optional<int[]> diamondSlots = findMatchingSlots(input, Items.GOLD_INGOT, Items.IRON_INGOT);
-        if (diamondSlots.isPresent()) {
-            return Optional.of(new RecipeMatch(new ItemStack(Items.DIAMOND), diamondSlots.get()));
+        if (fallback.isPresent()) {
+            return fallback;
         }
 
-        Optional<int[]> emeraldSlots = findMatchingSlots(input, Items.GOLD_INGOT, Items.IRON_INGOT, Items.COPPER_INGOT);
-        if (emeraldSlots.isPresent()) {
-            return Optional.of(new RecipeMatch(new ItemStack(Items.EMERALD), emeraldSlots.get()));
+        Optional<RecipeHolder<AlloySmeltingRecipe>> external = ExternalRecipeCompat.findExternalAlloyRecipe(serverLevel, input);
+        if (external.isPresent()) {
+            return external;
         }
 
-        Optional<int[]> steelFromIngotCoalDustSlots = findMatchingSlots(
-                input,
-                Items.IRON_INGOT,
-                ScalarPowerItems.COAL_DUST.get(),
-                ScalarPowerItems.COAL_DUST.get());
-        if (steelFromIngotCoalDustSlots.isPresent()) {
-            return Optional.of(new RecipeMatch(new ItemStack(ScalarPowerItems.STEEL_INGOT.get()), steelFromIngotCoalDustSlots.get()));
-        }
-
-        Optional<int[]> steelFromIronDustCoalDustSlots = findMatchingSlots(
-                input,
-                ScalarPowerItems.IRON_DUST.get(),
-                ScalarPowerItems.COAL_DUST.get(),
-                ScalarPowerItems.COAL_DUST.get());
-        if (steelFromIronDustCoalDustSlots.isPresent()) {
-            return Optional.of(new RecipeMatch(new ItemStack(ScalarPowerItems.STEEL_INGOT.get()), steelFromIronDustCoalDustSlots.get()));
-        }
-
-        Optional<int[]> steelFromIngotCoalSlots = findMatchingSlots(input, Items.IRON_INGOT, Items.COAL, Items.COAL);
-        if (steelFromIngotCoalSlots.isPresent()) {
-            return Optional.of(new RecipeMatch(new ItemStack(ScalarPowerItems.STEEL_INGOT.get()), steelFromIngotCoalSlots.get()));
-        }
-
-        Optional<int[]> steelFromIronDustCoalSlots = findMatchingSlots(input, ScalarPowerItems.IRON_DUST.get(), Items.COAL, Items.COAL);
-        if (steelFromIronDustCoalSlots.isPresent()) {
-            return Optional.of(new RecipeMatch(new ItemStack(ScalarPowerItems.STEEL_INGOT.get()), steelFromIronDustCoalSlots.get()));
-        }
-
-        Optional<int[]> rediumSlots = findMatchingSlots(input, Items.GOLD_INGOT, Items.COPPER_INGOT, Items.REDSTONE);
-        if (rediumSlots.isPresent()) {
-            return Optional.of(new RecipeMatch(new ItemStack(ScalarPowerItems.REDIUM_INGOT.get(), 2), rediumSlots.get()));
+        long gameTime = serverLevel.getGameTime();
+        if (gameTime >= lastRecipeMissLogTick + RECIPE_MISS_LOG_INTERVAL_TICKS) {
+            lastRecipeMissLogTick = gameTime;
+            long alloyCount = recipeManager.getRecipes().stream()
+                    .filter(holder -> holder.value().getType() == ScalarPowerRecipes.ALLOY_SMELTING_RECIPE_TYPE)
+                    .count();
+            int externalCount = ExternalRecipeCompat.externalAlloyCount(serverLevel);
+            LOGGER.info(
+                    "[ScalarPower Alloy] No recipe for inputs: {}, {}, {}. Loaded alloy recipes: {} (external compat: {})",
+                    input.getItem(0).getItem().getDescriptionId(),
+                    input.getItem(1).getItem().getDescriptionId(),
+                    input.getItem(2).getItem().getDescriptionId(),
+                    alloyCount,
+                    externalCount);
         }
 
         return Optional.empty();
-    }
-
-
-    private static Optional<int[]> findMatchingSlots(AlloySmeltingInput input, net.minecraft.world.item.Item... requiredItems) {
-        if (input.nonEmptyCount() > requiredItems.length) {
-            return Optional.empty();
-        }
-
-        int[] remainingPerSlot = new int[input.size()];
-        boolean[] consumedFromSlot = new boolean[input.size()];
-        for (int slot = 0; slot < input.size(); slot++) {
-            remainingPerSlot[slot] = input.getItem(slot).getCount();
-        }
-
-        int[] matchedSlots = new int[requiredItems.length];
-
-        for (int ingredientIndex = 0; ingredientIndex < requiredItems.length; ingredientIndex++) {
-            boolean found = false;
-            for (int slot = 0; slot < input.size(); slot++) {
-                if (remainingPerSlot[slot] <= 0) {
-                    continue;
-                }
-                if (!input.getItem(slot).is(requiredItems[ingredientIndex])) {
-                    continue;
-                }
-
-                remainingPerSlot[slot]--;
-                consumedFromSlot[slot] = true;
-                matchedSlots[ingredientIndex] = slot;
-                found = true;
-                break;
-            }
-
-            if (!found) {
-                return Optional.empty();
-            }
-        }
-
-        for (int slot = 0; slot < input.size(); slot++) {
-            if (!input.getItem(slot).isEmpty() && !consumedFromSlot[slot]) {
-                return Optional.empty();
-            }
-        }
-
-        return Optional.of(matchedSlots);
     }
 
     private boolean canOutput(ItemStack current, ItemStack recipe) {

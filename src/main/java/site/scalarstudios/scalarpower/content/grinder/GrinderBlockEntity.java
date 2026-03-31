@@ -1,8 +1,10 @@
 package site.scalarstudios.scalarpower.content.grinder;
 
+import com.mojang.logging.LogUtils;
 import site.scalarstudios.scalarpower.power.NeoEnergyTransferUtil;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 import site.scalarstudios.scalarpower.recipe.GrindingRecipe;
+import site.scalarstudios.scalarpower.recipe.ExternalRecipeCompat;
 import site.scalarstudios.scalarpower.recipe.ScalarPowerRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,10 +27,13 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 import net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler;
+import org.slf4j.Logger;
 
 import java.util.Optional;
 
 public class GrinderBlockEntity extends BlockEntity implements Container, MenuProvider {
+    private static final Logger LOGGER = LogUtils.getLogger();
+    private static final long RECIPE_MISS_LOG_INTERVAL_TICKS = 100;
     private static final int ENERGY_CAPACITY = 20000;
     private static final int ENERGY_PER_TICK = 20;
     private static final int RECIPE_TIME = 100;
@@ -38,6 +43,7 @@ public class GrinderBlockEntity extends BlockEntity implements Container, MenuPr
     private ItemStack outputStack = ItemStack.EMPTY;
     // private int energy;
     private int progress;
+    private long lastRecipeMissLogTick = -RECIPE_MISS_LOG_INTERVAL_TICKS;
     private final SimpleEnergyHandler energyHandler = new SimpleEnergyHandler(ENERGY_CAPACITY, ENERGY_CAPACITY, ENERGY_CAPACITY, 0) {
         @Override
         protected void onEnergyChanged(int previousAmount) {
@@ -145,10 +151,36 @@ public class GrinderBlockEntity extends BlockEntity implements Container, MenuPr
 
         // Fallback scan: handles cases where typed map lookup misses custom recipes.
         RecipeManager recipeManager = serverLevel.recipeAccess();
-        return recipeManager.getRecipes().stream()
-                .filter(holder -> holder.value() instanceof GrindingRecipe recipe && recipe.matches(input, serverLevel))
-                .findFirst()
-                .map(holder -> (RecipeHolder<GrindingRecipe>) holder);
+        Optional<RecipeHolder<GrindingRecipe>> fallback = recipeManager.getRecipes().stream()
+                .filter(holder -> holder.value().getType() == ScalarPowerRecipes.GRINDING_RECIPE_TYPE)
+                .map(holder -> (RecipeHolder<GrindingRecipe>) holder)
+                .filter(holder -> holder.value().matches(input, serverLevel))
+                .findFirst();
+
+        if (fallback.isPresent()) {
+            return fallback;
+        }
+
+        Optional<RecipeHolder<GrindingRecipe>> external = ExternalRecipeCompat.findExternalGrindingRecipe(serverLevel, stack);
+        if (external.isPresent()) {
+            return external;
+        }
+
+        long gameTime = serverLevel.getGameTime();
+        if (gameTime >= lastRecipeMissLogTick + RECIPE_MISS_LOG_INTERVAL_TICKS) {
+            lastRecipeMissLogTick = gameTime;
+            long grindingCount = recipeManager.getRecipes().stream()
+                    .filter(holder -> holder.value().getType() == ScalarPowerRecipes.GRINDING_RECIPE_TYPE)
+                    .count();
+            int externalCount = ExternalRecipeCompat.externalGrindingCount(serverLevel);
+            LOGGER.info(
+                    "[ScalarPower Grinder] No recipe for input {}. Loaded grinding recipes: {} (external compat: {})",
+                    stack.getItem().getDescriptionId(),
+                    grindingCount,
+                    externalCount);
+        }
+
+        return Optional.empty();
     }
 
     @Override

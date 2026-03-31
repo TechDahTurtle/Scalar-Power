@@ -6,6 +6,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeBookCategories;
@@ -27,7 +28,7 @@ public class AlloySmeltingRecipe implements Recipe<AlloySmeltingInput> {
                             Ingredient.CODEC.fieldOf("ingredient1").forGetter(AlloySmeltingRecipe::ingredient1),
                             Ingredient.CODEC.fieldOf("ingredient2").forGetter(AlloySmeltingRecipe::ingredient2),
                             Ingredient.CODEC.optionalFieldOf("ingredient3").forGetter(AlloySmeltingRecipe::ingredient3),
-                            ItemStack.CODEC.fieldOf("result").forGetter(AlloySmeltingRecipe::result))
+                            ItemStackTemplate.CODEC.fieldOf("result").forGetter(AlloySmeltingRecipe::resultTemplate))
                     .apply(i, AlloySmeltingRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, AlloySmeltingRecipe> STREAM_CODEC = StreamCodec.composite(
@@ -39,8 +40,8 @@ public class AlloySmeltingRecipe implements Recipe<AlloySmeltingInput> {
             AlloySmeltingRecipe::ingredient2,
             ByteBufCodecs.optional(Ingredient.CONTENTS_STREAM_CODEC),
             AlloySmeltingRecipe::ingredient3,
-            ItemStack.STREAM_CODEC,
-            AlloySmeltingRecipe::result,
+            ItemStackTemplate.STREAM_CODEC,
+            AlloySmeltingRecipe::resultTemplate,
             AlloySmeltingRecipe::new);
 
     public static final RecipeSerializer<AlloySmeltingRecipe> SERIALIZER = new RecipeSerializer<>(MAP_CODEC, STREAM_CODEC);
@@ -49,14 +50,14 @@ public class AlloySmeltingRecipe implements Recipe<AlloySmeltingInput> {
     private final Ingredient ingredient1;
     private final Ingredient ingredient2;
     private final Optional<Ingredient> ingredient3;
-    private final ItemStack result;
+    private final ItemStackTemplate result;
 
     public AlloySmeltingRecipe(
             Recipe.CommonInfo commonInfo,
             Ingredient ingredient1,
             Ingredient ingredient2,
             Optional<Ingredient> ingredient3,
-            ItemStack result) {
+            ItemStackTemplate result) {
         this.commonInfo = commonInfo;
         this.ingredient1 = ingredient1;
         this.ingredient2 = ingredient2;
@@ -76,7 +77,7 @@ public class AlloySmeltingRecipe implements Recipe<AlloySmeltingInput> {
         return ingredient3;
     }
 
-    private ItemStack result() {
+    private ItemStackTemplate resultTemplate() {
         return result;
     }
 
@@ -137,7 +138,7 @@ public class AlloySmeltingRecipe implements Recipe<AlloySmeltingInput> {
 
     @Override
     public ItemStack assemble(AlloySmeltingInput input) {
-        return result.copy();
+        return result.create();
     }
 
     @Override

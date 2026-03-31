@@ -22,6 +22,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 import net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
+import site.scalarstudios.scalarpower.recipe.ExternalRecipeCompat;
 import site.scalarstudios.scalarpower.power.NeoEnergyTransferUtil;
 import site.scalarstudios.scalarpower.recipe.GrindingRecipe;
 import site.scalarstudios.scalarpower.recipe.ScalarPowerRecipes;
@@ -183,10 +184,17 @@ public class DoubleGrinderBlockEntity extends BlockEntity implements Container, 
         }
 
         RecipeManager recipeManager = serverLevel.recipeAccess();
-        return recipeManager.getRecipes().stream()
-                .filter(holder -> holder.value() instanceof GrindingRecipe recipe && recipe.matches(input, serverLevel))
-                .findFirst()
-                .map(holder -> (RecipeHolder<GrindingRecipe>) holder);
+        Optional<RecipeHolder<GrindingRecipe>> fallback = recipeManager.getRecipes().stream()
+                .filter(holder -> holder.value().getType() == ScalarPowerRecipes.GRINDING_RECIPE_TYPE)
+                .map(holder -> (RecipeHolder<GrindingRecipe>) holder)
+                .filter(holder -> holder.value().matches(input, serverLevel))
+                .findFirst();
+
+        if (fallback.isPresent()) {
+            return fallback;
+        }
+
+        return ExternalRecipeCompat.findExternalGrindingRecipe(serverLevel, stack);
     }
 
     @Override

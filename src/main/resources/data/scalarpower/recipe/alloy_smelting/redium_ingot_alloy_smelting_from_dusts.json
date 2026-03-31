@@ -1,0 +1,11 @@
+{
+  "type": "scalarpower:alloy_smelting",
+  "ingredient1": "scalarpower:gold_dust",
+  "ingredient2": "scalarpower:copper_dust",
+  "ingredient3": "minecraft:redstone",
+  "result": {
+    "id": "scalarpower:redium_ingot",
+    "count": 2
+  }
+}
+
