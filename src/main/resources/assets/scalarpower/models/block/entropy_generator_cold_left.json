@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "scalarpower:block/entropy_generator_side_cold_to_hot",
+    "up": "scalarpower:block/double_machine_top",
+    "down": "scalarpower:block/double_machine_bottom",
+    "north": "scalarpower:block/entropy_generator_side_cold_to_hot",
+    "south": "scalarpower:block/entropy_generator_side_hot_to_cold",
+    "west": "scalarpower:block/entropy_generator_cold_side",
+    "east": "scalarpower:block/entropy_generator_hot_side"
+  }
+}
+

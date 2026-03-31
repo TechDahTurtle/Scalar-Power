@@ -5,6 +5,7 @@
     "scalarpower:steel_battery",
     "scalarpower:coal_generator",
     "scalarpower:culinary_generator",
+    "scalarpower:entropy_generator",
     "scalarpower:grinder",
     "scalarpower:double_grinder",
     "scalarpower:powered_furnace",

@@ -21,6 +21,11 @@ public final class ScalarPowerCapabilities {
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
+                ScalarPowerBlockEntities.ENTROPY_GENERATOR.get(),
+                (blockEntity, side) -> blockEntity.getEnergyHandler(side));
+
+        event.registerBlockEntity(
+                Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.GRINDER.get(),
                 (blockEntity, side) -> blockEntity.getEnergyHandler(side));
 

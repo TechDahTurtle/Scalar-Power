@@ -13,6 +13,7 @@ import site.scalarstudios.scalarpower.content.battery.BatteryBlock;
 import site.scalarstudios.scalarpower.content.battery.SteelBatteryBlock;
 import site.scalarstudios.scalarpower.content.generator.coal.CoalGeneratorBlock;
 import site.scalarstudios.scalarpower.content.generator.culinary.CulinaryGeneratorBlock;
+import site.scalarstudios.scalarpower.content.generator.entropy.EntropyGeneratorBlock;
 import site.scalarstudios.scalarpower.content.grinder.DoubleGrinderBlock;
 import site.scalarstudios.scalarpower.content.grinder.GrinderBlock;
 import site.scalarstudios.scalarpower.content.extractor.ExtractorBlock;
@@ -39,6 +40,10 @@ public class ScalarPowerBlocks {
     public static final DeferredBlock<CulinaryGeneratorBlock> CULINARY_GENERATOR = registerBlock("culinary_generator",
             CulinaryGeneratorBlock::new,
             properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.IRON).mapColor(MapColor.STONE));
+
+    public static final DeferredBlock<EntropyGeneratorBlock> ENTROPY_GENERATOR = registerBlock("entropy_generator",
+            EntropyGeneratorBlock::new,
+            properties -> properties.strength(4.0F, 4.0F).requiresCorrectToolForDrops().sound(SoundType.IRON).mapColor(MapColor.STONE));
 
     public static final DeferredBlock<GrinderBlock> GRINDER = registerBlock("grinder",
             GrinderBlock::new,

@@ -4,6 +4,7 @@ import site.scalarstudios.scalarpower.content.alloysmelter.AlloySmelterScreen;
 import site.scalarstudios.scalarpower.content.battery.BatteryScreen;
 import site.scalarstudios.scalarpower.content.generator.coal.CoalGeneratorScreen;
 import site.scalarstudios.scalarpower.content.generator.culinary.CulinaryGeneratorScreen;
+import site.scalarstudios.scalarpower.content.generator.entropy.EntropyGeneratorScreen;
 import site.scalarstudios.scalarpower.content.grinder.DoubleGrinderScreen;
 import site.scalarstudios.scalarpower.content.grinder.GrinderScreen;
 import site.scalarstudios.scalarpower.content.extractor.ExtractorScreen;
@@ -21,6 +22,7 @@ public class ScalarPowerClientEvents {
     static void onScreenRegistry(RegisterMenuScreensEvent event) {
         event.register(ScalarPowerMenus.COAL_GENERATOR_MENU.get(), CoalGeneratorScreen::new);
         event.register(ScalarPowerMenus.CULINARY_GENERATOR_MENU.get(), CulinaryGeneratorScreen::new);
+        event.register(ScalarPowerMenus.ENTROPY_GENERATOR_MENU.get(), EntropyGeneratorScreen::new);
         event.register(ScalarPowerMenus.GRINDER_MENU.get(), GrinderScreen::new);
         event.register(ScalarPowerMenus.DOUBLE_GRINDER_MENU.get(), DoubleGrinderScreen::new);
         event.register(ScalarPowerMenus.EXTRACTOR_MENU.get(), ExtractorScreen::new);

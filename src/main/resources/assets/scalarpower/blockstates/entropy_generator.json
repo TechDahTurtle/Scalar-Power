@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "facing=north,left_negative=false": { "model": "scalarpower:block/entropy_generator_hot_left" },
+    "facing=east,left_negative=false": { "model": "scalarpower:block/entropy_generator_hot_left", "y": 90, "uvlock": true },
+    "facing=south,left_negative=false": { "model": "scalarpower:block/entropy_generator_hot_left", "y": 180, "uvlock": true },
+    "facing=west,left_negative=false": { "model": "scalarpower:block/entropy_generator_hot_left", "y": 270, "uvlock": true },
+
+    "facing=north,left_negative=true": { "model": "scalarpower:block/entropy_generator_cold_left" },
+    "facing=east,left_negative=true": { "model": "scalarpower:block/entropy_generator_cold_left", "y": 90, "uvlock": true },
+    "facing=south,left_negative=true": { "model": "scalarpower:block/entropy_generator_cold_left", "y": 180, "uvlock": true },
+    "facing=west,left_negative=true": { "model": "scalarpower:block/entropy_generator_cold_left", "y": 270, "uvlock": true }
+  }
+}
+

@@ -4,6 +4,7 @@ import site.scalarstudios.scalarpower.content.alloysmelter.AlloySmelterMenu;
 import site.scalarstudios.scalarpower.content.battery.BatteryMenu;
 import site.scalarstudios.scalarpower.content.generator.coal.CoalGeneratorMenu;
 import site.scalarstudios.scalarpower.content.generator.culinary.CulinaryGeneratorMenu;
+import site.scalarstudios.scalarpower.content.generator.entropy.EntropyGeneratorMenu;
 import site.scalarstudios.scalarpower.content.grinder.DoubleGrinderMenu;
 import site.scalarstudios.scalarpower.content.grinder.GrinderMenu;
 import site.scalarstudios.scalarpower.content.extractor.ExtractorMenu;
@@ -25,6 +26,9 @@ public final class ScalarPowerMenus {
 
     public static final DeferredHolder<MenuType<?>, MenuType<CulinaryGeneratorMenu>> CULINARY_GENERATOR_MENU = MENUS
             .register("culinary_generator", () -> IMenuTypeExtension.create(CulinaryGeneratorMenu::new));
+
+    public static final DeferredHolder<MenuType<?>, MenuType<EntropyGeneratorMenu>> ENTROPY_GENERATOR_MENU = MENUS
+            .register("entropy_generator", () -> IMenuTypeExtension.create(EntropyGeneratorMenu::new));
 
     public static final DeferredHolder<MenuType<?>, MenuType<GrinderMenu>> GRINDER_MENU = MENUS
             .register("grinder", () -> IMenuTypeExtension.create(GrinderMenu::new));

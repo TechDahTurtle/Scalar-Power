@@ -6,6 +6,7 @@ import site.scalarstudios.scalarpower.content.battery.BatteryBlockEntity;
 import site.scalarstudios.scalarpower.content.battery.SteelBatteryBlockEntity;
 import site.scalarstudios.scalarpower.content.generator.coal.CoalGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.content.generator.culinary.CulinaryGeneratorBlockEntity;
+import site.scalarstudios.scalarpower.content.generator.entropy.EntropyGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.content.grinder.DoubleGrinderBlockEntity;
 import site.scalarstudios.scalarpower.content.grinder.GrinderBlockEntity;
 import site.scalarstudios.scalarpower.content.extractor.ExtractorBlockEntity;
@@ -32,6 +33,10 @@ public final class ScalarPowerBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CulinaryGeneratorBlockEntity>> CULINARY_GENERATOR = BLOCK_ENTITY_TYPES
             .register("culinary_generator",
                     () -> new BlockEntityType<>(CulinaryGeneratorBlockEntity::new, ScalarPowerBlocks.CULINARY_GENERATOR.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EntropyGeneratorBlockEntity>> ENTROPY_GENERATOR = BLOCK_ENTITY_TYPES
+            .register("entropy_generator",
+                    () -> new BlockEntityType<>(EntropyGeneratorBlockEntity::new, ScalarPowerBlocks.ENTROPY_GENERATOR.get()));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GrinderBlockEntity>> GRINDER = BLOCK_ENTITY_TYPES
             .register("grinder",

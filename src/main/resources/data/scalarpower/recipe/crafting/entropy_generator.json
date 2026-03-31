@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SRS",
+    "BGB",
+    "SRS"
+  ],
+  "key": {
+    "S": "scalarpower:steel_ingot",
+    "R": "scalarpower:redium_ingot",
+    "B": "scalarpower:steel_battery",
+    "G": "scalarpower:coal_generator"
+  },
+  "result": {
+    "id": "scalarpower:entropy_generator",
+    "count": 1
+  }
+}
+
