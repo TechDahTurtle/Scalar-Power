@@ -68,6 +68,12 @@ public class GoldWireBlock extends BaseEntityBlock {
     }
 
     @Override
+    public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
+        return false;
+    }
+
+
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return updateConnections(defaultBlockState(), context.getLevel(), context.getClickedPos());
     }
@@ -77,6 +83,11 @@ public class GoldWireBlock extends BaseEntityBlock {
             BlockPos currentPos, Direction direction, BlockPos neighborPos, BlockState neighborState,
             RandomSource random) {
         return state.setValue(propertyFor(direction), canConnectTo(level, neighborPos, direction.getOpposite()));
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return Shapes.block();
     }
 
     @Override
