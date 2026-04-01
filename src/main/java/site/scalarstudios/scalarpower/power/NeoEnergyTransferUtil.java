@@ -4,26 +4,45 @@ import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 import net.neoforged.neoforge.transfer.energy.EnergyHandlerUtil;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
+import site.scalarstudios.scalarpower.machines.wire.copper.CopperWireBlockEntity;
+import site.scalarstudios.scalarpower.machines.wire.copper.InsulatedCopperWireBlockEntity;
+import site.scalarstudios.scalarpower.machines.wire.glassfiber.GlassFiberWireBlockEntity;
+import site.scalarstudios.scalarpower.machines.wire.gold.GoldWireBlockEntity;
+import site.scalarstudios.scalarpower.machines.wire.gold.InsulatedGoldWireBlockEntity;
 
 public final class NeoEnergyTransferUtil {
     private NeoEnergyTransferUtil() {
     }
 
     public static int pushEnergy(Level level, BlockPos sourcePos, EnergyHandler source, int maxTransferPerSide) {
+        return pushEnergy(level, sourcePos, source, maxTransferPerSide, false);
+    }
+
+    public static int pushEnergyToTransferBlocks(Level level, BlockPos sourcePos, EnergyHandler source, int maxTransferPerSide) {
+        return pushEnergy(level, sourcePos, source, maxTransferPerSide, true);
+    }
+
+    private static int pushEnergy(Level level, BlockPos sourcePos, EnergyHandler source, int maxTransferPerSide, boolean transferBlocksOnly) {
         if (maxTransferPerSide <= 0) {
             return 0;
         }
 
         List<EnergyHandler> targets = new ArrayList<>();
         for (Direction direction : Direction.values()) {
+            BlockPos targetPos = sourcePos.relative(direction);
+            if (transferBlocksOnly && !isTransferBlock(level.getBlockEntity(targetPos))) {
+                continue;
+            }
+
             EnergyHandler target = level.getCapability(
                     Capabilities.Energy.BLOCK,
-                    sourcePos.relative(direction),
+                    targetPos,
                     direction.getOpposite());
             if (target != null && canInsert(target)) {
                 targets.add(target);
@@ -115,6 +134,14 @@ public final class NeoEnergyTransferUtil {
         try (var tx = Transaction.openRoot()) {
             return handler.insert(1, tx) > 0;
         }
+    }
+
+    private static boolean isTransferBlock(BlockEntity blockEntity) {
+        return blockEntity instanceof CopperWireBlockEntity
+                || blockEntity instanceof InsulatedCopperWireBlockEntity
+                || blockEntity instanceof GoldWireBlockEntity
+                || blockEntity instanceof InsulatedGoldWireBlockEntity
+                || blockEntity instanceof GlassFiberWireBlockEntity;
     }
 
     private static int move(EnergyHandler from, EnergyHandler to, int amount) {

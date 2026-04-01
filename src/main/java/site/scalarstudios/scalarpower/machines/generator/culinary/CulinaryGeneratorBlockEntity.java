@@ -88,7 +88,7 @@ public class CulinaryGeneratorBlockEntity extends BlockEntity implements Contain
         }
 
         if (blockEntity.energyHandler.getAmountAsLong() > 0) {
-            int moved = NeoEnergyTransferUtil.pushEnergy(level, pos, blockEntity.energyHandler, PUSH_PER_SIDE);
+            int moved = NeoEnergyTransferUtil.pushEnergyToTransferBlocks(level, pos, blockEntity.energyHandler, PUSH_PER_SIDE);
             changed |= moved > 0;
         }
 

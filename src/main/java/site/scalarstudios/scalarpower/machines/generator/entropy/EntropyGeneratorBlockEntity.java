@@ -89,7 +89,7 @@ public class EntropyGeneratorBlockEntity extends BlockEntity implements MenuProv
         }
 
         if (blockEntity.energyHandler.getAmountAsLong() > 0) {
-            NeoEnergyTransferUtil.pushEnergy(level, pos, blockEntity.energyHandler, PUSH_PER_SIDE);
+            NeoEnergyTransferUtil.pushEnergyToTransferBlocks(level, pos, blockEntity.energyHandler, PUSH_PER_SIDE);
         }
 
         if (state.hasProperty(EntropyGeneratorBlock.LEFT_NEGATIVE)
