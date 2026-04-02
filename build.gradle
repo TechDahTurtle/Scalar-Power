@@ -81,9 +81,9 @@ dependencies {
     implementation "curse.maven:super-coal-928623:7809229" // Super Coal
 
     // QoL For Testing
-    implementation "curse.maven:jade-324717:7817285" // Jade
-    implementation "curse.maven:jei-238222:7850293" // JEI
-    implementation "curse.maven:pipez-443900:7856516" // Pipez
+    //implementation "curse.maven:jade-324717:7817285" // Jade
+    //implementation "curse.maven:jei-238222:7850293" // JEI
+    //implementation "curse.maven:pipez-443900:7856516" // Pipez
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
