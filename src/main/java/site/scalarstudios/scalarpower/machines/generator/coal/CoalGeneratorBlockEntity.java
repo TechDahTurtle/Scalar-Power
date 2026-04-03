@@ -28,7 +28,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements Container, 
     private ItemStack fuelStack = ItemStack.EMPTY;
     private int burnTime;
     private int burnTimeTotal;
-    private final net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler energyHandler = new net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler(ENERGY_CAPACITY, ENERGY_CAPACITY, ENERGY_CAPACITY, 0) {
+    private final net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler energyHandler = new net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler(ENERGY_CAPACITY, 0, ENERGY_CAPACITY, 0) {
         @Override
         protected void onEnergyChanged(int previousAmount) {
             setChanged();

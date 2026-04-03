@@ -83,6 +83,9 @@ dependencies {
     // QoL For Testing
     implementation "curse.maven:jade-324717:7817285" // Jade
     implementation "curse.maven:jei-238222:7861613" // JEI
+
+    // Other Testing Mods
+    implementation "curse.maven:energized-power-782147:7852018" // Energized Power
     implementation "curse.maven:pipez-443900:7859957" // Pipez
 }
 

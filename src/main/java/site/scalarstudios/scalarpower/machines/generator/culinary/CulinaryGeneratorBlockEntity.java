@@ -43,7 +43,7 @@ public class CulinaryGeneratorBlockEntity extends BlockEntity implements Contain
     private final net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler energyHandler =
             new net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler(
                     ENERGY_CAPACITY,
-                    ENERGY_CAPACITY,
+                    0,
                     ENERGY_CAPACITY,
                     0) {
                 @Override

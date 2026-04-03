@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -163,6 +162,7 @@ public final class NeoEnergyTransferUtil {
             return false;
         }
 
+        // Check if it's one of our wire types
         if (blockEntity instanceof CopperWireBlockEntity
                 || blockEntity instanceof InsulatedCopperWireBlockEntity
                 || blockEntity instanceof GoldWireBlockEntity
@@ -171,8 +171,31 @@ public final class NeoEnergyTransferUtil {
             return true;
         }
 
-        // Allow energy handoff into Pipez networks when generators are set to transfer-block-only output.
-        return "pipez".equals(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(blockEntity.getType()).getNamespace());
+        // Detect transfer blocks from any mod by their behavior:
+        // A transfer block can handle energy on multiple sides simultaneously,
+        // so it will accept energy insertions from adjacent sides.
+        // We detect this by checking if it can accept energy from two different directions.
+        if (blockEntity.getLevel() == null) {
+            return false;
+        }
+
+        int acceptingDirections = 0;
+        for (Direction direction : Direction.values()) {
+            EnergyHandler handler = blockEntity.getLevel().getCapability(
+                    Capabilities.Energy.BLOCK,
+                    blockEntity.getBlockPos().relative(direction),
+                    direction.getOpposite());
+            if (handler != null && canInsert(handler)) {
+                acceptingDirections++;
+                // If we found at least 2 adjacent blocks that can accept energy,
+                // this is likely a transfer block (pipe/wire)
+                if (acceptingDirections >= 2) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     private static int move(EnergyHandler from, EnergyHandler to, int amount) {
