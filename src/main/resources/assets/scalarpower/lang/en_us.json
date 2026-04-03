@@ -62,5 +62,9 @@
   "item.scalarpower.redium_upgrade": "Redium Upgrade",
   "item.scalarpower.diamond_upgrade": "Diamond Upgrade",
   "item.scalarpower.clastus_upgrade": "Clastus Upgrade",
-  "item.scalarpower.crystus_upgrade": "Crystus Upgrade"
+  "item.scalarpower.crystus_upgrade": "Crystus Upgrade",
+
+  "jei.scalarpower.grinding": "Grinding",
+  "jei.scalarpower.extracting": "Extracting",
+  "jei.scalarpower.alloy_smelting": "Alloy Smelting"
 }
