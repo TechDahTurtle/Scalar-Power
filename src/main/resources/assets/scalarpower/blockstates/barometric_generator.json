@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "facing=north": { "model": "scalarpower:block/barometric_generator" },
+    "facing=east": { "model": "scalarpower:block/barometric_generator", "y": 90, "uvlock": true },
+    "facing=south": { "model": "scalarpower:block/barometric_generator", "y": 180, "uvlock": true },
+    "facing=west": { "model": "scalarpower:block/barometric_generator", "y": 270, "uvlock": true }
+  }
+}
+

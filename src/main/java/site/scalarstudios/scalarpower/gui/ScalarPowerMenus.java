@@ -3,6 +3,7 @@ package site.scalarstudios.scalarpower.gui;
 import site.scalarstudios.scalarpower.machines.alloysmelter.AlloySmelterMenu;
 import site.scalarstudios.scalarpower.machines.battery.BatteryMenu;
 import site.scalarstudios.scalarpower.machines.generator.coal.CoalGeneratorMenu;
+import site.scalarstudios.scalarpower.machines.generator.barometric.BarometricGeneratorMenu;
 import site.scalarstudios.scalarpower.machines.generator.culinary.CulinaryGeneratorMenu;
 import site.scalarstudios.scalarpower.machines.generator.entropy.EntropyGeneratorMenu;
 import site.scalarstudios.scalarpower.machines.grinder.DoubleGrinderMenu;
@@ -27,6 +28,9 @@ public final class ScalarPowerMenus {
 
     public static final DeferredHolder<MenuType<?>, MenuType<CulinaryGeneratorMenu>> CULINARY_GENERATOR_MENU = MENUS
             .register("culinary_generator", () -> IMenuTypeExtension.create(CulinaryGeneratorMenu::new));
+
+    public static final DeferredHolder<MenuType<?>, MenuType<BarometricGeneratorMenu>> BAROMETRIC_GENERATOR_MENU = MENUS
+            .register("barometric_generator", () -> IMenuTypeExtension.create(BarometricGeneratorMenu::new));
 
     public static final DeferredHolder<MenuType<?>, MenuType<EntropyGeneratorMenu>> ENTROPY_GENERATOR_MENU = MENUS
             .register("entropy_generator", () -> IMenuTypeExtension.create(EntropyGeneratorMenu::new));

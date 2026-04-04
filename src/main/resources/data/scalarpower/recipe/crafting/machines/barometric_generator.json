@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SRS",
+    "BCB",
+    "SMS"
+  ],
+  "key": {
+    "S": "scalarpower:steel_ingot",
+    "R": "scalarpower:redium_ingot",
+    "B": "scalarpower:battery",
+    "C": "scalarpower:coal_generator",
+    "M": "scalarpower:steel_machine_frame"
+  },
+  "result": {
+    "id": "scalarpower:barometric_generator",
+    "count": 1
+  }
+}
+

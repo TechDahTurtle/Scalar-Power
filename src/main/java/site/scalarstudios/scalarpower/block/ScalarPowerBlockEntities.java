@@ -5,6 +5,7 @@ import site.scalarstudios.scalarpower.machines.alloysmelter.AlloySmelterBlockEnt
 import site.scalarstudios.scalarpower.machines.battery.BatteryBlockEntity;
 import site.scalarstudios.scalarpower.machines.battery.SteelBatteryBlockEntity;
 import site.scalarstudios.scalarpower.machines.generator.coal.CoalGeneratorBlockEntity;
+import site.scalarstudios.scalarpower.machines.generator.barometric.BarometricGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.machines.generator.culinary.CulinaryGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.machines.generator.entropy.EntropyGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.machines.grinder.DoubleGrinderBlockEntity;
@@ -34,6 +35,10 @@ public final class ScalarPowerBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CulinaryGeneratorBlockEntity>> CULINARY_GENERATOR = BLOCK_ENTITY_TYPES
             .register("culinary_generator",
                     () -> new BlockEntityType<>(CulinaryGeneratorBlockEntity::new, ScalarPowerBlocks.CULINARY_GENERATOR.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BarometricGeneratorBlockEntity>> BAROMETRIC_GENERATOR = BLOCK_ENTITY_TYPES
+            .register("barometric_generator",
+                    () -> new BlockEntityType<>(BarometricGeneratorBlockEntity::new, ScalarPowerBlocks.BAROMETRIC_GENERATOR.get()));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EntropyGeneratorBlockEntity>> ENTROPY_GENERATOR = BLOCK_ENTITY_TYPES
             .register("entropy_generator",

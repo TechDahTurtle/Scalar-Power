@@ -8,6 +8,7 @@ import site.scalarstudios.scalarpower.machines.alloysmelter.AlloySmelterBlockEnt
 import site.scalarstudios.scalarpower.machines.battery.BatteryBlockEntity;
 import site.scalarstudios.scalarpower.machines.extractor.ExtractorBlockEntity;
 import site.scalarstudios.scalarpower.machines.generator.coal.CoalGeneratorBlockEntity;
+import site.scalarstudios.scalarpower.machines.generator.barometric.BarometricGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.machines.generator.culinary.CulinaryGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.machines.generator.entropy.EntropyGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.machines.grinder.DoubleGrinderBlockEntity;
@@ -40,6 +41,11 @@ public final class ScalarPowerCapabilities {
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.ENTROPY_GENERATOR.get(),
                 EntropyGeneratorBlockEntity::getEnergyHandler);
+
+        event.registerBlockEntity(
+                Capabilities.Energy.BLOCK,
+                ScalarPowerBlockEntities.BAROMETRIC_GENERATOR.get(),
+                BarometricGeneratorBlockEntity::getEnergyHandler);
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
