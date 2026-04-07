@@ -21,6 +21,7 @@
   "block.scalarpower.gold_wire": "Gold Wire",
   "block.scalarpower.insulated_gold_wire": "Insulated Gold Wire",
   "block.scalarpower.glass_fiber_wire": "Glass Fiber Wire",
+  "block.scalarpower.reinforced_glass_fiber_wire": "Reinforced Glass Fiber Wire",
 
   "container.scalarpower.barometric_generator": "Barometric Generator",
   "container.scalarpower.coal_generator": "Coal Generator",
@@ -44,6 +45,7 @@
   "tooltip.scalarpower.gold_wire": "Transfers 80 SPU/t",
   "tooltip.scalarpower.insulated_gold_wire": "Transfers 80 SPU/t (Insulated)",
   "tooltip.scalarpower.glass_fiber_wire": "Transfers 320 SPU/t",
+  "tooltip.scalarpower.reinforced_glass_fiber_wire": "Transfers 640 SPU/t",
 
   "itemGroup.scalarpower.scalar_power": "Scalar Power",
 
@@ -76,6 +78,7 @@
   "item.scalarpower.gold_wire": "Gold Wire",
   "item.scalarpower.insulated_gold_wire": "Insulated Gold Wire",
   "item.scalarpower.glass_fiber_wire": "Glass Fiber Wire",
+  "item.scalarpower.reinforced_glass_fiber_wire": "Reinforced Glass Fiber Wire",
 
   "jei.scalarpower.alloy_smelting": "Alloy Smelting",
   "jei.scalarpower.extracting": "Extracting",

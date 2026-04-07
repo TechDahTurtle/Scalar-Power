@@ -21,6 +21,7 @@ import site.scalarstudios.scalarpower.machines.wire.copper.InsulatedCopperWireBl
 import site.scalarstudios.scalarpower.machines.wire.glassfiber.GlassFiberWireBlockEntity;
 import site.scalarstudios.scalarpower.machines.wire.gold.GoldWireBlockEntity;
 import site.scalarstudios.scalarpower.machines.wire.gold.InsulatedGoldWireBlockEntity;
+import site.scalarstudios.scalarpower.machines.wire.reinforcedglassfiber.ReinforcedGlassFiberWireBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -105,6 +106,9 @@ public final class ScalarPowerBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GlassFiberWireBlockEntity>> GLASS_FIBER_WIRE = BLOCK_ENTITY_TYPES
             .register("glass_fiber_wire", () -> new BlockEntityType<>(GlassFiberWireBlockEntity::new, ScalarPowerBlocks.GLASS_FIBER_WIRE.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ReinforcedGlassFiberWireBlockEntity>> REINFORCED_GLASS_FIBER_WIRE = BLOCK_ENTITY_TYPES
+            .register("reinforced_glass_fiber_wire", () -> new BlockEntityType<>(ReinforcedGlassFiberWireBlockEntity::new, ScalarPowerBlocks.REINFORCED_GLASS_FIBER_WIRE.get()));
 
     private ScalarPowerBlockEntities() {
     }

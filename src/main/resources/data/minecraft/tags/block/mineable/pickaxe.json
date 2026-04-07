@@ -19,6 +19,7 @@
     "scalarpower:insulated_copper_wire",
     "scalarpower:gold_wire",
     "scalarpower:insulated_gold_wire",
-    "scalarpower:glass_fiber_wire"
+    "scalarpower:glass_fiber_wire",
+    "scalarpower:reinforced_glass_fiber_wire"
   ]
 }

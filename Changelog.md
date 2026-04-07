@@ -12,7 +12,9 @@
 - Added Barometric Generator  
 - Added Macerator (grinding with chance-based secondary output)  
   - Added Double Macerator (dual-lane upgraded maceration)  
+  - Added Ore Chunks (intermediate product of maceration)
+- Added Reinforced Glass Fiber Wires
 - Cleaned up JEI Integration GUIs
 - Reorganized Creative Tab
 - Reorganized code base
-- Started this Changelog.md file  
+- Started this Changelog.md file

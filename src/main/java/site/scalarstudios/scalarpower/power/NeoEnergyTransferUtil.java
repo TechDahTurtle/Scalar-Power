@@ -15,6 +15,7 @@ import site.scalarstudios.scalarpower.machines.wire.copper.InsulatedCopperWireBl
 import site.scalarstudios.scalarpower.machines.wire.glassfiber.GlassFiberWireBlockEntity;
 import site.scalarstudios.scalarpower.machines.wire.gold.GoldWireBlockEntity;
 import site.scalarstudios.scalarpower.machines.wire.gold.InsulatedGoldWireBlockEntity;
+import site.scalarstudios.scalarpower.machines.wire.reinforcedglassfiber.ReinforcedGlassFiberWireBlockEntity;
 
 public final class NeoEnergyTransferUtil {
     private NeoEnergyTransferUtil() {
@@ -167,7 +168,8 @@ public final class NeoEnergyTransferUtil {
                 || blockEntity instanceof InsulatedCopperWireBlockEntity
                 || blockEntity instanceof GoldWireBlockEntity
                 || blockEntity instanceof InsulatedGoldWireBlockEntity
-                || blockEntity instanceof GlassFiberWireBlockEntity) {
+                || blockEntity instanceof GlassFiberWireBlockEntity
+                || blockEntity instanceof ReinforcedGlassFiberWireBlockEntity) {
             return true;
         }
 

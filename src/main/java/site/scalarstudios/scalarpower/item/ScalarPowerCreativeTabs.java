@@ -48,6 +48,7 @@ public class ScalarPowerCreativeTabs {
             event.accept(ScalarPowerBlocks.GOLD_WIRE.get());
             event.accept(ScalarPowerBlocks.INSULATED_GOLD_WIRE.get());
             event.accept(ScalarPowerBlocks.GLASS_FIBER_WIRE.get());
+            event.accept(ScalarPowerBlocks.REINFORCED_GLASS_FIBER_WIRE.get());
 
             // Items
             /* Dusts */

@@ -28,6 +28,7 @@ import site.scalarstudios.scalarpower.machines.wire.copper.InsulatedCopperWireBl
 import site.scalarstudios.scalarpower.machines.wire.glassfiber.GlassFiberWireBlock;
 import site.scalarstudios.scalarpower.machines.wire.gold.GoldWireBlock;
 import site.scalarstudios.scalarpower.machines.wire.gold.InsulatedGoldWireBlock;
+import site.scalarstudios.scalarpower.machines.wire.reinforcedglassfiber.ReinforcedGlassFiberWireBlock;
 import site.scalarstudios.scalarpower.item.ScalarPowerItems;
 import site.scalarstudios.scalarpower.item.custom.TooltipBlockItem;
 
@@ -119,6 +120,10 @@ public class ScalarPowerBlocks {
     public static final DeferredBlock<GlassFiberWireBlock> GLASS_FIBER_WIRE = registerTooltipBlockItem("glass_fiber_wire",
             GlassFiberWireBlock::new,
             properties -> properties.strength(0.5F, 0.5F).noOcclusion().sound(SoundType.GLASS).mapColor(MapColor.COLOR_CYAN));
+
+    public static final DeferredBlock<ReinforcedGlassFiberWireBlock> REINFORCED_GLASS_FIBER_WIRE = registerTooltipBlockItem("reinforced_glass_fiber_wire",
+            ReinforcedGlassFiberWireBlock::new,
+            properties -> properties.strength(0.5F, 0.5F).noOcclusion().sound(SoundType.GLASS).mapColor(MapColor.COLOR_LIGHT_BLUE));
 
     // Registry Shortcuts
     private static <T extends Block> DeferredBlock<T> registerTooltipBlockItem(String name, Function<BlockBehaviour.Properties, ? extends T> blockFactory, UnaryOperator<BlockBehaviour.Properties> properties) {

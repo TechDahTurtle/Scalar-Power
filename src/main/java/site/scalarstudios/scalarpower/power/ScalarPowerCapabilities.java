@@ -23,6 +23,7 @@ import site.scalarstudios.scalarpower.machines.wire.copper.InsulatedCopperWireBl
 import site.scalarstudios.scalarpower.machines.wire.glassfiber.GlassFiberWireBlockEntity;
 import site.scalarstudios.scalarpower.machines.wire.gold.GoldWireBlockEntity;
 import site.scalarstudios.scalarpower.machines.wire.gold.InsulatedGoldWireBlockEntity;
+import site.scalarstudios.scalarpower.machines.wire.reinforcedglassfiber.ReinforcedGlassFiberWireBlockEntity;
 
 public final class ScalarPowerCapabilities {
 
@@ -131,6 +132,11 @@ public final class ScalarPowerCapabilities {
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.GLASS_FIBER_WIRE.get(),
                 GlassFiberWireBlockEntity::getEnergyHandler);
+
+        event.registerBlockEntity(
+                Capabilities.Energy.BLOCK,
+                ScalarPowerBlockEntities.REINFORCED_GLASS_FIBER_WIRE.get(),
+                ReinforcedGlassFiberWireBlockEntity::getEnergyHandler);
 
         // VanillaContainerWrappers
         /* Generators */
