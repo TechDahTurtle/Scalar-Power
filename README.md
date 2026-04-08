@@ -18,5 +18,8 @@ Scalar Power adds specialized machines for turning everyday resources into usefu
 - **Powered Furnace**: speed up and automate smelting workflows.  
 - **Sawmill**: turn logs into planks and sawdust.  
 
+## Wiki 
+Check out the [Wiki](https://scalarstudios.site/wikis/scalar_power.html) for detailed information on machines, recipes, and mechanics.
+
 ## Work in Progress
 Scalar Power is actively evolving. Features, balance, and content can change between updates.
