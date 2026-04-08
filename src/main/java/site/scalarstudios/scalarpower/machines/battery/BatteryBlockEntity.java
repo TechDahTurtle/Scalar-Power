@@ -24,9 +24,9 @@ public class BatteryBlockEntity extends BlockEntity implements MenuProvider {
     private static final int ENERGY_TRANSFER_PER_SIDE = MachineUtils.BASIC_BATTERY_SPU_PER_SIDE;
     private static final String CONTAINER_TRANSLATION_KEY = "container.scalarpower.battery";
 
-    private final String containerTranslationKey;
-    private final int energyTransferPerSide;
-    private final net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler energyHandler;
+    protected final String containerTranslationKey;
+    protected final int energyTransferPerSide;
+    protected final net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler energyHandler;
 
     public BatteryBlockEntity(BlockPos pos, BlockState blockState) {
         this(
@@ -91,6 +91,7 @@ public class BatteryBlockEntity extends BlockEntity implements MenuProvider {
                 return switch (index) {
                     case 0 -> (int) energyHandler.getAmountAsLong();
                     case 1 -> (int) energyHandler.getCapacityAsLong();
+                    case 2 -> hasInfiniteEnergy() ? 1 : 0;
                     default -> 0;
                 };
             }
@@ -104,13 +105,17 @@ public class BatteryBlockEntity extends BlockEntity implements MenuProvider {
 
             @Override
             public int getCount() {
-                return 2;
+                return 3;
             }
         });
     }
 
     public EnergyHandler getEnergyHandler(Direction side) {
         return energyHandler;
+    }
+
+    protected boolean hasInfiniteEnergy() {
+        return false;
     }
 }
 

@@ -33,11 +33,14 @@ public class BatteryScreen extends AbstractContainerScreen<BatteryMenu> {
         int x = this.leftPos;
         int y = this.topPos;
         int barX = x + (this.imageWidth - ENERGY_WIDTH) / 2;
+        boolean infiniteEnergy = menu.hasInfiniteEnergy();
 
         graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, 0.0F, 0.0F, this.imageWidth, this.imageHeight, TEXTURE_WIDTH, TEXTURE_HEIGHT);
 
         graphics.fill(barX, y + ENERGY_Y, barX + ENERGY_WIDTH, y + ENERGY_Y + ENERGY_HEIGHT, 0x88000000);
-        int filled = menu.getEnergyCapacity() > 0
+        int filled = infiniteEnergy
+                ? ENERGY_HEIGHT
+                : menu.getEnergyCapacity() > 0
                 ? (int) ((float) ENERGY_HEIGHT * menu.getEnergy() / menu.getEnergyCapacity())
                 : 0;
         if (filled > 0) {
@@ -49,8 +52,9 @@ public class BatteryScreen extends AbstractContainerScreen<BatteryMenu> {
                     0xFF44CC44);
         }
 
-        String currentEnergy = NumberFormat.getIntegerInstance(Locale.ROOT).format(menu.getEnergy());
-        String energyText = currentEnergy + " FE";
+        String energyText = infiniteEnergy
+                ? "∞ FE"
+                : NumberFormat.getIntegerInstance(Locale.ROOT).format(menu.getEnergy()) + " FE";
         float scaledTextWidth = this.font.width(energyText) * ENERGY_TEXT_SCALE;
         int energyTextX = Math.round(x + (this.imageWidth - scaledTextWidth) / 2.0F);
         int energyTextY = y + ENERGY_TEXT_Y;

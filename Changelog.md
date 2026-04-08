@@ -21,9 +21,11 @@
 - Reorganized code base
 - Started this Changelog.md file
 
+## 26.1.1-1.0.3_beta (Upcoming)
+- Added Creative Battery
+
 ## Planned Features
 - Byproducts from Maceration
-- Creative Battery and Wires
 - Ender Battery
 - Make Entropy Generator harder to obtain and nerf the inputs, add new inputs to replace the nerfed ones
 - Texture Fixes

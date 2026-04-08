@@ -17,14 +17,14 @@ public class BatteryMenu extends AbstractContainerMenu {
     public BatteryMenu(int id, Inventory inventory, FriendlyByteBuf buf) {
         this(id, inventory,
                 (BatteryBlockEntity) inventory.player.level().getBlockEntity(buf.readBlockPos()),
-                new SimpleContainerData(2));
+                new SimpleContainerData(3));
     }
 
     public BatteryMenu(int id, Inventory inventory, BatteryBlockEntity blockEntity, ContainerData data) {
         super(ScalarPowerMenus.BATTERY_MENU.get(), id);
         this.blockEntity = blockEntity;
         this.data = data;
-        checkContainerDataCount(data, 2);
+        checkContainerDataCount(data, 3);
         addDataSlots(data);
 
         for (int row = 0; row < 3; row++) {
@@ -75,6 +75,10 @@ public class BatteryMenu extends AbstractContainerMenu {
 
     public int getEnergyCapacity() {
         return data.get(1);
+    }
+
+    public boolean hasInfiniteEnergy() {
+        return data.get(2) != 0;
     }
 }
 

@@ -110,6 +110,11 @@ public final class ScalarPowerCapabilities {
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
+                ScalarPowerBlockEntities.CREATIVE_BATTERY.get(),
+                BatteryBlockEntity::getEnergyHandler);
+
+        event.registerBlockEntity(
+                Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.COPPER_WIRE.get(),
                 CopperWireBlockEntity::getEnergyHandler);
 
