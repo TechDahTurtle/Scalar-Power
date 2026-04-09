@@ -25,6 +25,7 @@
 - Added Cobalt Block, Chunk, Dust, and Ingot
 - Added Creative Battery
 - Added Ender Alloy Block, Dust, and Ingot
+- In GUI Textures for Multiple Outputs combined the output into one slot
 - Nerfed the cold inputs for the Entropy Generator, added Cobalt Block and Ender Alloy Block as new top-tier cold inputs (for balance)
 - New Barometric Generator Texture
 - Started work on [Wiki](https://scalarstudios.site/wikis/scalar_power.html)
