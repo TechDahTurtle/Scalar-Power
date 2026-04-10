@@ -1,0 +1,11 @@
+{
+  "type": "scalarpower:grinding",
+  "ingredient": "#minecraft:wool",
+  "result": {
+    "id": "minecraft:string",
+    "count": 4
+  },
+  "bonus_chance": 0.0,
+  "bonus_count": 1
+}
+
