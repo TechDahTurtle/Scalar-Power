@@ -76,8 +76,8 @@ configurations {
 dependencies {
     // Scalar Mods
     implementation "curse.maven:scalar-core-1112771:7906370" // Scalar Core
-    //implementation "curse.maven:scalar-utils-6-1490516:7864289" // Scalar Utils 6.1
-    //implementation "curse.maven:scalar-utils-6-integration-1491455:7864305" // Scalar Utils 6.1 Integration
+    implementation "curse.maven:scalar-utils-6-1490516:7906931" // Scalar Utils 6.1
+    implementation "curse.maven:scalar-utils-6-integration-1491455:7906959" // Scalar Utils 6.1 Integration
     implementation "curse.maven:super-coal-928623:7906447" // Super Coal
 
     // QoL For Testing

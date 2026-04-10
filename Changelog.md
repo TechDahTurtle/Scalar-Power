@@ -32,8 +32,10 @@
 - Started work on [Wiki](https://scalarstudios.site/wikis/scalar_power.html)
 - Updated README.md
 
-## 26.1.2-1.0.4_beta (Upcoming)
-This will be the port to 26.1.2.
+## 26.1.2-1.0.4_beta
+- Ported to 26.1.2
+
+## 26.1.2-1.0.5_beta (Upcoming)
 
 ## Planned Features
 - 26.1.2 Port
