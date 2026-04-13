@@ -39,10 +39,14 @@
 - Added Ender Battery
 - Added Geothermal Generator
 - Added Redstone Clock
+- Change Machine Frame Models + Texture to be Block instead of Isometric projection of a block
+  - Also applied for Steel Machine Frame
 
 ## Planned Features
 - Battery Sidedness (I/O Faces)
 - Crafting Recipe Revamp
 - Finish Wiki
 - Fluid Stuff (Potential)
+- Rename Glass Fiber to Fiber Glass
 - Texture Name and Model Cleanup
+- Tooltips

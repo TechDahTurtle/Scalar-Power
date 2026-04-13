@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "scalarpower:block/double_machine_top",
+    "bottom": "scalarpower:block/double_machine_bottom",
+    "side": "scalarpower:block/double_machine_side"
+  }
+}
+
