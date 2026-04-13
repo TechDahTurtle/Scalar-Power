@@ -37,11 +37,12 @@
 
 ## 26.1.2-1.0.5_beta (Upcoming)
 - Added Ender Battery
+- Added Geothermal Generator
 - Added Redstone Clock
 
 ## Planned Features
+- Battery Sidedness (I/O Faces)
 - Crafting Recipe Revamp
-- Ender Battery (Fixes?)
 - Finish Wiki
 - Fluid Stuff (Potential)
 - Texture Name and Model Cleanup

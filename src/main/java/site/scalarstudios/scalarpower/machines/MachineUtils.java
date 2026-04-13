@@ -10,6 +10,9 @@ public final class MachineUtils {
     public static final int GENERAL_GENERATOR_CAPACITY = 20_000;
     public static final int GENERAL_GENERATOR_SPU_PER_SIDE = 80;
     public static final int COAL_GENERATOR_SPU_PER_TICK = 40;
+    public static final int GEOTHERMAL_GENERATOR_TANK_CAPACITY_MB = 4_000;
+    public static final int GEOTHERMAL_GENERATOR_SPU_PER_TICK = 40;
+    public static final int GEOTHERMAL_GENERATOR_MB_PER_TICK = 1;
     public static final int BAROMETRIC_GENERATOR_Y_STEP = 10;
     public static final int BAROMETRIC_GENERATOR_SPU_PER_Y_STEP = 5;
     public static final double BAROMETRIC_GENERATOR_BAD_WEATHER_MULTIPLIER = 1.5D;

@@ -17,6 +17,7 @@ import site.scalarstudios.scalarpower.machines.generator.coal.CoalGeneratorBlock
 import site.scalarstudios.scalarpower.machines.generator.barometric.BarometricGeneratorBlock;
 import site.scalarstudios.scalarpower.machines.generator.culinary.CulinaryGeneratorBlock;
 import site.scalarstudios.scalarpower.machines.generator.entropy.EntropyGeneratorBlock;
+import site.scalarstudios.scalarpower.machines.generator.geothermal.GeothermalGeneratorBlock;
 import site.scalarstudios.scalarpower.machines.grinder.DoubleGrinderBlock;
 import site.scalarstudios.scalarpower.machines.grinder.GrinderBlock;
 import site.scalarstudios.scalarpower.machines.macerator.DoubleMaceratorBlock;
@@ -56,6 +57,10 @@ public class ScalarPowerBlocks {
 
     public static final DeferredBlock<EntropyGeneratorBlock> ENTROPY_GENERATOR = registerBlock("entropy_generator",
             EntropyGeneratorBlock::new,
+            properties -> properties.strength(4.0F, 4.0F).requiresCorrectToolForDrops().sound(SoundType.IRON).mapColor(MapColor.STONE));
+
+    public static final DeferredBlock<GeothermalGeneratorBlock> GEOTHERMAL_GENERATOR = registerBlock("geothermal_generator",
+            GeothermalGeneratorBlock::new,
             properties -> properties.strength(4.0F, 4.0F).requiresCorrectToolForDrops().sound(SoundType.IRON).mapColor(MapColor.STONE));
 
     /* Machines */

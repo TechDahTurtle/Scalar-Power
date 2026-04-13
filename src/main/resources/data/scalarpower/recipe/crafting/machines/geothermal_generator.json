@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IRI",
+    "LGL",
+    "IRI"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "R": "minecraft:redstone",
+    "L": "minecraft:lava_bucket",
+    "G": "scalarpower:coal_generator"
+  },
+  "result": {
+    "id": "scalarpower:geothermal_generator",
+    "count": 1
+  }
+}
+

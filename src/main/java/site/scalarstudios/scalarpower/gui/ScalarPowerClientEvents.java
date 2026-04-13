@@ -7,6 +7,7 @@ import site.scalarstudios.scalarpower.machines.generator.coal.CoalGeneratorScree
 import site.scalarstudios.scalarpower.machines.generator.barometric.BarometricGeneratorScreen;
 import site.scalarstudios.scalarpower.machines.generator.culinary.CulinaryGeneratorScreen;
 import site.scalarstudios.scalarpower.machines.generator.entropy.EntropyGeneratorScreen;
+import site.scalarstudios.scalarpower.machines.generator.geothermal.GeothermalGeneratorScreen;
 import site.scalarstudios.scalarpower.machines.grinder.DoubleGrinderScreen;
 import site.scalarstudios.scalarpower.machines.grinder.GrinderScreen;
 import site.scalarstudios.scalarpower.machines.macerator.DoubleMaceratorScreen;
@@ -29,6 +30,7 @@ public class ScalarPowerClientEvents {
         event.register(ScalarPowerMenus.CULINARY_GENERATOR_MENU.get(), CulinaryGeneratorScreen::new);
         event.register(ScalarPowerMenus.BAROMETRIC_GENERATOR_MENU.get(), BarometricGeneratorScreen::new);
         event.register(ScalarPowerMenus.ENTROPY_GENERATOR_MENU.get(), EntropyGeneratorScreen::new);
+        event.register(ScalarPowerMenus.GEOTHERMAL_GENERATOR_MENU.get(), GeothermalGeneratorScreen::new);
         event.register(ScalarPowerMenus.GRINDER_MENU.get(), GrinderScreen::new);
         event.register(ScalarPowerMenus.DOUBLE_GRINDER_MENU.get(), DoubleGrinderScreen::new);
         event.register(ScalarPowerMenus.SAWMILL_MENU.get(), SawmillScreen::new);

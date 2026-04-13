@@ -3,6 +3,7 @@
   "block.scalarpower.coal_generator": "Coal Generator",
   "block.scalarpower.culinary_generator": "Culinary Generator",
   "block.scalarpower.entropy_generator": "Entropy Generator",
+  "block.scalarpower.geothermal_generator": "Geothermal Generator",
 
   "block.scalarpower.alloy_smelter": "Alloy Smelter",
   "block.scalarpower.extractor": "Extractor",
@@ -34,6 +35,7 @@
   "container.scalarpower.coal_generator": "Coal Generator",
   "container.scalarpower.culinary_generator": "Culinary Generator",
   "container.scalarpower.entropy_generator": "Entropy Generator",
+  "container.scalarpower.geothermal_generator": "Geothermal Generator",
 
   "container.scalarpower.alloy_smelter": "Alloy Smelter",
   "container.scalarpower.extractor": "Extractor",
