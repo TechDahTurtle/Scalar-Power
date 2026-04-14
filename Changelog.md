@@ -46,6 +46,7 @@
 - Updated NeoForge version to 26.1.2.7-beta
 
 ## 26.1.2-1.0.6_beta (Upcoming)
+- Updated Wire Textures
 
 ## Planned Features
 - Battery Sidedness (I/O Faces)
@@ -56,3 +57,4 @@
 - Liquifier Machine (Cobble → Lava)
 - Texture Name and Model Cleanup
 - Tooltips
+- Wrench / Pipe IO
