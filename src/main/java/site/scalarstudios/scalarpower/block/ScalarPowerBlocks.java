@@ -23,6 +23,7 @@ import site.scalarstudios.scalarpower.machines.grinder.DoubleGrinderBlock;
 import site.scalarstudios.scalarpower.machines.grinder.GrinderBlock;
 import site.scalarstudios.scalarpower.machines.macerator.DoubleMaceratorBlock;
 import site.scalarstudios.scalarpower.machines.macerator.MaceratorBlock;
+import site.scalarstudios.scalarpower.machines.liquifier.LiquifierBlock;
 import site.scalarstudios.scalarpower.machines.extractor.ExtractorBlock;
 import site.scalarstudios.scalarpower.machines.sawmill.SawmillBlock;
 import site.scalarstudios.scalarpower.machines.poweredfurnace.DoublePoweredFurnaceBlock;
@@ -76,13 +77,16 @@ public class ScalarPowerBlocks {
     public static final DeferredBlock<ExtractorBlock> EXTRACTOR = registerBlock("extractor",
             ExtractorBlock::new,
             properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.STONE));
-
     public static final DeferredBlock<GrinderBlock> GRINDER = registerBlock("grinder",
             GrinderBlock::new,
             properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.STONE));
 
     public static final DeferredBlock<DoubleGrinderBlock> DOUBLE_GRINDER = registerBlock("double_grinder",
             DoubleGrinderBlock::new,
+            properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.STONE));
+
+    public static final DeferredBlock<LiquifierBlock> LIQUIFIER = registerBlock("liquifier",
+            LiquifierBlock::new,
             properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.STONE));
 
     public static final DeferredBlock<MaceratorBlock> MACERATOR = registerBlock("macerator",

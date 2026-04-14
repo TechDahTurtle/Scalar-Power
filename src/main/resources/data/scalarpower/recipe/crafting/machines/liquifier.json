@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SLS",
+    "IMI",
+    "SPS"
+  ],
+  "key": {
+    "S": "minecraft:stone",
+    "L": "minecraft:lava_bucket",
+    "I": "minecraft:iron_ingot",
+    "P": "minecraft:piston",
+    "M": "scalarpower:machine_frame"
+  },
+  "result": {
+    "id": "scalarpower:liquifier",
+    "count": 1
+  }
+}
+

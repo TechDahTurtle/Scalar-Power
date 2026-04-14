@@ -1,0 +1,10 @@
+{
+  "type": "scalarpower:liquifying",
+  "ingredient": "minecraft:magma_block",
+  "result": {
+    "id": "minecraft:lava_bucket",
+    "count": 1
+  },
+  "spu_cost": 10000
+}
+

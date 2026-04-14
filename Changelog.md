@@ -46,6 +46,8 @@
 - Updated NeoForge version to 26.1.2.7-beta
 
 ## 26.1.2-1.0.6_beta (Upcoming)
+- Added Liquifier machine with JEI recipes (Cobblestone, Stone, Basalt, Netherrack, and Magma Block into Lava)
+- General code cleanup and organization
 - Updated Wire Textures
 
 ## Planned Features
@@ -54,7 +56,7 @@
 - Finish Wiki
 - Freezer Machine (Water → Ice → Packed Ice → Blue Ice)
 - Infinite Water Source Block
-- Liquifier Machine (Cobble → Lava)
+- Swap from Gradient to Lava Texture in blocks that deal with Lava (Geothermal Generator & Liquifier)
 - Texture Name and Model Cleanup
 - Tooltips
 - Wrench / Pipe IO

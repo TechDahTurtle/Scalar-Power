@@ -22,6 +22,10 @@ public final class ScalarPowerRecipes {
     public static final RecipeType<GrindingRecipe> GRINDING_RECIPE_TYPE = RecipeType.simple(GRINDING_ID);
     public static final RecipeSerializer<GrindingRecipe> GRINDING_RECIPE_SERIALIZER = GrindingRecipe.SERIALIZER;
 
+    public static final Identifier LIQUIFYING_ID = Identifier.fromNamespaceAndPath(ScalarPower.MODID, "liquifying");
+    public static final RecipeType<LiquifyingRecipe> LIQUIFYING_RECIPE_TYPE = RecipeType.simple(LIQUIFYING_ID);
+    public static final RecipeSerializer<LiquifyingRecipe> LIQUIFYING_RECIPE_SERIALIZER = LiquifyingRecipe.SERIALIZER;
+
     public static final Identifier MACERATING_ID = Identifier.fromNamespaceAndPath(ScalarPower.MODID, "macerating");
     public static final RecipeType<MaceratingRecipe> MACERATING_RECIPE_TYPE = RecipeType.simple(MACERATING_ID);
     public static final RecipeSerializer<MaceratingRecipe> MACERATING_RECIPE_SERIALIZER = MaceratingRecipe.SERIALIZER;
@@ -60,6 +64,14 @@ public final class ScalarPowerRecipes {
     public static final DeferredHolder<RecipeType<?>, RecipeType<MaceratingRecipe>> MACERATING_TYPE = RECIPE_TYPES.register(
             "macerating",
             () -> MACERATING_RECIPE_TYPE);
+
+    public static final DeferredHolder<RecipeType<?>, RecipeType<LiquifyingRecipe>> LIQUIFYING_TYPE = RECIPE_TYPES.register(
+            "liquifying",
+            () -> LIQUIFYING_RECIPE_TYPE);
+
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<LiquifyingRecipe>> LIQUIFYING_SERIALIZER = RECIPE_SERIALIZERS.register(
+            "liquifying",
+            () -> LIQUIFYING_RECIPE_SERIALIZER);
 
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<MaceratingRecipe>> MACERATING_SERIALIZER = RECIPE_SERIALIZERS.register(
             "macerating",

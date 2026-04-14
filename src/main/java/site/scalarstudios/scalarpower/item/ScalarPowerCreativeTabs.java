@@ -24,16 +24,17 @@ public class ScalarPowerCreativeTabs {
         if (event.getTab() == SCALAR_POWER_TAB.get()) {
             // Blocks
             /* Generators */
+            event.accept(ScalarPowerBlocks.BAROMETRIC_GENERATOR.get());
             event.accept(ScalarPowerBlocks.COAL_GENERATOR.get());
             event.accept(ScalarPowerBlocks.CULINARY_GENERATOR.get());
-            event.accept(ScalarPowerBlocks.GEOTHERMAL_GENERATOR.get());
-            event.accept(ScalarPowerBlocks.BAROMETRIC_GENERATOR.get());
-            event.accept(ScalarPowerBlocks.WATER_MILL_GENERATOR.get());
             event.accept(ScalarPowerBlocks.ENTROPY_GENERATOR.get());
+            event.accept(ScalarPowerBlocks.GEOTHERMAL_GENERATOR.get());
+            event.accept(ScalarPowerBlocks.WATER_MILL_GENERATOR.get());
 
             /* Machines */
             event.accept(ScalarPowerBlocks.ALLOY_SMELTER.get());
             event.accept(ScalarPowerBlocks.EXTRACTOR.get());
+            event.accept(ScalarPowerBlocks.LIQUIFIER.get());
             event.accept(ScalarPowerBlocks.GRINDER.get());
             event.accept(ScalarPowerBlocks.DOUBLE_GRINDER.get());
             event.accept(ScalarPowerBlocks.MACERATOR.get());

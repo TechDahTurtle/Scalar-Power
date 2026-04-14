@@ -17,6 +17,7 @@ import site.scalarstudios.scalarpower.machines.grinder.DoubleGrinderBlockEntity;
 import site.scalarstudios.scalarpower.machines.grinder.GrinderBlockEntity;
 import site.scalarstudios.scalarpower.machines.macerator.DoubleMaceratorBlockEntity;
 import site.scalarstudios.scalarpower.machines.macerator.MaceratorBlockEntity;
+import site.scalarstudios.scalarpower.machines.liquifier.LiquifierBlockEntity;
 import site.scalarstudios.scalarpower.machines.poweredfurnace.DoublePoweredFurnaceBlockEntity;
 import site.scalarstudios.scalarpower.machines.poweredfurnace.PoweredFurnaceBlockEntity;
 import site.scalarstudios.scalarpower.machines.sawmill.SawmillBlockEntity;
@@ -83,6 +84,11 @@ public final class ScalarPowerCapabilities {
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.DOUBLE_GRINDER.get(),
                 DoubleGrinderBlockEntity::getEnergyHandler);
+
+        event.registerBlockEntity(
+                Capabilities.Energy.BLOCK,
+                ScalarPowerBlockEntities.LIQUIFIER.get(),
+                LiquifierBlockEntity::getEnergyHandler);
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
@@ -197,6 +203,16 @@ public final class ScalarPowerCapabilities {
                 Capabilities.Item.BLOCK,
                 ScalarPowerBlockEntities.DOUBLE_GRINDER.get(),
                 (blockEntity, side) -> VanillaContainerWrapper.of(blockEntity));
+
+        event.registerBlockEntity(
+                Capabilities.Item.BLOCK,
+                ScalarPowerBlockEntities.LIQUIFIER.get(),
+                (blockEntity, side) -> VanillaContainerWrapper.of(blockEntity));
+
+        event.registerBlockEntity(
+                Capabilities.Fluid.BLOCK,
+                ScalarPowerBlockEntities.LIQUIFIER.get(),
+                LiquifierBlockEntity::getFluidHandler);
 
         event.registerBlockEntity(
                 Capabilities.Item.BLOCK,

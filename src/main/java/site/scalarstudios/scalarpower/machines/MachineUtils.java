@@ -29,6 +29,11 @@ public final class MachineUtils {
     public static final int BASIC_MACHINE_SPU_PER_TICK = 20;
     public static final int BASIC_MACHINE_SPU_PER_SIDE = 40;
     public static final int BASIC_MACHINE_TIME_PER_CRAFT = 100;
+    public static final int LIQUIFIER_CAPACITY = 40_000;
+    public static final int LIQUIFIER_SPU_PER_TICK = BASIC_MACHINE_SPU_PER_TICK * 2;
+    public static final int LIQUIFIER_SPU_PER_SIDE = BASIC_MACHINE_SPU_PER_SIDE * 2;
+    public static final int LIQUIFIER_TANK_CAPACITY_MB = 4_000;
+    public static final int LIQUIFIER_MB_PER_OPERATION = 1_000;
     public static final int STEEL_MACHINE_CAPACITY = 40_000;
     public static final int STEEL_MACHINE_SPU_PER_TICK_PER_LANE = 30;
     public static final int STEEL_MACHINE_SPU_PER_SIDE = 120; // Steel Machines have 2 lanes (double 60)

@@ -10,6 +10,7 @@
     "scalarpower:extractor",
     "scalarpower:grinder",
     "scalarpower:double_grinder",
+    "scalarpower:liquifier",
     "scalarpower:macerator",
     "scalarpower:double_macerator",
     "scalarpower:powered_furnace",

@@ -1,0 +1,10 @@
+{
+  "type": "scalarpower:liquifying",
+  "ingredient": "minecraft:cobblestone",
+  "result": {
+    "id": "minecraft:lava_bucket",
+    "count": 1
+  },
+  "spu_cost": 40000
+}
+
