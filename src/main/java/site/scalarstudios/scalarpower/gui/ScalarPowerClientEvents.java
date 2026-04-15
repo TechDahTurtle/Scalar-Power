@@ -11,6 +11,7 @@ import site.scalarstudios.scalarpower.block.machine.generator.geothermal.Geother
 import site.scalarstudios.scalarpower.block.machine.generator.watermill.WaterMillGeneratorScreen;
 import site.scalarstudios.scalarpower.block.machine.grinder.DoubleGrinderScreen;
 import site.scalarstudios.scalarpower.block.machine.grinder.GrinderScreen;
+import site.scalarstudios.scalarpower.block.machine.freezer.FreezerScreen;
 import site.scalarstudios.scalarpower.block.machine.macerator.DoubleMaceratorScreen;
 import site.scalarstudios.scalarpower.block.machine.macerator.MaceratorScreen;
 import site.scalarstudios.scalarpower.block.machine.liquifier.LiquifierScreen;
@@ -39,6 +40,7 @@ public class ScalarPowerClientEvents {
         /* Machines */
         event.register(ScalarPowerMenus.ALLOY_SMELTER_MENU.get(), AlloySmelterScreen::new);
         event.register(ScalarPowerMenus.EXTRACTOR_MENU.get(), ExtractorScreen::new);
+        event.register(ScalarPowerMenus.FREEZER_MENU.get(), FreezerScreen::new);
         event.register(ScalarPowerMenus.GRINDER_MENU.get(), GrinderScreen::new);
         event.register(ScalarPowerMenus.DOUBLE_GRINDER_MENU.get(), DoubleGrinderScreen::new);
         event.register(ScalarPowerMenus.LIQUIFIER_MENU.get(), LiquifierScreen::new);

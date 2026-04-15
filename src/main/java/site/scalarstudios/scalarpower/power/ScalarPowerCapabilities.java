@@ -15,6 +15,7 @@ import site.scalarstudios.scalarpower.block.machine.generator.geothermal.Geother
 import site.scalarstudios.scalarpower.block.machine.generator.watermill.WaterMillGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.grinder.DoubleGrinderBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.grinder.GrinderBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.freezer.FreezerBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.macerator.DoubleMaceratorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.macerator.MaceratorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.liquifier.LiquifierBlockEntity;
@@ -75,6 +76,11 @@ public final class ScalarPowerCapabilities {
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.EXTRACTOR.get(),
                 ExtractorBlockEntity::getEnergyHandler);
+
+        event.registerBlockEntity(
+                Capabilities.Energy.BLOCK,
+                ScalarPowerBlockEntities.FREEZER.get(),
+                FreezerBlockEntity::getEnergyHandler);
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
@@ -194,6 +200,16 @@ public final class ScalarPowerCapabilities {
                 Capabilities.Item.BLOCK,
                 ScalarPowerBlockEntities.EXTRACTOR.get(),
                 (blockEntity, side) -> VanillaContainerWrapper.of(blockEntity));
+
+        event.registerBlockEntity(
+                Capabilities.Item.BLOCK,
+                ScalarPowerBlockEntities.FREEZER.get(),
+                (blockEntity, side) -> VanillaContainerWrapper.of(blockEntity));
+
+        event.registerBlockEntity(
+                Capabilities.Fluid.BLOCK,
+                ScalarPowerBlockEntities.FREEZER.get(),
+                FreezerBlockEntity::getFluidHandler);
 
         event.registerBlockEntity(
                 Capabilities.Item.BLOCK,

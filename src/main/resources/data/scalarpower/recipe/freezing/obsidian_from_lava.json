@@ -1,0 +1,13 @@
+{
+  "type": "scalarpower:freezing",
+  "input_fluid": {
+    "id": "minecraft:lava",
+    "amount": 1000
+  },
+  "output": {
+    "id": "minecraft:obsidian",
+    "count": 1
+  },
+  "spu_cost": 10000
+}
+

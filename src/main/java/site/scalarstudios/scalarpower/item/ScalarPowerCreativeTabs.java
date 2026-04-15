@@ -34,6 +34,7 @@ public class ScalarPowerCreativeTabs {
             /* Machines */
             event.accept(ScalarPowerBlocks.ALLOY_SMELTER.get());
             event.accept(ScalarPowerBlocks.EXTRACTOR.get());
+            event.accept(ScalarPowerBlocks.FREEZER.get());
             event.accept(ScalarPowerBlocks.LIQUIFIER.get());
             event.accept(ScalarPowerBlocks.GRINDER.get());
             event.accept(ScalarPowerBlocks.DOUBLE_GRINDER.get());

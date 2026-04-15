@@ -19,39 +19,40 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import site.scalarstudios.scalarpower.ScalarPower;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlocks;
-import site.scalarstudios.scalarpower.recipe.LiquifyingRecipe;
+import site.scalarstudios.scalarpower.recipe.FreezingRecipe;
 import site.scalarstudios.scalarpower.recipe.ScalarPowerRecipes;
 
-public class LiquifyingRecipeCategory implements IRecipeCategory<RecipeHolder<LiquifyingRecipe>> {
-    private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(ScalarPower.MODID, "textures/gui/jei_generic_1tofluid.png");
+public class FreezingRecipeCategory implements IRecipeCategory<RecipeHolder<FreezingRecipe>> {
+    private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(ScalarPower.MODID, "textures/gui/jei_generic_fluidto1.png");
     private static final int BACKGROUND_WIDTH = 122;
     private static final int BACKGROUND_HEIGHT = 39;
 
     private static final int SPU_TEXT_X = 3;
     private static final int SPU_TEXT_Y = 28;
 
-    private static final int INPUT_SLOT_X = 21;
-    private static final int OUTPUT_FLUID_X = 81;
+    // Fluid slot placed so the arrow (24 px) fits cleanly: fluid(41→57) | arrow(57→81) | item(81→97)
+    private static final int INPUT_FLUID_X = 21;
+    private static final int OUTPUT_SLOT_X = 81;
     private static final int SLOT_Y = 10;
 
-    public static final IRecipeHolderType<LiquifyingRecipe> TYPE = IRecipeHolderType.create(ScalarPowerRecipes.LIQUIFYING_RECIPE_TYPE);
+    public static final IRecipeHolderType<FreezingRecipe> TYPE = IRecipeHolderType.create(ScalarPowerRecipes.FREEZING_RECIPE_TYPE);
 
     private final IDrawableStatic background;
     private final IDrawable icon;
 
-    public LiquifyingRecipeCategory(IGuiHelper guiHelper) {
+    public FreezingRecipeCategory(IGuiHelper guiHelper) {
         this.background = guiHelper.createDrawable(TEXTURE, 0, 0, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
-        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ScalarPowerBlocks.LIQUIFIER.asItem()));
+        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ScalarPowerBlocks.FREEZER.asItem()));
     }
 
     @Override
-    public IRecipeHolderType<LiquifyingRecipe> getRecipeType() {
+    public IRecipeHolderType<FreezingRecipe> getRecipeType() {
         return TYPE;
     }
 
     @Override
     public Component getTitle() {
-        return Component.translatable("jei.scalarpower.liquifying");
+        return Component.translatable("jei.scalarpower.freezing");
     }
 
     @Override
@@ -71,21 +72,18 @@ public class LiquifyingRecipeCategory implements IRecipeCategory<RecipeHolder<Li
 
     @SuppressWarnings("removal")
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<LiquifyingRecipe> recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, INPUT_SLOT_X, SLOT_Y)
-                .addIngredients(recipe.value().input());
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<FreezingRecipe> recipe, IFocusGroup focuses) {
+        builder.addSlot(RecipeIngredientRole.INPUT, INPUT_FLUID_X, SLOT_Y)
+                .addIngredient(NeoForgeTypes.FLUID_STACK, recipe.value().inputFluid());
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, OUTPUT_FLUID_X, SLOT_Y)
-                .addIngredient(NeoForgeTypes.FLUID_STACK, recipe.value().outputFluid());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, OUTPUT_SLOT_X, SLOT_Y)
+                .addItemStack(recipe.value().resultItem());
     }
 
     @Override
-    public void draw(RecipeHolder<LiquifyingRecipe> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX, double mouseY) {
+    public void draw(RecipeHolder<FreezingRecipe> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX, double mouseY) {
         background.draw(guiGraphics);
-
         String costText = recipe.value().spuCost() + " SPU";
         guiGraphics.text(Minecraft.getInstance().font, costText, SPU_TEXT_X, SPU_TEXT_Y, 0xFF4A4A4A, false);
     }
 }
-
-

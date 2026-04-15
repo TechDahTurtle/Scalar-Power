@@ -1,9 +1,8 @@
-package site.scalarstudios.scalarpower.block.machine.liquifier;
+package site.scalarstudios.scalarpower.block.machine.freezer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -11,16 +10,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 import net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler;
@@ -29,20 +25,17 @@ import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 import site.scalarstudios.scalarpower.block.machine.MachineUtils;
 import site.scalarstudios.scalarpower.power.NeoEnergyTransferUtil;
-import site.scalarstudios.scalarpower.recipe.LiquifyingRecipe;
-import site.scalarstudios.scalarpower.recipe.ScalarPowerRecipes;
 
-import java.util.Optional;
-
-public class LiquifierBlockEntity extends BlockEntity implements Container, MenuProvider {
+public class FreezerBlockEntity extends BlockEntity implements Container, MenuProvider {
     private static final int ENERGY_CAPACITY = MachineUtils.LIQUIFIER_CAPACITY;
     private static final int ENERGY_PER_TICK = MachineUtils.LIQUIFIER_SPU_PER_TICK;
     private static final int PULL_PER_SIDE = MachineUtils.LIQUIFIER_SPU_PER_SIDE;
     private static final int TANK_CAPACITY = MachineUtils.LIQUIFIER_TANK_CAPACITY_MB;
+    private static final int FLUID_PER_OPERATION = MachineUtils.LIQUIFIER_MB_PER_OPERATION;
+    private static final int SPU_PER_OPERATION = 40_000;
 
-    private ItemStack inputStack = ItemStack.EMPTY;
+    private ItemStack outputStack = ItemStack.EMPTY;
     private int progressSpu;
-    private int currentRecipeCost;
 
     private final SimpleEnergyHandler energyHandler = new SimpleEnergyHandler(ENERGY_CAPACITY, ENERGY_CAPACITY, ENERGY_CAPACITY, 0) {
         @Override
@@ -54,7 +47,7 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
     private final FluidStacksResourceHandler fluidHandler = new FluidStacksResourceHandler(1, TANK_CAPACITY) {
         @Override
         public boolean isValid(int index, FluidResource resource) {
-            return false;
+            return resource.equals(FluidResource.of(Fluids.WATER)) || resource.equals(FluidResource.of(Fluids.LAVA));
         }
 
         @Override
@@ -63,11 +56,11 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
         }
     };
 
-    public LiquifierBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ScalarPowerBlockEntities.LIQUIFIER.get(), pos, blockState);
+    public FreezerBlockEntity(BlockPos pos, BlockState blockState) {
+        super(ScalarPowerBlockEntities.FREEZER.get(), pos, blockState);
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, LiquifierBlockEntity blockEntity) {
+    public static void tick(Level level, BlockPos pos, BlockState state, FreezerBlockEntity blockEntity) {
         if (level == null || level.isClientSide()) {
             return;
         }
@@ -80,18 +73,17 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
             changed |= pulled > 0;
         }
 
-        Optional<RecipeHolder<LiquifyingRecipe>> recipeHolder = blockEntity.findRecipe(blockEntity.inputStack);
-        int recipeCost = recipeHolder.map(holder -> holder.value().spuCost()).orElse(0);
-        if (blockEntity.currentRecipeCost != recipeCost) {
-            blockEntity.currentRecipeCost = recipeCost;
-            changed = true;
-        }
+        // Read actual fluid type directly from the handler - no guessing
+        FluidResource detectedFluid = blockEntity.fluidHandler.getResource(0);
+        int fluidAmount = blockEntity.getFluidAmount();
 
-        FluidStack outputFluid = recipeHolder.map(holder -> holder.value().outputFluid()).orElse(FluidStack.EMPTY);
-        boolean hasTankSpace = blockEntity.canAcceptOutput(outputFluid);
+        ItemStack resultItem = blockEntity.getResultForFluid(detectedFluid);
 
-        if (recipeHolder.isPresent() && hasTankSpace && recipeCost > 0) {
-            int needed = recipeCost - blockEntity.progressSpu;
+        boolean hasFluid = fluidAmount >= FLUID_PER_OPERATION;
+        boolean canOutput = blockEntity.canOutput(resultItem);
+
+        if (hasFluid && canOutput && !resultItem.isEmpty()) {
+            int needed = SPU_PER_OPERATION - blockEntity.progressSpu;
             int availableEnergy = (int) blockEntity.energyHandler.getAmountAsLong();
             int spent = Math.min(ENERGY_PER_TICK, Math.min(needed, availableEnergy));
 
@@ -102,10 +94,14 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
                 isWorking = true;
             }
 
-            if (blockEntity.progressSpu >= recipeCost) {
-                blockEntity.inputStack.shrink(1);
-                int newAmount = blockEntity.getFluidAmount() + outputFluid.getAmount();
-                blockEntity.fluidHandler.set(0, FluidResource.of(outputFluid.getFluid()), newAmount);
+            if (blockEntity.progressSpu >= SPU_PER_OPERATION) {
+                int remainingFluid = blockEntity.getFluidAmount() - FLUID_PER_OPERATION;
+                blockEntity.fluidHandler.set(0, remainingFluid > 0 ? detectedFluid : FluidResource.EMPTY, remainingFluid);
+                if (blockEntity.outputStack.isEmpty()) {
+                    blockEntity.outputStack = resultItem.copy();
+                } else {
+                    blockEntity.outputStack.grow(resultItem.getCount());
+                }
                 blockEntity.progressSpu = 0;
                 changed = true;
             }
@@ -118,58 +114,39 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
             blockEntity.setChanged();
         }
 
-        if (state.hasProperty(LiquifierBlock.LIT) && state.getValue(LiquifierBlock.LIT) != isWorking) {
-            level.setBlock(pos, state.setValue(LiquifierBlock.LIT, isWorking), 3);
+        if (state.hasProperty(FreezerBlock.LIT) && state.getValue(FreezerBlock.LIT) != isWorking) {
+            level.setBlock(pos, state.setValue(FreezerBlock.LIT, isWorking), 3);
         }
     }
 
-    private boolean canAcceptOutput(FluidStack outputFluid) {
-        if (outputFluid.isEmpty() || outputFluid.getAmount() <= 0) {
-            return false;
+    private ItemStack getResultForFluid(FluidResource fluid) {
+        if (fluid.equals(FluidResource.of(Fluids.WATER))) {
+            return new ItemStack(Items.ICE);
+        } else if (fluid.equals(FluidResource.of(Fluids.LAVA))) {
+            return new ItemStack(Items.OBSIDIAN);
         }
-
-        int currentAmount = getFluidAmount();
-        if (currentAmount + outputFluid.getAmount() > TANK_CAPACITY) {
-            return false;
-        }
-
-        FluidResource currentFluid = fluidHandler.getResource(0);
-        return currentFluid.equals(FluidResource.EMPTY) || currentFluid.getFluid().isSame(outputFluid.getFluid());
+        return ItemStack.EMPTY;
     }
 
-    @SuppressWarnings("unchecked")
-    private Optional<RecipeHolder<LiquifyingRecipe>> findRecipe(ItemStack stack) {
-        if (stack.isEmpty() || !(level instanceof ServerLevel serverLevel)) {
-            return Optional.empty();
-        }
-
-        SingleRecipeInput input = new SingleRecipeInput(stack);
-        Optional<RecipeHolder<LiquifyingRecipe>> byType = serverLevel.recipeAccess().getRecipeFor(
-                ScalarPowerRecipes.LIQUIFYING_RECIPE_TYPE,
-                input,
-                serverLevel);
-        if (byType.isPresent()) {
-            return byType;
-        }
-
-        RecipeManager recipeManager = serverLevel.recipeAccess();
-        return recipeManager.getRecipes().stream()
-                .filter(holder -> holder.value().getType() == ScalarPowerRecipes.LIQUIFYING_RECIPE_TYPE)
-                .map(holder -> (RecipeHolder<LiquifyingRecipe>) holder)
-                .filter(holder -> holder.value().matches(input, serverLevel))
-                .findFirst();
-    }
-
-    public boolean canLiquify(ItemStack stack) {
-        if (stack.isEmpty()) {
+    private boolean canOutput(ItemStack result) {
+        if (result.isEmpty()) {
             return false;
         }
-
-        if (!(level instanceof ServerLevel)) {
+        if (outputStack.isEmpty()) {
             return true;
         }
+        if (!ItemStack.isSameItemSameComponents(outputStack, result)) {
+            return false;
+        }
+        return outputStack.getCount() + result.getCount() <= outputStack.getMaxStackSize();
+    }
 
-        return findRecipe(stack).isPresent();
+    private int getFluidTypeCode() {
+        FluidResource resource = fluidHandler.getResource(0);
+        if (resource.equals(FluidResource.EMPTY)) return 0;
+        if (resource.getFluid().isSame(Fluids.WATER)) return 1;
+        if (resource.getFluid().isSame(Fluids.LAVA)) return 2;
+        return 0;
     }
 
     @Override
@@ -178,8 +155,7 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
         energyHandler.serialize(output);
         fluidHandler.serialize(output);
         output.putInt("ProgressSpu", progressSpu);
-        output.putInt("CurrentRecipeCost", currentRecipeCost);
-        output.store("Input", ItemStack.OPTIONAL_CODEC, inputStack);
+        output.store("Output", ItemStack.OPTIONAL_CODEC, outputStack);
     }
 
     @Override
@@ -188,27 +164,27 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
         energyHandler.deserialize(input);
         fluidHandler.deserialize(input);
         progressSpu = input.getIntOr("ProgressSpu", 0);
-        currentRecipeCost = input.getIntOr("CurrentRecipeCost", 0);
-        inputStack = input.read("Input", ItemStack.OPTIONAL_CODEC).orElse(ItemStack.EMPTY);
+        outputStack = input.read("Output", ItemStack.OPTIONAL_CODEC).orElse(ItemStack.EMPTY);
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("container.scalarpower.liquifier");
+        return Component.translatable("container.scalarpower.freezer");
     }
 
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-        return new LiquifierMenu(id, inventory, this, new ContainerData() {
+        return new FreezerMenu(id, inventory, this, new ContainerData() {
             @Override
             public int get(int index) {
                 return switch (index) {
                     case 0 -> progressSpu;
-                    case 1 -> currentRecipeCost;
+                    case 1 -> SPU_PER_OPERATION;
                     case 2 -> (int) energyHandler.getAmountAsLong();
                     case 3 -> (int) energyHandler.getCapacityAsLong();
                     case 4 -> getFluidAmount();
                     case 5 -> TANK_CAPACITY;
+                    case 6 -> getFluidTypeCode();
                     default -> 0;
                 };
             }
@@ -217,15 +193,7 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
             public void set(int index, int value) {
                 switch (index) {
                     case 0 -> progressSpu = value;
-                    case 1 -> currentRecipeCost = value;
                     case 2 -> energyHandler.set(value);
-                    case 4 -> {
-                        FluidResource resource = value > 0 ? fluidHandler.getResource(0) : FluidResource.EMPTY;
-                        if (value > 0 && resource.equals(FluidResource.EMPTY)) {
-                            resource = FluidResource.of(Fluids.LAVA);
-                        }
-                        fluidHandler.set(0, resource, value);
-                    }
                     default -> {
                     }
                 }
@@ -233,12 +201,12 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
 
             @Override
             public int getCount() {
-                return 6;
+                return 7;
             }
         });
     }
 
-    private int getFluidAmount() {
+    public int getFluidAmount() {
         return fluidHandler.getAmountAsInt(0);
     }
 
@@ -249,12 +217,12 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
 
     @Override
     public boolean isEmpty() {
-        return inputStack.isEmpty();
+        return outputStack.isEmpty();
     }
 
     @Override
     public ItemStack getItem(int slot) {
-        return slot == 0 ? inputStack : ItemStack.EMPTY;
+        return slot == 0 ? outputStack : ItemStack.EMPTY;
     }
 
     @Override
@@ -262,7 +230,7 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
         ItemStack stack = getItem(slot);
         if (!stack.isEmpty()) {
             ItemStack split = stack.split(count);
-            inputStack = stack;
+            outputStack = stack;
             setChanged();
             return split;
         }
@@ -273,7 +241,7 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
     public ItemStack removeItemNoUpdate(int slot) {
         ItemStack stack = getItem(slot);
         if (slot == 0) {
-            inputStack = ItemStack.EMPTY;
+            outputStack = ItemStack.EMPTY;
         }
         return stack;
     }
@@ -281,8 +249,7 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
     @Override
     public void setItem(int slot, ItemStack stack) {
         if (slot == 0) {
-            inputStack = stack;
-            progressSpu = 0;
+            outputStack = stack;
         }
 
         if (stack.getCount() > getMaxStackSize()) {
@@ -298,17 +265,17 @@ public class LiquifierBlockEntity extends BlockEntity implements Container, Menu
 
     @Override
     public void clearContent() {
-        inputStack = ItemStack.EMPTY;
+        outputStack = ItemStack.EMPTY;
     }
 
     @Override
     public boolean canPlaceItem(int slot, ItemStack stack) {
-        return slot == 0 && canLiquify(stack);
+        return false;
     }
 
     @Override
     public boolean canTakeItem(Container target, int slot, ItemStack stack) {
-        return false;
+        return slot == 0;
     }
 
     public EnergyHandler getEnergyHandler(Direction side) {

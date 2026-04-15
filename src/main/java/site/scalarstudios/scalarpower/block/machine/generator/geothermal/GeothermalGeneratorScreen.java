@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
-import site.scalarstudios.scalarpower.gui.tankrenderer.LavaTankRenderer;
+import site.scalarstudios.scalarpower.gui.tankrenderer.TankRenderer;
 
 import java.util.Locale;
 
@@ -40,12 +40,6 @@ public class GeothermalGeneratorScreen extends AbstractContainerScreen<Geotherma
     private static final int INFO_RATE_Y = 34;
     private static final int INFO_EFFICIENCY_Y = 47;
 
-    private static final int TANK_BORDER_RED = 0xFFD50000;
-    private static final int TANK_BORDER_WHITE = 0xFFFFFFFF;
-    private static final int[] SECTION_LINES = {10, 26, 42, 58, 74};
-    private static final int[] LEFT_TICKS = {15, 22, 31, 38, 47, 54, 63, 70};
-    private static final int[] RIGHT_TICKS = {19, 35, 51, 67};
-
     public GeothermalGeneratorScreen(GeothermalGeneratorMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title, 176, 166);
     }
@@ -59,13 +53,13 @@ public class GeothermalGeneratorScreen extends AbstractContainerScreen<Geotherma
         graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, 0.0F, 0.0F, this.imageWidth, this.imageHeight, TEXTURE_WIDTH, TEXTURE_HEIGHT);
 
         drawTankFluid(graphics, x, y);
-        drawTankOverlay(graphics, x, y);
         drawEnergy(graphics, x, y);
         drawInfoText(graphics, x, y);
+        drawTankOverlay(graphics, x, y);
     }
 
     private void drawTankFluid(GuiGraphicsExtractor graphics, int x, int y) {
-        LavaTankRenderer.INSTANCE.render(
+        TankRenderer.LAVA.renderFluid(
                 graphics,
                 x + TANK_INNER_X,
                 y + TANK_INNER_Y,
@@ -76,22 +70,9 @@ public class GeothermalGeneratorScreen extends AbstractContainerScreen<Geotherma
     }
 
     private void drawTankOverlay(GuiGraphicsExtractor graphics, int x, int y) {
-        graphics.fill(x + TANK_X, y + TANK_Y, x + TANK_X + 1, y + TANK_Y + TANK_HEIGHT, TANK_BORDER_RED);
-        graphics.fill(x + TANK_X + TANK_WIDTH - 1, y + TANK_Y, x + TANK_X + TANK_WIDTH, y + TANK_Y + TANK_HEIGHT,
-                TANK_BORDER_WHITE);
-
-        for (int lineY : SECTION_LINES) {
-            graphics.fill(x + TANK_X, y + lineY, x + TANK_X + TANK_WIDTH, y + lineY + 1, TANK_BORDER_RED);
-        }
-
-        for (int lineY : LEFT_TICKS) {
-            graphics.fill(x + TANK_X, y + lineY, x + TANK_X + 3, y + lineY + 1, TANK_BORDER_RED);
-        }
-
-        for (int lineY : RIGHT_TICKS) {
-            graphics.fill(x + TANK_X + 12, y + lineY, x + TANK_X + TANK_WIDTH, y + lineY + 1, TANK_BORDER_WHITE);
-        }
+        TankRenderer.LAVA.renderOverlay(graphics, x + TANK_X, y + TANK_Y, TANK_WIDTH, TANK_HEIGHT);
     }
+
 
     private void drawEnergy(GuiGraphicsExtractor graphics, int x, int y) {
         graphics.fill(x + ENERGY_X, y + ENERGY_Y, x + ENERGY_X + ENERGY_WIDTH, y + ENERGY_Y + ENERGY_HEIGHT, 0x88000000);

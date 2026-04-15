@@ -16,6 +16,7 @@ import site.scalarstudios.scalarpower.block.machine.grinder.DoubleGrinderBlockEn
 import site.scalarstudios.scalarpower.block.machine.grinder.GrinderBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.macerator.DoubleMaceratorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.macerator.MaceratorBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.freezer.FreezerBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.liquifier.LiquifierBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.extractor.ExtractorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.sawmill.SawmillBlockEntity;
@@ -71,6 +72,10 @@ public final class ScalarPowerBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ExtractorBlockEntity>> EXTRACTOR = BLOCK_ENTITY_TYPES
             .register("extractor",
                     () -> new BlockEntityType<>(ExtractorBlockEntity::new, ScalarPowerBlocks.EXTRACTOR.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FreezerBlockEntity>> FREEZER = BLOCK_ENTITY_TYPES
+            .register("freezer",
+                    () -> new BlockEntityType<>(FreezerBlockEntity::new, ScalarPowerBlocks.FREEZER.get()));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GrinderBlockEntity>> GRINDER = BLOCK_ENTITY_TYPES
             .register("grinder",

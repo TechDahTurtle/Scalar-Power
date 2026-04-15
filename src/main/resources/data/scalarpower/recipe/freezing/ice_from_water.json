@@ -1,0 +1,13 @@
+{
+  "type": "scalarpower:freezing",
+  "input_fluid": {
+    "id": "minecraft:water",
+    "amount": 1000
+  },
+  "output": {
+    "id": "minecraft:ice",
+    "count": 1
+  },
+  "spu_cost": 10000
+}
+

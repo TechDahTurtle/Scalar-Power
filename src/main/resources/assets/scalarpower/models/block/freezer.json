@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "scalarpower:block/machine_top",
+    "bottom": "scalarpower:block/machine_bottom",
+    "side": "scalarpower:block/machine_side",
+    "front": "scalarpower:block/freezer"
+  }
+}
+

@@ -11,6 +11,7 @@ import site.scalarstudios.scalarpower.block.machine.generator.geothermal.Geother
 import site.scalarstudios.scalarpower.block.machine.generator.watermill.WaterMillGeneratorMenu;
 import site.scalarstudios.scalarpower.block.machine.grinder.DoubleGrinderMenu;
 import site.scalarstudios.scalarpower.block.machine.grinder.GrinderMenu;
+import site.scalarstudios.scalarpower.block.machine.freezer.FreezerMenu;
 import site.scalarstudios.scalarpower.block.machine.macerator.DoubleMaceratorMenu;
 import site.scalarstudios.scalarpower.block.machine.macerator.MaceratorMenu;
 import site.scalarstudios.scalarpower.block.machine.liquifier.LiquifierMenu;
@@ -54,6 +55,9 @@ public final class ScalarPowerMenus {
 
     public static final DeferredHolder<MenuType<?>, MenuType<ExtractorMenu>> EXTRACTOR_MENU = MENUS
             .register("extractor", () -> IMenuTypeExtension.create(ExtractorMenu::new));
+
+    public static final DeferredHolder<MenuType<?>, MenuType<FreezerMenu>> FREEZER_MENU = MENUS
+            .register("freezer", () -> IMenuTypeExtension.create(FreezerMenu::new));
 
     public static final DeferredHolder<MenuType<?>, MenuType<GrinderMenu>> GRINDER_MENU = MENUS
             .register("grinder", () -> IMenuTypeExtension.create(GrinderMenu::new));

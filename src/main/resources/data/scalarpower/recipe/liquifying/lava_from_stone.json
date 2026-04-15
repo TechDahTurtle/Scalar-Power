@@ -1,9 +1,9 @@
 {
   "type": "scalarpower:liquifying",
   "ingredient": "minecraft:stone",
-  "result": {
-    "id": "minecraft:lava_bucket",
-    "count": 1
+  "output_fluid": {
+    "id": "minecraft:lava",
+    "amount": 1000
   },
   "spu_cost": 35000
 }

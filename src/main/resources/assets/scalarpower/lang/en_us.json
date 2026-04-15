@@ -8,6 +8,7 @@
 
   "block.scalarpower.alloy_smelter": "Alloy Smelter",
   "block.scalarpower.extractor": "Extractor",
+  "block.scalarpower.freezer": "Freezer",
   "block.scalarpower.liquifier": "Liquifier",
   "block.scalarpower.grinder": "Grinder",
   "block.scalarpower.double_grinder": "Double Grinder",
@@ -43,9 +44,11 @@
 
   "container.scalarpower.alloy_smelter": "Alloy Smelter",
   "container.scalarpower.extractor": "Extractor",
+  "container.scalarpower.freezer": "Freezer",
   "container.scalarpower.liquifier": "Liquifier",
   "container.scalarpower.grinder": "Grinder",
   "container.scalarpower.double_grinder": "Double Grinder",
+  "container.scalarpower.macerator": "Macerator",
   "container.scalarpower.double_macerator": "Double Macerator",
   "container.scalarpower.powered_furnace": "Powered Furnace",
   "container.scalarpower.double_powered_furnace": "Double Powered Furnace",
@@ -104,6 +107,7 @@
 
   "jei.scalarpower.alloy_smelting": "Alloy Smelting",
   "jei.scalarpower.extracting": "Extracting",
+  "jei.scalarpower.freezing": "Freezing",
   "jei.scalarpower.grinding": "Grinding",
   "jei.scalarpower.liquifying": "Liquifying",
   "jei.scalarpower.macerating": "Macerating",
