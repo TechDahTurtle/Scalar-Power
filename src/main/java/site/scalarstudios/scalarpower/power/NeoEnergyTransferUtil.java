@@ -10,12 +10,12 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 import net.neoforged.neoforge.transfer.energy.EnergyHandlerUtil;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
-import site.scalarstudios.scalarpower.machines.wire.copper.CopperWireBlockEntity;
-import site.scalarstudios.scalarpower.machines.wire.copper.InsulatedCopperWireBlockEntity;
-import site.scalarstudios.scalarpower.machines.wire.fiberglass.FiberGlassWireBlockEntity;
-import site.scalarstudios.scalarpower.machines.wire.gold.GoldWireBlockEntity;
-import site.scalarstudios.scalarpower.machines.wire.gold.InsulatedGoldWireBlockEntity;
-import site.scalarstudios.scalarpower.machines.wire.reinforcedfiberglass.ReinforcedFiberGlassWireBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.wire.copper.CopperWireBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.wire.copper.InsulatedCopperWireBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.wire.fiberglass.FiberGlassWireBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.wire.gold.GoldWireBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.wire.gold.InsulatedGoldWireBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.wire.reinforcedfiberglass.ReinforcedFiberGlassWireBlockEntity;
 
 public final class NeoEnergyTransferUtil {
     private NeoEnergyTransferUtil() {

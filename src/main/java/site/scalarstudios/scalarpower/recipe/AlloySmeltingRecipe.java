@@ -15,7 +15,7 @@ import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import site.scalarstudios.scalarpower.machines.alloysmelter.AlloySmeltingInput;
+import site.scalarstudios.scalarpower.block.machine.alloysmelter.AlloySmeltingInput;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -20,7 +20,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
-import site.scalarstudios.scalarpower.machines.alloysmelter.AlloySmeltingInput;
+import site.scalarstudios.scalarpower.block.machine.alloysmelter.AlloySmeltingInput;
 
 import java.io.IOException;
 import java.io.Reader;

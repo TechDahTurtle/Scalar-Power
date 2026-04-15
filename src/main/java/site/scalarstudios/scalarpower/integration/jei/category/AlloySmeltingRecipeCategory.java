@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import site.scalarstudios.scalarpower.ScalarPower;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlocks;
-import site.scalarstudios.scalarpower.machines.alloysmelter.AlloySmeltingInput;
+import site.scalarstudios.scalarpower.block.machine.alloysmelter.AlloySmeltingInput;
 import site.scalarstudios.scalarpower.recipe.AlloySmeltingRecipe;
 import site.scalarstudios.scalarpower.recipe.ScalarPowerRecipes;
 
