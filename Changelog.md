@@ -47,16 +47,18 @@
 
 ## 26.1.2-1.0.6_beta (Upcoming)
 - Added Liquifier machine with JEI recipes (Cobblestone, Stone, Basalt, Netherrack, and Magma Block into Lava)
-- General code cleanup and organization
+- General code cleanup and reorganization
+- Swapped Lava in GUIs to be handled by a TankRenderer in LavaTankRenderer instead of a Gradient
+  - This was extended to also work for Water (and theoretically other fluids if extended)
 - Updated Wire Textures
 
 ## Planned Features
 - Battery Sidedness (I/O Faces)
+- Better SPU UI (not drawn in GUI)
 - Crafting Recipe Revamp
 - Finish Wiki
 - Freezer Machine (Water → Ice → Packed Ice → Blue Ice)
 - Infinite Water Source Block
-- Swap from Gradient to Lava Texture in blocks that deal with Lava (Geothermal Generator & Liquifier)
 - Texture Name and Model Cleanup
 - Tooltips
 - Wrench / Pipe IO

@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
+import site.scalarstudios.scalarpower.gui.tankrenderer.LavaTankRenderer;
 
 import java.util.Locale;
 
@@ -41,8 +42,6 @@ public class GeothermalGeneratorScreen extends AbstractContainerScreen<Geotherma
 
     private static final int TANK_BORDER_RED = 0xFFD50000;
     private static final int TANK_BORDER_WHITE = 0xFFFFFFFF;
-    private static final int LAVA_FILL = 0xFFFF6A00;
-    private static final int LAVA_HIGHLIGHT = 0xFFFFB347;
     private static final int[] SECTION_LINES = {10, 26, 42, 58, 74};
     private static final int[] LEFT_TICKS = {15, 22, 31, 38, 47, 54, 63, 70};
     private static final int[] RIGHT_TICKS = {19, 35, 51, 67};
@@ -66,19 +65,14 @@ public class GeothermalGeneratorScreen extends AbstractContainerScreen<Geotherma
     }
 
     private void drawTankFluid(GuiGraphicsExtractor graphics, int x, int y) {
-        int capacity = menu.getFluidCapacity();
-        int amount = menu.getFluidAmount();
-        if (capacity <= 0 || amount <= 0) {
-            return;
-        }
-
-        int filled = Math.max(1, (int) Math.ceil((double) TANK_INNER_HEIGHT * amount / capacity));
-        filled = Math.min(TANK_INNER_HEIGHT, filled);
-        int fillTop = y + TANK_INNER_Y + (TANK_INNER_HEIGHT - filled);
-        int fillBottom = y + TANK_INNER_Y + TANK_INNER_HEIGHT;
-
-        graphics.fill(x + TANK_INNER_X, fillTop, x + TANK_INNER_X + TANK_INNER_WIDTH, fillBottom, LAVA_FILL);
-        graphics.fill(x + TANK_INNER_X, fillTop, x + TANK_INNER_X + 3, fillBottom, LAVA_HIGHLIGHT);
+        LavaTankRenderer.INSTANCE.render(
+                graphics,
+                x + TANK_INNER_X,
+                y + TANK_INNER_Y,
+                TANK_INNER_WIDTH,
+                TANK_INNER_HEIGHT,
+                menu.getFluidAmount(),
+                menu.getFluidCapacity());
     }
 
     private void drawTankOverlay(GuiGraphicsExtractor graphics, int x, int y) {
