@@ -47,8 +47,10 @@
 
 ## 26.1.2-1.0.6_beta (Upcoming)
 - Added Device Frame
+- Added Grinding recipe to turn Ice into Snowballs
 - Added Infinite Water Source Block
 - Added Liquifier machine with JEI recipes (Cobblestone, Stone, Basalt, Netherrack, and Magma Block into Lava)
+- Added Netherite Scrap recipe in Macerator (more efficient than Grinder version)
 - Changed Redstone Clock to be off 16 ticks, on for 4; instead of off 19 ticks, on for 1 
 - General code cleanup and reorganization
 - Swapped Lava in GUIs to be handled by a TankRenderer in LavaTankRenderer instead of a Gradient

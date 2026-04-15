@@ -1,0 +1,14 @@
+{
+  "type": "scalarpower:macerating",
+  "ingredient": "minecraft:ancient_debris",
+  "result": {
+    "id": "minecraft:netherite_scrap",
+    "count": 2
+  },
+  "byproduct": {
+    "id": "scalarpower:cobalt_chunk",
+    "count": 1
+  },
+  "byproduct_chance": 0.05
+}
+
