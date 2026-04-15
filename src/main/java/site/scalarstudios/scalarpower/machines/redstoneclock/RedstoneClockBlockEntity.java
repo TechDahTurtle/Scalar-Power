@@ -11,10 +11,15 @@ import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 public class RedstoneClockBlockEntity extends BlockEntity {
 
     /**
-     * Full period in ticks. The clock fires a 1-tick pulse every PERIOD ticks
-     * (19 ticks OFF → 1 tick ON → repeat).
+     * Full period in ticks (16 ticks OFF → 4 ticks ON → repeat).
      */
     private static final int PERIOD = 20;
+
+    /**
+     * Number of ticks the clock stays OFF before turning ON.
+     * The clock will be ON for (PERIOD - OFF_TICKS) = 4 ticks.
+     */
+    private static final int OFF_TICKS = 16;
 
     private int tickCounter = 0;
 
@@ -28,18 +33,15 @@ public class RedstoneClockBlockEntity extends BlockEntity {
         boolean powered = state.getValue(RedstoneClockBlock.POWERED);
 
         blockEntity.tickCounter++;
-
         if (blockEntity.tickCounter >= PERIOD) {
-            // Fire the pulse: turn ON for this tick.
             blockEntity.tickCounter = 0;
-            if (!powered) {
-                level.setBlock(pos, state.setValue(RedstoneClockBlock.POWERED, true), 3);
-                level.updateNeighborsAt(pos, state.getBlock());
-                blockEntity.setChanged();
-            }
-        } else if (powered) {
-            // The tick immediately after the pulse: turn OFF.
-            level.setBlock(pos, state.setValue(RedstoneClockBlock.POWERED, false), 3);
+        }
+
+        // ON during the last ON_TICKS ticks of the period (ticks 16–19), OFF otherwise.
+        boolean shouldBePowered = blockEntity.tickCounter >= OFF_TICKS;
+
+        if (shouldBePowered != powered) {
+            level.setBlock(pos, state.setValue(RedstoneClockBlock.POWERED, shouldBePowered), 3);
             level.updateNeighborsAt(pos, state.getBlock());
             blockEntity.setChanged();
         }

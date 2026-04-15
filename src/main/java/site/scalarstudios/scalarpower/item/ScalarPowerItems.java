@@ -41,6 +41,7 @@ public class ScalarPowerItems {
     public static final DeferredItem<Item> SYNTHETIC_RESIN = ITEMS.registerSimpleItem("synthetic_resin");
 
     // Machine Frames
+    public static final DeferredItem<Item> DEVICE_FRAME = ITEMS.registerSimpleItem("device_frame");
     public static final DeferredItem<Item> MACHINE_FRAME = ITEMS.registerSimpleItem("machine_frame");
     public static final DeferredItem<Item> STEEL_MACHINE_FRAME = ITEMS.registerSimpleItem("steel_machine_frame");
 

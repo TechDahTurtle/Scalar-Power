@@ -94,6 +94,7 @@ public class ScalarPowerCreativeTabs {
             event.accept(ScalarPowerItems.SYNTHETIC_RESIN.get());
 
             /* Machine Frames */
+            event.accept(ScalarPowerItems.DEVICE_FRAME.get());
             event.accept(ScalarPowerItems.MACHINE_FRAME.get());
             event.accept(ScalarPowerItems.STEEL_MACHINE_FRAME.get());
         }

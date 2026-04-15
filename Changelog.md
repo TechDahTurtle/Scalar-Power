@@ -46,10 +46,13 @@
 - Updated NeoForge version to 26.1.2.7-beta
 
 ## 26.1.2-1.0.6_beta (Upcoming)
+- Added Device Frame
 - Added Liquifier machine with JEI recipes (Cobblestone, Stone, Basalt, Netherrack, and Magma Block into Lava)
+- Changed Redstone Clock to be off 16 ticks, on for 4; instead of off 19 ticks, on for 1 
 - General code cleanup and reorganization
 - Swapped Lava in GUIs to be handled by a TankRenderer in LavaTankRenderer instead of a Gradient
   - This was extended to also work for Water (and theoretically other fluids if extended)
+- Updated Redstone Clock texture and recipe to use Device Frame
 - Updated Wire Textures
 
 ## Planned Features

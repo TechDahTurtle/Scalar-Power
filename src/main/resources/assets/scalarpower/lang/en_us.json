@@ -90,6 +90,7 @@
   "item.scalarpower.synthetic_resin": "Synthetic Resin",
   "item.scalarpower.rubber": "Rubber",
 
+  "item.scalarpower.device_frame": "Device Frame",
   "item.scalarpower.machine_frame": "Machine Frame",
   "item.scalarpower.steel_machine_frame": "Steel Machine Frame",
 
@@ -102,8 +103,8 @@
 
   "jei.scalarpower.alloy_smelting": "Alloy Smelting",
   "jei.scalarpower.extracting": "Extracting",
-  "jei.scalarpower.liquifying": "Liquifying",
   "jei.scalarpower.grinding": "Grinding",
+  "jei.scalarpower.liquifying": "Liquifying",
   "jei.scalarpower.macerating": "Macerating",
   "jei.scalarpower.sawmilling": "Sawmilling"
 }
