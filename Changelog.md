@@ -47,6 +47,7 @@
 
 ## 26.1.2-1.0.6_beta (Upcoming)
 - Added Device Frame
+- Added Infinite Water Source Block
 - Added Liquifier machine with JEI recipes (Cobblestone, Stone, Basalt, Netherrack, and Magma Block into Lava)
 - Changed Redstone Clock to be off 16 ticks, on for 4; instead of off 19 ticks, on for 1 
 - General code cleanup and reorganization
@@ -61,7 +62,6 @@
 - Crafting Recipe Revamp
 - Finish Wiki
 - Freezer Machine (Water → Ice → Packed Ice → Blue Ice)
-- Infinite Water Source Block
 - Texture Name and Model Cleanup
 - Tooltips
 - Wrench / Pipe IO
