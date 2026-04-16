@@ -45,7 +45,7 @@
 - Renamed Glass Fiber wires to Fiber Glass Wires
 - Updated NeoForge version to 26.1.2.7-beta
 
-## 26.1.2-1.0.6_beta (Upcoming)
+## 26.1.2-1.0.6_beta
 - Added Device Frame
 - Added Freezer machine (Lava → Obsidian, Water → Ice)
 - Added Grinding recipe to turn Ice into Snowballs
@@ -60,6 +60,8 @@
 - Swapped Fluid in GUIs to be handled by a TankRenderer instead of a Gradient
 - Updated Redstone Clock texture and recipe to use Device Frame
 - Updated Wire Textures
+- 
+## 26.1.2-1.0.7_beta (Upcoming)
 
 ## Planned Features
 - Better SPU UI (not drawn in GUI)
