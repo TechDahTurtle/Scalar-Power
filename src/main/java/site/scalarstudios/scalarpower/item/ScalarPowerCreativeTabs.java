@@ -71,8 +71,8 @@ public class ScalarPowerCreativeTabs {
             event.accept(ScalarPowerItems.COBALT_DUST.get());
             event.accept(ScalarPowerItems.COPPER_DUST.get());
             event.accept(ScalarPowerItems.DIAMOND_DUST.get());
-            event.accept(ScalarPowerItems.ENDER_ALLOY_DUST.get());
             event.accept(ScalarPowerItems.EMERALD_DUST.get());
+            event.accept(ScalarPowerItems.ENDER_ALLOY_DUST.get());
             event.accept(ScalarPowerItems.GOLD_DUST.get());
             event.accept(ScalarPowerItems.IRON_DUST.get());
             event.accept(ScalarPowerItems.OBSIDIAN_DUST.get());
