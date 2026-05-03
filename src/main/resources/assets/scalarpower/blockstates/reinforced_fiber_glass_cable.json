@@ -1,0 +1,30 @@
+{
+  "multipart": [
+    { "apply": { "model": "scalarpower:block/reinforced_fiber_glass_cable_center" }},
+    {
+      "when": { "north": "true" },
+      "apply": { "model": "scalarpower:block/reinforced_fiber_glass_cable_side" }
+    },
+    {
+      "when": { "south": "true" },
+      "apply": { "model": "scalarpower:block/reinforced_fiber_glass_cable_side", "y": 180, "uvlock": true }
+    },
+    {
+      "when": { "east": "true" },
+      "apply": { "model": "scalarpower:block/reinforced_fiber_glass_cable_side", "y": 90, "uvlock": true }
+    },
+    {
+      "when": { "west": "true" },
+      "apply": { "model": "scalarpower:block/reinforced_fiber_glass_cable_side", "y": 270, "uvlock": true }
+    },
+    {
+      "when": { "up": "true" },
+      "apply": { "model": "scalarpower:block/reinforced_fiber_glass_cable_side", "x": 270, "uvlock": true }
+    },
+    {
+      "when": { "down": "true" },
+      "apply": { "model": "scalarpower:block/reinforced_fiber_glass_cable_side", "x": 90, "uvlock": true }
+    }
+  ]
+}
+

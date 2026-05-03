@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "D D",
+    "GGG"
+  ],
+  "key": {
+    "G": "minecraft:glass_pane",
+    "D": "#c:dusts/diamond"
+  },
+  "result": {
+    "id": "scalarpower:fiber_glass_cable",
+    "count": 8
+  }
+}

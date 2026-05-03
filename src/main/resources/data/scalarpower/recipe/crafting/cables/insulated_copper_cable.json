@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "scalarpower:copper_cable",
+    "scalarpower:rubber"
+  ],
+  "result": {
+    "id": "scalarpower:insulated_copper_cable",
+    "count": 1
+  }
+}
+

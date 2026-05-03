@@ -8,7 +8,7 @@
   "key": {
     "I": "minecraft:iron_ingot",
     "R": "minecraft:redstone",
-    "W": "scalarpower:copper_wire",
+    "W": "scalarpower:copper_cable",
     "C": "minecraft:copper_block",
     "M": "scalarpower:machine_frame"
   },

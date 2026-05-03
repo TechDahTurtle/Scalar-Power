@@ -52,11 +52,15 @@ public final class MachineUtils {
     public static final int ENDER_BATTERY_CAPACITY = STEEL_BATTERY_CAPACITY * 10;
     public static final int ENDER_BATTERY_SPU_PER_SIDE = STEEL_BATTERY_SPU_PER_SIDE * 10;
 
-    // Wires
-    public static final int WIRE_BASE_CAPACITY = 256;
-    public static final int WIRE_BASE_THROUGHPUT = 80;
-    //public static final int WIRE_T1_MULTIPLIER = 1; // This is multiplying by 1, here for completeness. DO NOT USE.
-    public static final int WIRE_T2_MULTIPLIER = 2;
-    public static final int WIRE_T3_MULTIPLIER = WIRE_T2_MULTIPLIER * 2;
-    public static final int WIRE_T4_MULTIPLIER = WIRE_T3_MULTIPLIER * 2;
+    // Cables
+    public static final int CABLE_BASE_CAPACITY = 256;
+    public static final int CABLE_BASE_THROUGHPUT = 80;
+    //public static final int CABLE_T1_MULTIPLIER = 1; // This is multiplying by 1, here for completeness. DO NOT USE.
+    public static final int CABLE_T2_MULTIPLIER = 2;
+    public static final int CABLE_T3_MULTIPLIER = CABLE_T2_MULTIPLIER * 2;
+    public static final int CABLE_T4_MULTIPLIER = CABLE_T3_MULTIPLIER * 2;
+
+    // Pipes
+    public static final int PIPE_BASE_CAPACITY_MB = 4_000;
+    public static final int PIPE_BASE_THROUGHPUT_MB = 80;
 }

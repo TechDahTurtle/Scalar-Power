@@ -22,12 +22,13 @@ import site.scalarstudios.scalarpower.block.machine.extractor.ExtractorBlockEnti
 import site.scalarstudios.scalarpower.block.machine.sawmill.SawmillBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.poweredfurnace.DoublePoweredFurnaceBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.poweredfurnace.PoweredFurnaceBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.copper.CopperWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.copper.InsulatedCopperWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.fiberglass.FiberGlassWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.gold.GoldWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.gold.InsulatedGoldWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.reinforcedfiberglass.ReinforcedFiberGlassWireBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.copper.CopperCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.copper.InsulatedCopperCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.fiberglass.FiberGlassCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.gold.GoldCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.gold.InsulatedGoldCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.reinforcedfiberglass.ReinforcedFiberGlassCableBlockEntity;
+import site.scalarstudios.scalarpower.block.transport.pipe.copper.CopperPipeBlockEntity;
 import site.scalarstudios.scalarpower.block.device.redstoneclock.RedstoneClockBlockEntity;
 import site.scalarstudios.scalarpower.block.device.infinitewatersource.InfiniteWaterSourceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -122,23 +123,26 @@ public final class ScalarPowerBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CreativeBatteryBlockEntity>> CREATIVE_BATTERY = BLOCK_ENTITY_TYPES
             .register("creative_battery", () -> new BlockEntityType<>(CreativeBatteryBlockEntity::new, ScalarPowerBlocks.CREATIVE_BATTERY.get()));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CopperWireBlockEntity>> COPPER_WIRE = BLOCK_ENTITY_TYPES
-            .register("copper_wire", () -> new BlockEntityType<>(CopperWireBlockEntity::new, ScalarPowerBlocks.COPPER_WIRE.get()));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CopperCableBlockEntity>> COPPER_CABLE = BLOCK_ENTITY_TYPES
+            .register("copper_cable", () -> new BlockEntityType<>(CopperCableBlockEntity::new, ScalarPowerBlocks.COPPER_CABLE.get()));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InsulatedCopperWireBlockEntity>> INSULATED_COPPER_WIRE = BLOCK_ENTITY_TYPES
-            .register("insulated_copper_wire", () -> new BlockEntityType<>(InsulatedCopperWireBlockEntity::new, ScalarPowerBlocks.INSULATED_COPPER_WIRE.get()));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InsulatedCopperCableBlockEntity>> INSULATED_COPPER_CABLE = BLOCK_ENTITY_TYPES
+            .register("insulated_copper_cable", () -> new BlockEntityType<>(InsulatedCopperCableBlockEntity::new, ScalarPowerBlocks.INSULATED_COPPER_CABLE.get()));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GoldWireBlockEntity>> GOLD_WIRE = BLOCK_ENTITY_TYPES
-            .register("gold_wire", () -> new BlockEntityType<>(GoldWireBlockEntity::new, ScalarPowerBlocks.GOLD_WIRE.get()));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GoldCableBlockEntity>> GOLD_CABLE = BLOCK_ENTITY_TYPES
+            .register("gold_cable", () -> new BlockEntityType<>(GoldCableBlockEntity::new, ScalarPowerBlocks.GOLD_CABLE.get()));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InsulatedGoldWireBlockEntity>> INSULATED_GOLD_WIRE = BLOCK_ENTITY_TYPES
-            .register("insulated_gold_wire", () -> new BlockEntityType<>(InsulatedGoldWireBlockEntity::new, ScalarPowerBlocks.INSULATED_GOLD_WIRE.get()));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InsulatedGoldCableBlockEntity>> INSULATED_GOLD_CABLE = BLOCK_ENTITY_TYPES
+            .register("insulated_gold_cable", () -> new BlockEntityType<>(InsulatedGoldCableBlockEntity::new, ScalarPowerBlocks.INSULATED_GOLD_CABLE.get()));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FiberGlassWireBlockEntity>> FIBER_GLASS_WIRE = BLOCK_ENTITY_TYPES
-            .register("fiber_glass_wire", () -> new BlockEntityType<>(FiberGlassWireBlockEntity::new, ScalarPowerBlocks.FIBER_GLASS_WIRE.get()));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FiberGlassCableBlockEntity>> FIBER_GLASS_CABLE = BLOCK_ENTITY_TYPES
+            .register("fiber_glass_cable", () -> new BlockEntityType<>(FiberGlassCableBlockEntity::new, ScalarPowerBlocks.FIBER_GLASS_CABLE.get()));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ReinforcedFiberGlassWireBlockEntity>> REINFORCED_FIBER_GLASS_WIRE = BLOCK_ENTITY_TYPES
-            .register("reinforced_fiber_glass_wire", () -> new BlockEntityType<>(ReinforcedFiberGlassWireBlockEntity::new, ScalarPowerBlocks.REINFORCED_FIBER_GLASS_WIRE.get()));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ReinforcedFiberGlassCableBlockEntity>> REINFORCED_FIBER_GLASS_CABLE = BLOCK_ENTITY_TYPES
+            .register("reinforced_fiber_glass_cable", () -> new BlockEntityType<>(ReinforcedFiberGlassCableBlockEntity::new, ScalarPowerBlocks.REINFORCED_FIBER_GLASS_CABLE.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CopperPipeBlockEntity>> COPPER_PIPE = BLOCK_ENTITY_TYPES
+            .register("copper_pipe", () -> new BlockEntityType<>(CopperPipeBlockEntity::new, ScalarPowerBlocks.COPPER_PIPE.get()));
 
     /* Devices */
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InfiniteWaterSourceBlockEntity>> INFINITE_WATER_SOURCE = BLOCK_ENTITY_TYPES

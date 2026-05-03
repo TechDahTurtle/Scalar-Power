@@ -62,12 +62,14 @@
 - Updated Wire Textures
 
 ## 26.1.2-1.0.7_beta (Upcoming)
+- Added Copper Pipe as a fluid transport block (supports vanilla and modded fluids)
+- Added wrench side-configuration support for transport blocks (pipes and wires)
+- Refactored "wire" to "cable" because what we have more closely resembles a cable than a wire
 
 ## Planned Features
 - Better SPU UI (not drawn in GUI)
 - Crafting Recipe Revamp
 - Finish Wiki
-- Fluid Pipes
 - Full Resource Sets (Less for us, more for cross-mod compat)
 - Keep NeoForge up to date
 - Possible Tools/Armor Suite

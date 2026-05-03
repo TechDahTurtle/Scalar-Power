@@ -29,12 +29,13 @@ import site.scalarstudios.scalarpower.block.machine.extractor.ExtractorBlock;
 import site.scalarstudios.scalarpower.block.machine.sawmill.SawmillBlock;
 import site.scalarstudios.scalarpower.block.machine.poweredfurnace.DoublePoweredFurnaceBlock;
 import site.scalarstudios.scalarpower.block.machine.poweredfurnace.PoweredFurnaceBlock;
-import site.scalarstudios.scalarpower.block.machine.wire.copper.CopperWireBlock;
-import site.scalarstudios.scalarpower.block.machine.wire.copper.InsulatedCopperWireBlock;
-import site.scalarstudios.scalarpower.block.machine.wire.fiberglass.FiberGlassWireBlock;
-import site.scalarstudios.scalarpower.block.machine.wire.gold.GoldWireBlock;
-import site.scalarstudios.scalarpower.block.machine.wire.gold.InsulatedGoldWireBlock;
-import site.scalarstudios.scalarpower.block.machine.wire.reinforcedfiberglass.ReinforcedFiberGlassWireBlock;
+import site.scalarstudios.scalarpower.block.machine.cable.copper.CopperCableBlock;
+import site.scalarstudios.scalarpower.block.machine.cable.copper.InsulatedCopperCableBlock;
+import site.scalarstudios.scalarpower.block.machine.cable.fiberglass.FiberGlassCableBlock;
+import site.scalarstudios.scalarpower.block.machine.cable.gold.GoldCableBlock;
+import site.scalarstudios.scalarpower.block.machine.cable.gold.InsulatedGoldCableBlock;
+import site.scalarstudios.scalarpower.block.machine.cable.reinforcedfiberglass.ReinforcedFiberGlassCableBlock;
+import site.scalarstudios.scalarpower.block.transport.pipe.copper.CopperPipeBlock;
 import site.scalarstudios.scalarpower.block.device.redstoneclock.RedstoneClockBlock;
 import site.scalarstudios.scalarpower.block.device.infinitewatersource.InfiniteWaterSourceBlock;
 import site.scalarstudios.scalarpower.item.ScalarPowerItems;
@@ -133,29 +134,33 @@ public class ScalarPowerBlocks {
             CreativeBatteryBlock::new,
             properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.STONE));
 
-    public static final DeferredBlock<CopperWireBlock> COPPER_WIRE = registerTooltipBlockItem("copper_wire",
-            CopperWireBlock::new,
+    public static final DeferredBlock<CopperCableBlock> COPPER_CABLE = registerTooltipBlockItem("copper_cable",
+            CopperCableBlock::new,
             properties -> properties.strength(0.5F, 0.5F).noOcclusion().sound(SoundType.COPPER).mapColor(MapColor.COLOR_ORANGE));
 
-    public static final DeferredBlock<InsulatedCopperWireBlock> INSULATED_COPPER_WIRE = registerTooltipBlockItem("insulated_copper_wire",
-            InsulatedCopperWireBlock::new,
+    public static final DeferredBlock<InsulatedCopperCableBlock> INSULATED_COPPER_CABLE = registerTooltipBlockItem("insulated_copper_cable",
+            InsulatedCopperCableBlock::new,
             properties -> properties.strength(0.5F, 0.5F).noOcclusion().sound(SoundType.COPPER).mapColor(MapColor.COLOR_ORANGE));
 
-    public static final DeferredBlock<GoldWireBlock> GOLD_WIRE = registerTooltipBlockItem("gold_wire",
-            GoldWireBlock::new,
+    public static final DeferredBlock<GoldCableBlock> GOLD_CABLE = registerTooltipBlockItem("gold_cable",
+            GoldCableBlock::new,
             properties -> properties.strength(0.5F, 0.5F).noOcclusion().sound(SoundType.COPPER).mapColor(MapColor.GOLD));
 
-    public static final DeferredBlock<InsulatedGoldWireBlock> INSULATED_GOLD_WIRE = registerTooltipBlockItem("insulated_gold_wire",
-            InsulatedGoldWireBlock::new,
+    public static final DeferredBlock<InsulatedGoldCableBlock> INSULATED_GOLD_CABLE = registerTooltipBlockItem("insulated_gold_cable",
+            InsulatedGoldCableBlock::new,
             properties -> properties.strength(0.5F, 0.5F).noOcclusion().sound(SoundType.COPPER).mapColor(MapColor.GOLD));
 
-    public static final DeferredBlock<FiberGlassWireBlock> FIBER_GLASS_WIRE = registerTooltipBlockItem("fiber_glass_wire",
-            FiberGlassWireBlock::new,
+    public static final DeferredBlock<FiberGlassCableBlock> FIBER_GLASS_CABLE = registerTooltipBlockItem("fiber_glass_cable",
+            FiberGlassCableBlock::new,
             properties -> properties.strength(0.5F, 0.5F).noOcclusion().sound(SoundType.GLASS).mapColor(MapColor.COLOR_CYAN));
 
-    public static final DeferredBlock<ReinforcedFiberGlassWireBlock> REINFORCED_FIBER_GLASS_WIRE = registerTooltipBlockItem("reinforced_fiber_glass_wire",
-            ReinforcedFiberGlassWireBlock::new,
+    public static final DeferredBlock<ReinforcedFiberGlassCableBlock> REINFORCED_FIBER_GLASS_CABLE = registerTooltipBlockItem("reinforced_fiber_glass_cable",
+            ReinforcedFiberGlassCableBlock::new,
             properties -> properties.strength(0.5F, 0.5F).noOcclusion().sound(SoundType.GLASS).mapColor(MapColor.COLOR_LIGHT_BLUE));
+
+    public static final DeferredBlock<CopperPipeBlock> COPPER_PIPE = registerTooltipBlockItem("copper_pipe",
+            CopperPipeBlock::new,
+            properties -> properties.strength(0.5F, 0.5F).noOcclusion().sound(SoundType.COPPER).mapColor(MapColor.COLOR_ORANGE));
 
     /* Devices */
     public static final DeferredBlock<InfiniteWaterSourceBlock> INFINITE_WATER_SOURCE = registerBlock("infinite_water_source",

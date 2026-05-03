@@ -49,12 +49,13 @@ public class ScalarPowerCreativeTabs {
             event.accept(ScalarPowerBlocks.STEEL_BATTERY.get());
             event.accept(ScalarPowerBlocks.ENDER_BATTERY.get());
             event.accept(ScalarPowerBlocks.CREATIVE_BATTERY.get());
-            event.accept(ScalarPowerBlocks.COPPER_WIRE.get());
-            event.accept(ScalarPowerBlocks.INSULATED_COPPER_WIRE.get());
-            event.accept(ScalarPowerBlocks.GOLD_WIRE.get());
-            event.accept(ScalarPowerBlocks.INSULATED_GOLD_WIRE.get());
-            event.accept(ScalarPowerBlocks.FIBER_GLASS_WIRE.get());
-            event.accept(ScalarPowerBlocks.REINFORCED_FIBER_GLASS_WIRE.get());
+            event.accept(ScalarPowerBlocks.COPPER_CABLE.get());
+            event.accept(ScalarPowerBlocks.INSULATED_COPPER_CABLE.get());
+            event.accept(ScalarPowerBlocks.GOLD_CABLE.get());
+            event.accept(ScalarPowerBlocks.INSULATED_GOLD_CABLE.get());
+            event.accept(ScalarPowerBlocks.FIBER_GLASS_CABLE.get());
+            event.accept(ScalarPowerBlocks.REINFORCED_FIBER_GLASS_CABLE.get());
+            event.accept(ScalarPowerBlocks.COPPER_PIPE.get());
 
             /* Normal Blocks */
             event.accept(ScalarPowerBlocks.COBALT_BLOCK.get());

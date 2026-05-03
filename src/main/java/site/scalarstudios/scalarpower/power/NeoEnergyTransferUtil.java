@@ -10,14 +10,14 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 import net.neoforged.neoforge.transfer.energy.EnergyHandlerUtil;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
-import site.scalarstudios.scalarpower.block.machine.wire.copper.CopperWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.copper.InsulatedCopperWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.fiberglass.FiberGlassWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.gold.GoldWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.gold.InsulatedGoldWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.reinforcedfiberglass.ReinforcedFiberGlassWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.BaseWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.WireBehavior;
+import site.scalarstudios.scalarpower.block.machine.cable.copper.CopperCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.copper.InsulatedCopperCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.fiberglass.FiberGlassCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.gold.GoldCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.gold.InsulatedGoldCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.reinforcedfiberglass.ReinforcedFiberGlassCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.BaseCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.CableBehavior;
 
 public final class NeoEnergyTransferUtil {
     private NeoEnergyTransferUtil() {
@@ -36,16 +36,16 @@ public final class NeoEnergyTransferUtil {
             return 0;
         }
 
-        // Get source wire entity to check output behaviors
+        // Get source cable entity to check output behaviors
         BlockEntity sourceEntity = level.getBlockEntity(sourcePos);
         boolean sourceIsTransferBlock = isTransferBlock(sourceEntity);
         List<EnergyHandler> nonTransferTargets = new ArrayList<>();
         List<EnergyHandler> transferTargets = new ArrayList<>();
         for (Direction direction : Direction.values()) {
-            // Check if source wire allows output on this direction
-            if (sourceEntity instanceof BaseWireBlockEntity sourceWire) {
-                WireBehavior behavior = sourceWire.getBehavior(direction);
-                if (behavior == WireBehavior.DISABLED || behavior == WireBehavior.INPUT) {
+            // Check if source cable allows output on this direction
+            if (sourceEntity instanceof BaseCableBlockEntity sourceCable) {
+                CableBehavior behavior = sourceCable.getBehavior(direction);
+                if (behavior == CableBehavior.DISABLED || behavior == CableBehavior.INPUT) {
                     continue;
                 }
             }
@@ -139,10 +139,10 @@ public final class NeoEnergyTransferUtil {
         int pulled = 0;
         BlockEntity receiverEntity = level.getBlockEntity(receiverPos);
         for (Direction direction : Direction.values()) {
-            // Check if receiver wire allows input on this direction
-            if (receiverEntity instanceof BaseWireBlockEntity receiverWire) {
-                WireBehavior behavior = receiverWire.getBehavior(direction);
-                if (behavior == WireBehavior.DISABLED || behavior == WireBehavior.OUTPUT) {
+            // Check if receiver cable allows input on this direction
+            if (receiverEntity instanceof BaseCableBlockEntity receiverCable) {
+                CableBehavior behavior = receiverCable.getBehavior(direction);
+                if (behavior == CableBehavior.DISABLED || behavior == CableBehavior.OUTPUT) {
                     continue;
                 }
             }
@@ -184,13 +184,13 @@ public final class NeoEnergyTransferUtil {
             return false;
         }
 
-        // Check if it's one of our wire types
-        if (blockEntity instanceof CopperWireBlockEntity
-                || blockEntity instanceof InsulatedCopperWireBlockEntity
-                || blockEntity instanceof GoldWireBlockEntity
-                || blockEntity instanceof InsulatedGoldWireBlockEntity
-                || blockEntity instanceof FiberGlassWireBlockEntity
-                || blockEntity instanceof ReinforcedFiberGlassWireBlockEntity) {
+        // Check if it's one of our cable types
+        if (blockEntity instanceof CopperCableBlockEntity
+                || blockEntity instanceof InsulatedCopperCableBlockEntity
+                || blockEntity instanceof GoldCableBlockEntity
+                || blockEntity instanceof InsulatedGoldCableBlockEntity
+                || blockEntity instanceof FiberGlassCableBlockEntity
+                || blockEntity instanceof ReinforcedFiberGlassCableBlockEntity) {
             return true;
         }
 
@@ -211,7 +211,7 @@ public final class NeoEnergyTransferUtil {
             if (handler != null && canInsert(handler)) {
                 acceptingDirections++;
                 // If we found at least 2 adjacent blocks that can accept energy,
-                // this is likely a transfer block (pipe/wire)
+                // this is likely a transfer block (pipe/cable)
                 if (acceptingDirections >= 2) {
                     return true;
                 }

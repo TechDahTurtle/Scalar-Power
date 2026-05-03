@@ -5,7 +5,7 @@ If you enjoy turning raw resources into full production lines, this mod is built
 
 ## Highlights
 - Build your first grid with a **Coal Generator** or **Culinary Generator**.  
-- Move energy across your base with **Copper Wire** and **Gold Wire** or their insulated counterparts.
+- Move energy across your base with **Copper Cable** and **Gold Cable** or their insulated counterparts.
 - Buffer your network with a **Battery** for smoother machine uptime.  
 - Scale into advanced processing with dedicated machine blocks.  
 

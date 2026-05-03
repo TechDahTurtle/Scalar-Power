@@ -10,7 +10,7 @@
     "R": "minecraft:redstone",
     "C": "scalarpower:coal_generator",
     "M": "scalarpower:machine_frame",
-    "W": "scalarpower:copper_wire"
+    "W": "scalarpower:copper_cable"
   },
   "result": {
     "id": "scalarpower:powered_furnace",

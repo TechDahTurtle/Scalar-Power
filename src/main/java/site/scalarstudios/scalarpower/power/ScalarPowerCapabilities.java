@@ -22,12 +22,13 @@ import site.scalarstudios.scalarpower.block.machine.liquifier.LiquifierBlockEnti
 import site.scalarstudios.scalarpower.block.machine.poweredfurnace.DoublePoweredFurnaceBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.poweredfurnace.PoweredFurnaceBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.sawmill.SawmillBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.copper.CopperWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.copper.InsulatedCopperWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.fiberglass.FiberGlassWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.gold.GoldWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.gold.InsulatedGoldWireBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.wire.reinforcedfiberglass.ReinforcedFiberGlassWireBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.copper.CopperCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.copper.InsulatedCopperCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.fiberglass.FiberGlassCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.gold.GoldCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.gold.InsulatedGoldCableBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.cable.reinforcedfiberglass.ReinforcedFiberGlassCableBlockEntity;
+import site.scalarstudios.scalarpower.block.transport.pipe.copper.CopperPipeBlockEntity;
 import site.scalarstudios.scalarpower.block.device.infinitewatersource.InfiniteWaterSourceBlockEntity;
 
 public final class ScalarPowerCapabilities {
@@ -145,33 +146,38 @@ public final class ScalarPowerCapabilities {
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
-                ScalarPowerBlockEntities.COPPER_WIRE.get(),
-                CopperWireBlockEntity::getEnergyHandler);
+                ScalarPowerBlockEntities.COPPER_CABLE.get(),
+                CopperCableBlockEntity::getEnergyHandler);
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
-                ScalarPowerBlockEntities.INSULATED_COPPER_WIRE.get(),
-                InsulatedCopperWireBlockEntity::getEnergyHandler);
+                ScalarPowerBlockEntities.INSULATED_COPPER_CABLE.get(),
+                InsulatedCopperCableBlockEntity::getEnergyHandler);
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
-                ScalarPowerBlockEntities.GOLD_WIRE.get(),
-                GoldWireBlockEntity::getEnergyHandler);
+                ScalarPowerBlockEntities.GOLD_CABLE.get(),
+                GoldCableBlockEntity::getEnergyHandler);
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
-                ScalarPowerBlockEntities.INSULATED_GOLD_WIRE.get(),
-                InsulatedGoldWireBlockEntity::getEnergyHandler);
+                ScalarPowerBlockEntities.INSULATED_GOLD_CABLE.get(),
+                InsulatedGoldCableBlockEntity::getEnergyHandler);
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
-                ScalarPowerBlockEntities.FIBER_GLASS_WIRE.get(),
-                FiberGlassWireBlockEntity::getEnergyHandler);
+                ScalarPowerBlockEntities.FIBER_GLASS_CABLE.get(),
+                FiberGlassCableBlockEntity::getEnergyHandler);
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
-                ScalarPowerBlockEntities.REINFORCED_FIBER_GLASS_WIRE.get(),
-                ReinforcedFiberGlassWireBlockEntity::getEnergyHandler);
+                ScalarPowerBlockEntities.REINFORCED_FIBER_GLASS_CABLE.get(),
+                ReinforcedFiberGlassCableBlockEntity::getEnergyHandler);
+
+        event.registerBlockEntity(
+                Capabilities.Fluid.BLOCK,
+                ScalarPowerBlockEntities.COPPER_PIPE.get(),
+                CopperPipeBlockEntity::getFluidHandler);
 
         // VanillaContainerWrappers
         /* Generators */
