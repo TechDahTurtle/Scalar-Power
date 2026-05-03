@@ -18,8 +18,8 @@ public class ScalarPowerItems {
 
     // Dusts
     public static final DeferredItem<Item> COAL_DUST = ITEMS.registerSimpleItem("coal_dust");
-    public static final DeferredItem<Item> COPPER_DUST = ITEMS.registerSimpleItem("copper_dust");
     public static final DeferredItem<Item> COBALT_DUST = ITEMS.registerSimpleItem("cobalt_dust");
+    public static final DeferredItem<Item> COPPER_DUST = ITEMS.registerSimpleItem("copper_dust");
     public static final DeferredItem<Item> DIAMOND_DUST = ITEMS.registerSimpleItem("diamond_dust");
     public static final DeferredItem<Item> ENDER_ALLOY_DUST = ITEMS.registerSimpleItem("ender_alloy_dust");
     public static final DeferredItem<Item> EMERALD_DUST = ITEMS.registerSimpleItem("emerald_dust");

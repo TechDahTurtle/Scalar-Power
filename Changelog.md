@@ -74,6 +74,7 @@
 - Removed code for scrapped features
 
 ## 26.1.2-1.0.8_beta (Upcoming)
+- Fixed some alphabetical ordering issues in Creative Tab
 
 ## Planned Features
 - Better SPU UI (not drawn in GUI)
