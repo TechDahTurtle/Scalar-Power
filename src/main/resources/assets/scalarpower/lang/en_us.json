@@ -91,10 +91,19 @@
   "item.scalarpower.resin_pellet": "Resin Pellet",
   "item.scalarpower.rubber": "Rubber",
 
+  "item.scalarpower.steel_rod": "Steel Rod",
+
+  "item.scalarpower.cobalt_sword": "Cobalt Sword",
+  "item.scalarpower.cobalt_pickaxe": "Cobalt Pickaxe",
+  "item.scalarpower.cobalt_axe": "Cobalt Axe",
+  "item.scalarpower.cobalt_shovel": "Cobalt Shovel",
+  "item.scalarpower.cobalt_hoe": "Cobalt Hoe",
+  "item.scalarpower.cobalt_spear": "Cobalt Spear",
+  "item.scalarpower.wrench": "Wrench",
+
   "item.scalarpower.device_frame": "Device Frame",
   "item.scalarpower.machine_frame": "Machine Frame",
   "item.scalarpower.steel_machine_frame": "Steel Machine Frame",
-  "item.scalarpower.wrench": "Wrench",
 
   "item.scalarpower.copper_cable": "Copper Cable",
   "item.scalarpower.insulated_copper_cable": "Insulated Copper Cable",
@@ -119,6 +128,8 @@
   "tooltip.scalarpower.fiber_glass_cable": "Transfers 320 SPU/t",
   "tooltip.scalarpower.reinforced_fiber_glass_cable": "Transfers 640 SPU/t",
   "tooltip.scalarpower.copper_pipe": "Transfers 80 mB/t",
+  "tooltip.scalarpower.tool_power": "Power: %s/%s",
+  "tooltip.scalarpower.tool_unpowered": "Unpowered - functions like a normal item",
   "tooltip.scalarpower.wrench_configure": "Right-click on cables or pipes to configure behavior",
   "tooltip.scalarpower.wrench_cycle": "Shift + Right-click to cycle through behaviors"
 }

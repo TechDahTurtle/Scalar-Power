@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XX ",
+    "X# ",
+    " # "
+  ],
+  "key": {
+    "X": "#c:ingots/cobalt",
+    "#": "scalarpower:steel_rod"
+  },
+  "result": {
+    "id": "scalarpower:cobalt_axe",
+    "count": 1
+  }
+}
+

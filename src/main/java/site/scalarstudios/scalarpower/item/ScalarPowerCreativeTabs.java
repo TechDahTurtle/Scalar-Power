@@ -96,7 +96,16 @@ public class ScalarPowerCreativeTabs {
             event.accept(ScalarPowerItems.RUBBER.get());
             event.accept(ScalarPowerItems.RESIN_PELLET.get());
 
+            /* Misc. */
+            event.accept(ScalarPowerItems.STEEL_ROD.get());
+
             /* Tools */
+            event.accept(ScalarPowerItems.COBALT_SWORD.get());
+            event.accept(ScalarPowerItems.COBALT_PICKAXE.get());
+            event.accept(ScalarPowerItems.COBALT_AXE.get());
+            event.accept(ScalarPowerItems.COBALT_SHOVEL.get());
+            event.accept(ScalarPowerItems.COBALT_HOE.get());
+            event.accept(ScalarPowerItems.COBALT_SPEAR.get());
             event.accept(ScalarPowerItems.WRENCH.get());
 
             /* Machine Frames */

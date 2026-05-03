@@ -5,13 +5,16 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import site.scalarstudios.scalarpower.ScalarPower;
+import site.scalarstudios.scalarpower.item.custom.powered_tool.PoweredAxeItem;
+import site.scalarstudios.scalarpower.item.custom.powered_tool.PoweredHoeItem;
+import site.scalarstudios.scalarpower.item.custom.powered_tool.PoweredPickaxeItem;
+import site.scalarstudios.scalarpower.item.custom.powered_tool.PoweredShovelItem;
+import site.scalarstudios.scalarpower.item.custom.powered_tool.PoweredSpearItem;
+import site.scalarstudios.scalarpower.item.custom.powered_tool.PoweredSwordItem;
 import site.scalarstudios.scalarpower.item.custom.WrenchItem;
 
 public class ScalarPowerItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(ScalarPower.MODID);
-
-    // Tools
-    public static final DeferredItem<WrenchItem> WRENCH = ITEMS.registerItem("wrench",  WrenchItem::new);
 
     // Dusts
     public static final DeferredItem<Item> COAL_DUST = ITEMS.registerSimpleItem("coal_dust");
@@ -43,6 +46,18 @@ public class ScalarPowerItems {
     // Rubber
     public static final DeferredItem<Item> RUBBER = ITEMS.registerSimpleItem("rubber");
     public static final DeferredItem<Item> RESIN_PELLET = ITEMS.registerSimpleItem("resin_pellet");
+
+    // Misc.
+    public static final DeferredItem<Item> STEEL_ROD = ITEMS.registerSimpleItem("steel_rod");
+
+    // Tools
+    public static final DeferredItem<PoweredSwordItem> COBALT_SWORD = ITEMS.registerItem("cobalt_sword", PoweredSwordItem::new);
+    public static final DeferredItem<PoweredPickaxeItem> COBALT_PICKAXE = ITEMS.registerItem("cobalt_pickaxe", PoweredPickaxeItem::new);
+    public static final DeferredItem<PoweredAxeItem> COBALT_AXE = ITEMS.registerItem("cobalt_axe", PoweredAxeItem::new);
+    public static final DeferredItem<PoweredShovelItem> COBALT_SHOVEL = ITEMS.registerItem("cobalt_shovel", PoweredShovelItem::new);
+    public static final DeferredItem<PoweredHoeItem> COBALT_HOE = ITEMS.registerItem("cobalt_hoe", PoweredHoeItem::new);
+    public static final DeferredItem<PoweredSpearItem> COBALT_SPEAR = ITEMS.registerItem("cobalt_spear", PoweredSpearItem::new);
+    public static final DeferredItem<WrenchItem> WRENCH = ITEMS.registerItem("wrench",  WrenchItem::new);
 
     // Machine Frames
     public static final DeferredItem<Item> DEVICE_FRAME = ITEMS.registerSimpleItem("device_frame");
