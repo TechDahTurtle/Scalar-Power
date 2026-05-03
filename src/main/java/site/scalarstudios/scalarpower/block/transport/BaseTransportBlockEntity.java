@@ -1,6 +1,7 @@
 package site.scalarstudios.scalarpower.block.transport;
 
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import site.scalarstudios.scalarpower.block.machine.cable.CableBehavior;
 
@@ -35,6 +36,16 @@ public abstract class BaseTransportBlockEntity extends BlockEntity {
         setChanged();
         return nextBehavior;
     }
+
+    public boolean exposesSide(Direction side) {
+        return side == null || getBehavior(side) != CableBehavior.DISABLED;
+    }
+
+    /**
+     * Returns whether this transport block can physically connect to the neighbor at the given position.
+     * Cables check for energy capability; pipes check for fluid capability.
+     */
+    public abstract boolean canPhysicallyConnect(Level level, net.minecraft.core.BlockPos neighborPos, Direction incomingSide);
 
     @Override
     protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput output) {

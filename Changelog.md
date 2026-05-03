@@ -71,6 +71,7 @@
 - Updated Cobalt Textures
 - Updated NeoForge version to 26.1.2.36-beta (most current, should get us past the "breaking changes")
 - Refactored "wire" to "cable" because what we have more closely resembles a cable than a wire
+- Removed code for scrapped features
 
 ## Planned Features
 - Better SPU UI (not drawn in GUI)

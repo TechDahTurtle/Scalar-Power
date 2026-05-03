@@ -56,6 +56,6 @@ public class GoldCableBlockEntity extends BaseCableBlockEntity {
         return energyHandler.getAmountAsLong() > 0;
     }
 
-    public EnergyHandler getEnergyHandler(Direction side) { return energyHandler; }
+    public EnergyHandler getEnergyHandler(Direction side) { return exposedEnergyHandler(side, energyHandler); }
 }
 

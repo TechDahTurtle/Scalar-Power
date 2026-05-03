@@ -53,6 +53,6 @@ public class FiberGlassCableBlockEntity extends BaseCableBlockEntity {
         energyHandler.deserialize(input);
     }
 
-    public EnergyHandler getEnergyHandler(Direction side) { return energyHandler; }
+    public EnergyHandler getEnergyHandler(Direction side) { return exposedEnergyHandler(side, energyHandler); }
 }
 

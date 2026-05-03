@@ -24,6 +24,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
+import site.scalarstudios.scalarpower.block.transport.TransportConnectionHelper;
 
 public class FiberGlassCableBlock extends BaseEntityBlock {
     public static final MapCodec<FiberGlassCableBlock> CODEC = simpleCodec(FiberGlassCableBlock::new);
@@ -78,7 +79,9 @@ public class FiberGlassCableBlock extends BaseEntityBlock {
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess,
             BlockPos currentPos, Direction direction, BlockPos neighborPos, BlockState neighborState,
             RandomSource random) {
-        return state.setValue(propertyFor(direction), canConnectTo(level, neighborPos, direction.getOpposite()));
+        return state.setValue(propertyFor(direction),
+                TransportConnectionHelper.isSideEnabled(level, currentPos, direction)
+                        && canConnectTo(level, neighborPos, direction.getOpposite()));
     }
 
     @Override
@@ -101,13 +104,17 @@ public class FiberGlassCableBlock extends BaseEntityBlock {
     private static BlockState updateConnections(BlockState state, LevelReader level, BlockPos pos) {
         for (Direction direction : Direction.values()) {
             state = state.setValue(propertyFor(direction),
-                    canConnectTo(level, pos.relative(direction), direction.getOpposite()));
+                    TransportConnectionHelper.isSideEnabled(level, pos, direction)
+                            && canConnectTo(level, pos.relative(direction), direction.getOpposite()));
         }
         return state;
     }
 
     private static boolean canConnectTo(LevelReader level, BlockPos pos, Direction incomingSide) {
         if (!(level instanceof Level actualLevel)) {
+            return false;
+        }
+        if (!TransportConnectionHelper.isSideEnabled(level, pos, incomingSide)) {
             return false;
         }
         return actualLevel.getCapability(Capabilities.Energy.BLOCK, pos, incomingSide) != null;

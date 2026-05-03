@@ -85,7 +85,12 @@ public class CopperPipeBlockEntity extends BaseTransportBlockEntity {
     }
 
     public ResourceHandler<FluidResource> getFluidHandler(Direction side) {
-        return fluidHandler;
+        return exposesSide(side) ? fluidHandler : null;
+    }
+
+    @Override
+    public boolean canPhysicallyConnect(Level level, BlockPos neighborPos, Direction incomingSide) {
+        return level.getCapability(net.neoforged.neoforge.capabilities.Capabilities.Fluid.BLOCK, neighborPos, incomingSide) != null;
     }
 }
 
