@@ -4,7 +4,7 @@ import site.scalarstudios.scalarpower.block.machine.MachineUtils;
 import site.scalarstudios.scalarpower.power.NeoEnergyTransferUtil;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 import site.scalarstudios.scalarpower.recipe.GrindingRecipe;
-import site.scalarstudios.scalarpower.recipe.ExternalRecipeCompat;
+
 import site.scalarstudios.scalarpower.recipe.ScalarPowerRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -158,11 +158,6 @@ public class GrinderBlockEntity extends BlockEntity implements Container, MenuPr
 
         if (fallback.isPresent()) {
             return fallback;
-        }
-
-        Optional<RecipeHolder<GrindingRecipe>> external = ExternalRecipeCompat.findExternalGrindingRecipe(serverLevel, stack);
-        if (external.isPresent()) {
-            return external;
         }
 
 

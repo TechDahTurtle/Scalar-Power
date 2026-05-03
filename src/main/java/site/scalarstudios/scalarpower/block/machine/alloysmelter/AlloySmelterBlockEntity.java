@@ -23,7 +23,7 @@ import net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 import site.scalarstudios.scalarpower.block.machine.MachineUtils;
 import site.scalarstudios.scalarpower.recipe.AlloySmeltingRecipe;
-import site.scalarstudios.scalarpower.recipe.ExternalRecipeCompat;
+
 import site.scalarstudios.scalarpower.power.NeoEnergyTransferUtil;
 import site.scalarstudios.scalarpower.recipe.ScalarPowerRecipes;
 
@@ -149,11 +149,6 @@ public class AlloySmelterBlockEntity extends BlockEntity implements Container, M
 
         if (fallback.isPresent()) {
             return fallback;
-        }
-
-        Optional<RecipeHolder<AlloySmeltingRecipe>> external = ExternalRecipeCompat.findExternalAlloyRecipe(serverLevel, input);
-        if (external.isPresent()) {
-            return external;
         }
 
 

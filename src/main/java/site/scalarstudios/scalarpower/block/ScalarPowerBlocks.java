@@ -11,7 +11,6 @@ import site.scalarstudios.scalarpower.ScalarPower;
 import site.scalarstudios.scalarpower.block.machine.alloysmelter.AlloySmelterBlock;
 import site.scalarstudios.scalarpower.block.machine.battery.BatteryBlock;
 import site.scalarstudios.scalarpower.block.machine.battery.CreativeBatteryBlock;
-import site.scalarstudios.scalarpower.block.machine.battery.EnderBatteryBlock;
 import site.scalarstudios.scalarpower.block.machine.battery.SteelBatteryBlock;
 import site.scalarstudios.scalarpower.block.machine.charger.ChargerBlock;
 import site.scalarstudios.scalarpower.block.machine.generator.coal.CoalGeneratorBlock;
@@ -131,9 +130,6 @@ public class ScalarPowerBlocks {
             SteelBatteryBlock::new,
             properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.STONE));
 
-    public static final DeferredBlock<EnderBatteryBlock> ENDER_BATTERY = registerBlock("ender_battery",
-            EnderBatteryBlock::new,
-            properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.COLOR_PURPLE));
 
     public static final DeferredBlock<CreativeBatteryBlock> CREATIVE_BATTERY = registerBlock("creative_battery",
             CreativeBatteryBlock::new,

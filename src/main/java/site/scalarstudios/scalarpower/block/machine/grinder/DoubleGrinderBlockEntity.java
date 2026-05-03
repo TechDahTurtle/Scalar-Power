@@ -23,7 +23,7 @@ import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 import net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 import site.scalarstudios.scalarpower.block.machine.MachineUtils;
-import site.scalarstudios.scalarpower.recipe.ExternalRecipeCompat;
+
 import site.scalarstudios.scalarpower.power.NeoEnergyTransferUtil;
 import site.scalarstudios.scalarpower.recipe.GrindingRecipe;
 import site.scalarstudios.scalarpower.recipe.ScalarPowerRecipes;
@@ -199,7 +199,7 @@ public class DoubleGrinderBlockEntity extends BlockEntity implements Container, 
             return fallback;
         }
 
-        return ExternalRecipeCompat.findExternalGrindingRecipe(serverLevel, stack);
+        return Optional.empty();
     }
 
     @Override

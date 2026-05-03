@@ -2,7 +2,7 @@ package site.scalarstudios.scalarpower.gui;
 
 import site.scalarstudios.scalarpower.block.machine.alloysmelter.AlloySmelterScreen;
 import site.scalarstudios.scalarpower.block.machine.battery.BatteryScreen;
-import site.scalarstudios.scalarpower.block.machine.battery.EnderBatteryScreen;
+
 import site.scalarstudios.scalarpower.block.machine.charger.ChargerScreen;
 import site.scalarstudios.scalarpower.block.machine.generator.coal.CoalGeneratorScreen;
 import site.scalarstudios.scalarpower.block.machine.generator.barometric.BarometricGeneratorScreen;
@@ -54,6 +54,5 @@ public class ScalarPowerClientEvents {
 
         /* Energy Storage & Transfer */
         event.register(ScalarPowerMenus.BATTERY_MENU.get(), BatteryScreen::new);
-        event.register(ScalarPowerMenus.ENDER_BATTERY_MENU.get(), EnderBatteryScreen::new);
     }
 }

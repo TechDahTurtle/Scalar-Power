@@ -21,7 +21,6 @@
 
   "block.scalarpower.battery": "Battery",
   "block.scalarpower.steel_battery": "Steel Battery",
-  "block.scalarpower.ender_battery": "Ender Battery",
   "block.scalarpower.creative_battery": "Creative Battery",
   "block.scalarpower.copper_cable": "Copper Cable",
   "block.scalarpower.insulated_copper_cable": "Insulated Copper Cable",
@@ -62,7 +61,6 @@
 
   "container.scalarpower.battery": "Battery",
   "container.scalarpower.steel_battery": "Steel Battery",
-  "container.scalarpower.ender_battery": "Ender Battery",
   "container.scalarpower.creative_battery": "Creative Battery",
 
   "itemGroup.scalarpower.scalar_power": "Scalar Power",

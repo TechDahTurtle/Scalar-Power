@@ -49,8 +49,6 @@ public final class MachineUtils {
     public static final int BASIC_BATTERY_SPU_PER_SIDE = 100;
     public static final int STEEL_BATTERY_CAPACITY = 10_000_000;
     public static final int STEEL_BATTERY_SPU_PER_SIDE = 800;
-    public static final int ENDER_BATTERY_CAPACITY = STEEL_BATTERY_CAPACITY * 10;
-    public static final int ENDER_BATTERY_SPU_PER_SIDE = STEEL_BATTERY_SPU_PER_SIDE * 10;
 
     // Cables
     public static final int CABLE_BASE_CAPACITY = 256;

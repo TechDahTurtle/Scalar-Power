@@ -2,7 +2,7 @@ package site.scalarstudios.scalarpower.gui;
 
 import site.scalarstudios.scalarpower.block.machine.alloysmelter.AlloySmelterMenu;
 import site.scalarstudios.scalarpower.block.machine.battery.BatteryMenu;
-import site.scalarstudios.scalarpower.block.machine.battery.EnderBatteryMenu;
+
 import site.scalarstudios.scalarpower.block.machine.charger.ChargerMenu;
 import site.scalarstudios.scalarpower.block.machine.generator.coal.CoalGeneratorMenu;
 import site.scalarstudios.scalarpower.block.machine.generator.barometric.BarometricGeneratorMenu;
@@ -92,8 +92,6 @@ public final class ScalarPowerMenus {
     public static final DeferredHolder<MenuType<?>, MenuType<BatteryMenu>> BATTERY_MENU = MENUS
             .register("battery", () -> IMenuTypeExtension.create(BatteryMenu::new));
 
-    public static final DeferredHolder<MenuType<?>, MenuType<EnderBatteryMenu>> ENDER_BATTERY_MENU = MENUS
-            .register("ender_battery", () -> IMenuTypeExtension.create(EnderBatteryMenu::new));
 
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);

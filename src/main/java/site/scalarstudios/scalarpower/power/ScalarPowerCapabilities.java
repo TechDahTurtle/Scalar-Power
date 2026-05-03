@@ -134,10 +134,6 @@ public final class ScalarPowerCapabilities {
                 ScalarPowerBlockEntities.STEEL_BATTERY.get(),
                 BatteryBlockEntity::getEnergyHandler);
 
-        event.registerBlockEntity(
-                Capabilities.Energy.BLOCK,
-                ScalarPowerBlockEntities.ENDER_BATTERY.get(),
-                BatteryBlockEntity::getEnergyHandler);
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
