@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "scalarpower:resin_pellet",
+    "scalarpower:resin_pellet",
+    "scalarpower:resin_pellet",
+    "scalarpower:resin_pellet"
+  ],
+  "result": {
+    "id": "minecraft:resin_clump",
+    "count": 1
+  }
+}
+

@@ -64,6 +64,7 @@
 ## 26.1.2-1.0.7_beta (Upcoming)
 - Added Copper Pipe as a fluid transport block (supports vanilla and modded fluids)
 - Added wrench side-configuration support for transport blocks (pipes and wires)
+- Converted Synthetic Resin to Resin Pellet, 4 Resin Pellets can be crafted into 1 Vanilla Resin (better for balance)
 - Refactored "wire" to "cable" because what we have more closely resembles a cable than a wire
 
 ## Planned Features

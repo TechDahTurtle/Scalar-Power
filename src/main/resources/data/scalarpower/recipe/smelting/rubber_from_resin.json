@@ -1,6 +1,6 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": "scalarpower:synthetic_resin",
+  "ingredient": "minecraft:resin_clump",
   "result": {
     "id": "scalarpower:rubber"
   },

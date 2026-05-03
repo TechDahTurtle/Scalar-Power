@@ -2,7 +2,7 @@
   "type": "scalarpower:extracting",
   "ingredient": "#scalarpower:extractable_wood",
   "result": {
-    "id": "scalarpower:synthetic_resin",
+    "id": "scalarpower:resin_pellet",
     "count": 1
   }
 }

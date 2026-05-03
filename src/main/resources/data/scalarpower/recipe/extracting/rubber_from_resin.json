@@ -1,6 +1,6 @@
 {
   "type": "scalarpower:extracting",
-  "ingredient": "#c:resin",
+  "ingredient": "minecraft:resin_clump",
   "result": {
     "id": "scalarpower:rubber",
     "count": 3

@@ -94,7 +94,7 @@ public class ScalarPowerCreativeTabs {
 
             /* Other Resources */
             event.accept(ScalarPowerItems.RUBBER.get());
-            event.accept(ScalarPowerItems.SYNTHETIC_RESIN.get());
+            event.accept(ScalarPowerItems.RESIN_PELLET.get());
 
             /* Tools */
             event.accept(ScalarPowerItems.WRENCH.get());

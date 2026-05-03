@@ -1,7 +1,7 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "scalarpower:item/synthetic_resin"
+    "model": "scalarpower:item/resin_pellet"
   }
 }
 
