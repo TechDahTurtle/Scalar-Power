@@ -61,7 +61,7 @@
 - Updated Redstone Clock texture and recipe to use Device Frame
 - Updated Wire Textures
 
-## 26.1.2-1.0.7_beta (Upcoming)
+## 26.1.2-1.0.7_beta
 - Added Charger Machine
 - Added Cobalt Tool Suite (Powered Tools)
 - Added Copper Pipe as a fluid transport block (supports vanilla and modded fluids)
@@ -73,13 +73,15 @@
 - Refactored "wire" to "cable" because what we have more closely resembles a cable than a wire
 - Removed code for scrapped features
 
+## 26.1.2-1.0.8_beta (Upcoming)
+
 ## Planned Features
 - Better SPU UI (not drawn in GUI)
 - Crafting Recipe Revamp
 - Finish Wiki
 - Full Resource Sets (Less for us, more for cross-mod compat)
 - Keep NeoForge up to date
-- Possible Tools/Armor Suite
+- Possible Armor Suite
 - README.md Update
 - Texture Name and Model Cleanup
 - Tooltips
