@@ -87,7 +87,7 @@ public class PoweredShovelItem extends ShovelItem {
         if (!level.isClientSide()) {
             level.setBlock(pos, updatedState, 11);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, updatedState));
-            if (player != null) {
+            if (player != null && !player.isCreative()) {
                 PoweredToolUtil.drainPower(itemInHand);
                 PoweredToolUtil.syncPoweredState(itemInHand, this);
             }

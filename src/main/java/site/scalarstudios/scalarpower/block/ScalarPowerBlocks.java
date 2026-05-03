@@ -13,6 +13,7 @@ import site.scalarstudios.scalarpower.block.machine.battery.BatteryBlock;
 import site.scalarstudios.scalarpower.block.machine.battery.CreativeBatteryBlock;
 import site.scalarstudios.scalarpower.block.machine.battery.EnderBatteryBlock;
 import site.scalarstudios.scalarpower.block.machine.battery.SteelBatteryBlock;
+import site.scalarstudios.scalarpower.block.machine.charger.ChargerBlock;
 import site.scalarstudios.scalarpower.block.machine.generator.coal.CoalGeneratorBlock;
 import site.scalarstudios.scalarpower.block.machine.generator.barometric.BarometricGeneratorBlock;
 import site.scalarstudios.scalarpower.block.machine.generator.culinary.CulinaryGeneratorBlock;
@@ -75,6 +76,10 @@ public class ScalarPowerBlocks {
     /* Machines */
     public static final DeferredBlock<AlloySmelterBlock> ALLOY_SMELTER = registerBlock("alloy_smelter",
             AlloySmelterBlock::new,
+            properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.STONE));
+
+    public static final DeferredBlock<ChargerBlock> CHARGER = registerBlock("charger",
+            ChargerBlock::new,
             properties -> properties.strength(3.5F, 3.5F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.STONE));
 
     public static final DeferredBlock<ExtractorBlock> EXTRACTOR = registerBlock("extractor",

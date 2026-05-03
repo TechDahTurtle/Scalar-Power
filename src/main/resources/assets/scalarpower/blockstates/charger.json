@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "facing=north": { "model": "scalarpower:block/charger" },
+    "facing=east": { "model": "scalarpower:block/charger", "y": 90, "uvlock": true },
+    "facing=south": { "model": "scalarpower:block/charger", "y": 180, "uvlock": true },
+    "facing=west": { "model": "scalarpower:block/charger", "y": 270, "uvlock": true }
+  }
+}
+

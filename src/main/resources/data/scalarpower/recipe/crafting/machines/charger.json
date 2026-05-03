@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "XCX",
+    "CFC",
+    "XRX"
+  ],
+  "key": {
+    "X": "#c:ingots/cobalt",
+    "C": "minecraft:copper_block",
+    "F": "scalarpower:machine_frame",
+    "R": "scalarpower:redium_ingot"
+  },
+  "result": {
+    "id": "scalarpower:charger",
+    "count": 1
+  }
+}
+

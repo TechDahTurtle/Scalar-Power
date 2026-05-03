@@ -62,6 +62,7 @@
 - Updated Wire Textures
 
 ## 26.1.2-1.0.7_beta (Upcoming)
+- Added Charger Machine
 - Added Cobalt Tool Suite (Powered Tools)
 - Added Copper Pipe as a fluid transport block (supports vanilla and modded fluids)
 - Added Steel Rod (Crafting Component)

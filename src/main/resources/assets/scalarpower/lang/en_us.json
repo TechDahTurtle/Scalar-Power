@@ -7,6 +7,7 @@
   "block.scalarpower.water_mill_generator": "Water Mill Generator",
 
   "block.scalarpower.alloy_smelter": "Alloy Smelter",
+  "block.scalarpower.charger": "Charger",
   "block.scalarpower.extractor": "Extractor",
   "block.scalarpower.freezer": "Freezer",
   "block.scalarpower.liquifier": "Liquifier",
@@ -57,6 +58,7 @@
   "container.scalarpower.powered_furnace": "Powered Furnace",
   "container.scalarpower.double_powered_furnace": "Double Powered Furnace",
   "container.scalarpower.sawmill": "Sawmill",
+  "container.scalarpower.charger": "Charger",
 
   "container.scalarpower.battery": "Battery",
   "container.scalarpower.steel_battery": "Steel Battery",

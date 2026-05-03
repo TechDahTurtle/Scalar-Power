@@ -6,6 +6,7 @@ import site.scalarstudios.scalarpower.block.machine.battery.BatteryBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.battery.CreativeBatteryBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.battery.EnderBatteryBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.battery.SteelBatteryBlockEntity;
+import site.scalarstudios.scalarpower.block.machine.charger.ChargerBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.generator.coal.CoalGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.generator.barometric.BarometricGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.generator.culinary.CulinaryGeneratorBlockEntity;
@@ -69,6 +70,10 @@ public final class ScalarPowerBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AlloySmelterBlockEntity>> ALLOY_SMELTER = BLOCK_ENTITY_TYPES
             .register("alloy_smelter",
                     () -> new BlockEntityType<>(AlloySmelterBlockEntity::new, ScalarPowerBlocks.ALLOY_SMELTER.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ChargerBlockEntity>> CHARGER = BLOCK_ENTITY_TYPES
+            .register("charger",
+                    () -> new BlockEntityType<>(ChargerBlockEntity::new, ScalarPowerBlocks.CHARGER.get()));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ExtractorBlockEntity>> EXTRACTOR = BLOCK_ENTITY_TYPES
             .register("extractor",

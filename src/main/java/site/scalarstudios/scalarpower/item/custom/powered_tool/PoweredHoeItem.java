@@ -81,7 +81,7 @@ public class PoweredHoeItem extends HoeItem {
         level.playSound(player, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
         if (!level.isClientSide()) {
             action.accept(context);
-            if (player != null) {
+            if (player != null && !player.isCreative()) {
                 PoweredToolUtil.drainPower(itemInHand);
                 PoweredToolUtil.syncPoweredState(itemInHand, this);
             }

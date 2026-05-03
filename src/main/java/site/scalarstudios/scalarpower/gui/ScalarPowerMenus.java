@@ -3,6 +3,7 @@ package site.scalarstudios.scalarpower.gui;
 import site.scalarstudios.scalarpower.block.machine.alloysmelter.AlloySmelterMenu;
 import site.scalarstudios.scalarpower.block.machine.battery.BatteryMenu;
 import site.scalarstudios.scalarpower.block.machine.battery.EnderBatteryMenu;
+import site.scalarstudios.scalarpower.block.machine.charger.ChargerMenu;
 import site.scalarstudios.scalarpower.block.machine.generator.coal.CoalGeneratorMenu;
 import site.scalarstudios.scalarpower.block.machine.generator.barometric.BarometricGeneratorMenu;
 import site.scalarstudios.scalarpower.block.machine.generator.culinary.CulinaryGeneratorMenu;
@@ -82,6 +83,10 @@ public final class ScalarPowerMenus {
 
     public static final DeferredHolder<MenuType<?>, MenuType<SawmillMenu>> SAWMILL_MENU = MENUS
             .register("sawmill", () -> IMenuTypeExtension.create(SawmillMenu::new));
+
+    /* Charger */
+    public static final DeferredHolder<MenuType<?>, MenuType<ChargerMenu>> CHARGER_MENU = MENUS
+            .register("charger", () -> IMenuTypeExtension.create(ChargerMenu::new));
 
     /* Energy Storage & Transfer */
     public static final DeferredHolder<MenuType<?>, MenuType<BatteryMenu>> BATTERY_MENU = MENUS

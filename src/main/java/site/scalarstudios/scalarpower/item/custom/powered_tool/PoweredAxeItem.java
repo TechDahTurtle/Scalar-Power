@@ -85,7 +85,7 @@ public class PoweredAxeItem extends AxeItem {
 
         level.setBlock(pos, newBlock.get(), 11);
         level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, newBlock.get()));
-        if (player != null) {
+        if (player != null && !player.isCreative()) {
             PoweredToolUtil.drainPower(itemInHand);
             PoweredToolUtil.syncPoweredState(itemInHand, this);
         }

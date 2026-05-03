@@ -3,6 +3,7 @@ package site.scalarstudios.scalarpower.gui;
 import site.scalarstudios.scalarpower.block.machine.alloysmelter.AlloySmelterScreen;
 import site.scalarstudios.scalarpower.block.machine.battery.BatteryScreen;
 import site.scalarstudios.scalarpower.block.machine.battery.EnderBatteryScreen;
+import site.scalarstudios.scalarpower.block.machine.charger.ChargerScreen;
 import site.scalarstudios.scalarpower.block.machine.generator.coal.CoalGeneratorScreen;
 import site.scalarstudios.scalarpower.block.machine.generator.barometric.BarometricGeneratorScreen;
 import site.scalarstudios.scalarpower.block.machine.generator.culinary.CulinaryGeneratorScreen;
@@ -39,6 +40,7 @@ public class ScalarPowerClientEvents {
 
         /* Machines */
         event.register(ScalarPowerMenus.ALLOY_SMELTER_MENU.get(), AlloySmelterScreen::new);
+        event.register(ScalarPowerMenus.CHARGER_MENU.get(), ChargerScreen::new);
         event.register(ScalarPowerMenus.EXTRACTOR_MENU.get(), ExtractorScreen::new);
         event.register(ScalarPowerMenus.FREEZER_MENU.get(), FreezerScreen::new);
         event.register(ScalarPowerMenus.GRINDER_MENU.get(), GrinderScreen::new);
