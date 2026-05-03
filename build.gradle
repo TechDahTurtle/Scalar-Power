@@ -76,13 +76,13 @@ configurations {
 dependencies {
     // Scalar Mods
     implementation "curse.maven:scalar-core-1112771:7906370" // Scalar Core
-    implementation "curse.maven:scalar-utils-6-1490516:7906931" // Scalar Utils 6.1
+    implementation "curse.maven:scalar-utils-6-1490516:8032081" // Scalar Utils 6.1
     implementation "curse.maven:scalar-utils-6-integration-1491455:7906959" // Scalar Utils 6.1 Integration
     implementation "curse.maven:super-coal-928623:7906447" // Super Coal
 
     // QoL For Testing
-    implementation "curse.maven:jade-324717:7903350" // Jade
-    implementation "curse.maven:jei-238222:7904641" // JEI
+    implementation "curse.maven:jade-324717:7938398" // Jade
+    implementation "curse.maven:jei-238222:8014757" // JEI
 
     // Other Testing Mods
     implementation "curse.maven:energized-power-782147:7852018" // Energized Power
