@@ -113,6 +113,7 @@ public class BatteryBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public EnergyHandler getEnergyHandler(Direction side) {
+        // Batteries are full I/O storage: adjacent blocks may both insert into and extract from them.
         return energyHandler;
     }
 

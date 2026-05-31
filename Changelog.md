@@ -73,8 +73,11 @@
 - Refactored "wire" to "cable" because what we have more closely resembles a cable than a wire
 - Removed code for scrapped features
 
-## 26.1.2-1.0.8_beta (Upcoming)
+## 26.1.2-1.0.8_beta 
+- Attempted to fix some bugs related to Power Transfer
 - Fixed some alphabetical ordering issues in Creative Tab
+
+## 26.1.2-1.0.9_beta (Upcoming)
 
 ## Planned Features
 - Better SPU UI (not drawn in GUI)

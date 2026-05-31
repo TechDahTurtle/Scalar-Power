@@ -4,24 +4,15 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.transfer.item.VanillaContainerWrapper;
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
-import site.scalarstudios.scalarpower.block.machine.alloysmelter.AlloySmelterBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.battery.BatteryBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.extractor.ExtractorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.generator.coal.CoalGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.generator.barometric.BarometricGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.generator.culinary.CulinaryGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.generator.entropy.EntropyGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.generator.geothermal.GeothermalGeneratorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.generator.watermill.WaterMillGeneratorBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.grinder.DoubleGrinderBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.grinder.GrinderBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.freezer.FreezerBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.macerator.DoubleMaceratorBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.macerator.MaceratorBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.liquifier.LiquifierBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.poweredfurnace.DoublePoweredFurnaceBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.poweredfurnace.PoweredFurnaceBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.sawmill.SawmillBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.cable.copper.CopperCableBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.cable.copper.InsulatedCopperCableBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.cable.fiberglass.FiberGlassCableBlockEntity;
@@ -71,59 +62,60 @@ public final class ScalarPowerCapabilities {
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.ALLOY_SMELTER.get(),
-                AlloySmelterBlockEntity::getEnergyHandler);
+                (blockEntity, side) -> DirectionalEnergyHandler.receiveOnly(blockEntity.getEnergyHandler(side)));
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.EXTRACTOR.get(),
-                ExtractorBlockEntity::getEnergyHandler);
+                (blockEntity, side) -> DirectionalEnergyHandler.receiveOnly(blockEntity.getEnergyHandler(side)));
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.FREEZER.get(),
-                FreezerBlockEntity::getEnergyHandler);
+                (blockEntity, side) -> DirectionalEnergyHandler.receiveOnly(blockEntity.getEnergyHandler(side)));
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.GRINDER.get(),
-                GrinderBlockEntity::getEnergyHandler);
+                (blockEntity, side) -> DirectionalEnergyHandler.receiveOnly(blockEntity.getEnergyHandler(side)));
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.DOUBLE_GRINDER.get(),
-                DoubleGrinderBlockEntity::getEnergyHandler);
+                (blockEntity, side) -> DirectionalEnergyHandler.receiveOnly(blockEntity.getEnergyHandler(side)));
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.LIQUIFIER.get(),
-                LiquifierBlockEntity::getEnergyHandler);
+                (blockEntity, side) -> DirectionalEnergyHandler.receiveOnly(blockEntity.getEnergyHandler(side)));
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.MACERATOR.get(),
-                MaceratorBlockEntity::getEnergyHandler);
+                (blockEntity, side) -> DirectionalEnergyHandler.receiveOnly(blockEntity.getEnergyHandler(side)));
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.DOUBLE_MACERATOR.get(),
-                DoubleMaceratorBlockEntity::getEnergyHandler);
+                (blockEntity, side) -> DirectionalEnergyHandler.receiveOnly(blockEntity.getEnergyHandler(side)));
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.POWERED_FURNACE.get(),
-                PoweredFurnaceBlockEntity::getEnergyHandler);
+                (blockEntity, side) -> DirectionalEnergyHandler.receiveOnly(blockEntity.getEnergyHandler(side)));
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.DOUBLE_POWERED_FURNACE.get(),
-                DoublePoweredFurnaceBlockEntity::getEnergyHandler);
+                (blockEntity, side) -> DirectionalEnergyHandler.receiveOnly(blockEntity.getEnergyHandler(side)));
 
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.SAWMILL.get(),
-                SawmillBlockEntity::getEnergyHandler);
+                (blockEntity, side) -> DirectionalEnergyHandler.receiveOnly(blockEntity.getEnergyHandler(side)));
 
         /* Energy Storage & Transfer */
+        // Batteries intentionally keep their raw handler so they support both charging and discharging.
         event.registerBlockEntity(
                 Capabilities.Energy.BLOCK,
                 ScalarPowerBlockEntities.BATTERY.get(),
