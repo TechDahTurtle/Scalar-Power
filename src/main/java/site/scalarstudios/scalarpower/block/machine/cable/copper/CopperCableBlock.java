@@ -2,6 +2,7 @@ package site.scalarstudios.scalarpower.block.machine.cable.copper;
 
 import site.scalarstudios.scalarpower.block.ScalarPowerBlockEntities;
 import com.mojang.serialization.MapCodec;
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -28,9 +29,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import org.slf4j.Logger;
 import site.scalarstudios.scalarpower.block.transport.TransportConnectionHelper;
 
 public class CopperCableBlock extends BaseEntityBlock {
+    private static final Logger LOGGER = LogUtils.getLogger();
     public static final MapCodec<CopperCableBlock> CODEC = simpleCodec(CopperCableBlock::new);
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
@@ -46,6 +49,7 @@ public class CopperCableBlock extends BaseEntityBlock {
     private static final VoxelShape WEST_ARM = box(0, 7, 7, 6, 9, 9);
     private static final VoxelShape UP_ARM = box(7, 10, 7, 9, 16, 9);
     private static final VoxelShape DOWN_ARM = box(7, 0, 7, 9, 6, 9);
+    private static boolean loggedShockDamageCompatibilityIssue;
 
     public CopperCableBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -122,7 +126,14 @@ public class CopperCableBlock extends BaseEntityBlock {
             return;
         }
         if (entity instanceof LivingEntity livingEntity && level instanceof ServerLevel serverLevel) {
-            livingEntity.hurtServer(serverLevel, level.damageSources().magic(), 1.0F);
+            try {
+                livingEntity.hurtServer(serverLevel, level.damageSources().magic(), 1.0F);
+            } catch (LinkageError linkageError) {
+                if (!loggedShockDamageCompatibilityIssue) {
+                    loggedShockDamageCompatibilityIssue = true;
+                    LOGGER.warn("Ignoring copper cable shock damage due to external damage-event incompatibility", linkageError);
+                }
+            }
         }
     }
 

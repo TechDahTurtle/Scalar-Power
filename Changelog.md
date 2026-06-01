@@ -77,7 +77,10 @@
 - Attempted to fix some bugs related to Power Transfer
 - Fixed some alphabetical ordering issues in Creative Tab
 
-## 26.1.2-1.0.9_beta (Upcoming)
+## 26.1.2-1.0.9_beta
+- Prevented a crash when taking copper/gold cable shock damage in modpacks with incompatible damage event listeners (Thanks, FTB Essentials)
+
+## 26.1.2-1.0.10_beta (Upcoming)
 
 ## Planned Features
 - Better SPU UI (not drawn in GUI)
