@@ -81,6 +81,7 @@
 - Prevented a crash when taking copper/gold cable shock damage in modpacks with incompatible damage event listeners (Thanks, FTB Essentials)
 
 ## 26.1.2-1.0.10_beta (Upcoming)
+- Fixed License in `gradle.properties`.
 
 ## Planned Features
 - Better SPU UI (not drawn in GUI)
