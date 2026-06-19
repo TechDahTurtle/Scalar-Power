@@ -1,6 +1,6 @@
 {
   "type": "minecraft:blasting",
-  "ingredient": "scalarpower:steel_dust",
+  "ingredient": "#c:dusts/steel",
   "result": {
     "id": "scalarpower:steel_ingot"
   },

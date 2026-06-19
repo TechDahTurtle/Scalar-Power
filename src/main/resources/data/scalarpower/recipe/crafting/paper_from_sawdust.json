@@ -1,15 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "tag": "#c:dusts/wood"
-    },
-    {
-      "tag": "#c:dusts/wood"
-    },
-    {
-      "tag": "#c:dusts/wood"
-    }
+    "#c:dusts/wood",
+    "#c:dusts/wood",
+    "#c:dusts/wood"
   ],
   "result": {
     "id": "minecraft:paper",

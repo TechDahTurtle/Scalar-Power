@@ -1,13 +1,9 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "#c:dusts/steel"
-  },
+  "ingredient": "minecraft:resin_clump",
   "result": {
-    "id": "scalarpower:steel_ingot"
+    "id": "scalarpower:rubber"
   },
   "experience": 0.7,
   "cookingtime": 200
 }
-
-

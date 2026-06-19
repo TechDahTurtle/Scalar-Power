@@ -1,14 +1,8 @@
 {
   "type": "scalarpower:alloy_smelting",
-  "ingredient1": {
-    "tag": "#c:dusts/iron"
-  },
-  "ingredient2": {
-    "tag": "#c:dusts/coal"
-  },
-  "ingredient3": {
-    "tag": "#c:dusts/coal"
-  },
+  "ingredient1": "#c:dusts/iron",
+  "ingredient2": "#c:dusts/coal",
+  "ingredient3": "#c:dusts/coal",
   "result": {
     "id": "scalarpower:steel_ingot",
     "count": 1

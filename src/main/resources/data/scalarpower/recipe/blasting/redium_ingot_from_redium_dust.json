@@ -1,10 +1,9 @@
 {
   "type": "minecraft:blasting",
-  "ingredient": "scalarpower:redium_dust",
+  "ingredient": "#c:dusts/redium",
   "result": {
     "id": "scalarpower:redium_ingot"
   },
   "experience": 0.7,
   "cookingtime": 100
 }
-

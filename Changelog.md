@@ -85,7 +85,10 @@
 - Fixed cables and machines with power transfer conflicts.
 - Fixed License in `gradle.properties`.
 
-## 26.1.2-1.0.11_beta (Upcoming)
+## 26.1.2-1.0.11_beta 
+- Fixed broken recipes that were in 1.0.10_beta.
+
+## 26.1.2-1.0.12_beta (Upcoming)
 
 ## Planned Features
 - Better SPU UI (not drawn in GUI)
