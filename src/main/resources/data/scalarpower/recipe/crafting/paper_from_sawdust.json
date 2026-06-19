@@ -1,13 +1,18 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "scalarpower:sawdust",
-    "scalarpower:sawdust",
-    "scalarpower:sawdust"
+    {
+      "tag": "#c:dusts/wood"
+    },
+    {
+      "tag": "#c:dusts/wood"
+    },
+    {
+      "tag": "#c:dusts/wood"
+    }
   ],
   "result": {
     "id": "minecraft:paper",
     "count": 6
   }
 }
-

@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "scalarpower:copper_dust",
-    "scalarpower:gold_dust",
+    "#c:dusts/copper",
+    "#c:dusts/gold",
     "minecraft:redstone"
   ],
   "result": {

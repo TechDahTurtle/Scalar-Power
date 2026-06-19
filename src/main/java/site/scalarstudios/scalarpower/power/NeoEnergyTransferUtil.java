@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 import net.neoforged.neoforge.transfer.energy.EnergyHandlerUtil;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
-import site.scalarstudios.scalarpower.block.machine.cable.copper.CopperCableBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.cable.copper.InsulatedCopperCableBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.cable.fiberglass.FiberGlassCableBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.cable.gold.GoldCableBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.cable.gold.InsulatedGoldCableBlockEntity;
-import site.scalarstudios.scalarpower.block.machine.cable.reinforcedfiberglass.ReinforcedFiberGlassCableBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.cable.BaseCableBlockEntity;
 import site.scalarstudios.scalarpower.block.machine.cable.CableBehavior;
+import net.minecraft.core.registries.BuiltInRegistries;
+
 
 public final class NeoEnergyTransferUtil {
     private NeoEnergyTransferUtil() {
@@ -36,13 +32,13 @@ public final class NeoEnergyTransferUtil {
             return 0;
         }
 
-        // Get source cable entity to check output behaviors
         BlockEntity sourceEntity = level.getBlockEntity(sourcePos);
         boolean sourceIsTransferBlock = isTransferBlock(sourceEntity);
+
         List<EnergyHandler> nonTransferTargets = new ArrayList<>();
         List<EnergyHandler> transferTargets = new ArrayList<>();
-        for (Direction direction : Direction.values()) {
-            // Check if source cable allows output on this direction
+
+        for (Direction direction : orderedDirections(level, sourcePos)) {
             if (sourceEntity instanceof BaseCableBlockEntity sourceCable) {
                 CableBehavior behavior = sourceCable.getBehavior(direction);
                 if (behavior == CableBehavior.DISABLED || behavior == CableBehavior.INPUT) {
@@ -51,7 +47,9 @@ public final class NeoEnergyTransferUtil {
             }
 
             BlockPos targetPos = sourcePos.relative(direction);
-            boolean targetIsTransferBlock = isTransferBlock(level.getBlockEntity(targetPos));
+            BlockEntity targetEntity = level.getBlockEntity(targetPos);
+            boolean targetIsTransferBlock = isTransferBlock(targetEntity);
+
             if (transferBlocksOnly && !targetIsTransferBlock) {
                 continue;
             }
@@ -60,6 +58,7 @@ public final class NeoEnergyTransferUtil {
                     Capabilities.Energy.BLOCK,
                     targetPos,
                     direction.getOpposite());
+
             if (target != null && canInsert(target)) {
                 if (targetIsTransferBlock) {
                     transferTargets.add(target);
@@ -75,18 +74,19 @@ public final class NeoEnergyTransferUtil {
 
         int moved = 0;
 
+        // Prefer endpoints first; only feed transfer blocks when appropriate.
         if (!nonTransferTargets.isEmpty()) {
-            moved += distributeEvenly(source, nonTransferTargets, maxTransferPerSide);
+            moved += distributeFairly(source, nonTransferTargets, maxTransferPerSide);
         }
 
         if (!transferTargets.isEmpty() && (!sourceIsTransferBlock || nonTransferTargets.isEmpty())) {
-            moved += distributeEvenly(source, transferTargets, maxTransferPerSide);
+            moved += distributeFairly(source, transferTargets, maxTransferPerSide);
         }
 
         return moved;
     }
 
-    private static int distributeEvenly(EnergyHandler source, List<EnergyHandler> targets, int maxTransferPerSide) {
+    private static int distributeFairly(EnergyHandler source, List<EnergyHandler> targets, int maxTransferPerSide) {
         int available = clampToInt(source.getAmountAsLong());
         if (available <= 0 || targets.isEmpty() || maxTransferPerSide <= 0) {
             return 0;
@@ -95,36 +95,31 @@ public final class NeoEnergyTransferUtil {
         int budget = Math.min(available, maxTransferPerSide * targets.size());
         int[] sent = new int[targets.size()];
         int totalMoved = 0;
+        int remainingBudget = budget;
 
-        int base = budget / targets.size();
-        int remainder = budget % targets.size();
-        for (int i = 0; i < targets.size(); i++) {
-            int planned = base + (i < remainder ? 1 : 0);
-            if (planned <= 0) {
-                continue;
-            }
-            int moved = move(source, targets.get(i), planned);
-            if (moved > 0) {
-                sent[i] += moved;
-                totalMoved += moved;
-            }
-        }
+        // Progressive fair fill:
+        // keeps iterating targets while progress is made, reducing starvation and bias.
+        while (remainingBudget > 0) {
+            boolean progressedThisPass = false;
 
-        int remainingBudget = budget - totalMoved;
-        if (remainingBudget <= 0) {
-            return totalMoved;
-        }
+            for (int i = 0; i < targets.size() && remainingBudget > 0; i++) {
+                int roomThisTick = maxTransferPerSide - sent[i];
+                if (roomThisTick <= 0) {
+                    continue;
+                }
 
-        for (int i = 0; i < targets.size() && remainingBudget > 0; i++) {
-            int roomThisTick = maxTransferPerSide - sent[i];
-            if (roomThisTick <= 0) {
-                continue;
+                int offer = Math.min(roomThisTick, remainingBudget);
+                int moved = move(source, targets.get(i), offer);
+                if (moved > 0) {
+                    sent[i] += moved;
+                    totalMoved += moved;
+                    remainingBudget -= moved;
+                    progressedThisPass = true;
+                }
             }
-            int offer = Math.min(roomThisTick, remainingBudget);
-            int moved = move(source, targets.get(i), offer);
-            if (moved > 0) {
-                totalMoved += moved;
-                remainingBudget -= moved;
+
+            if (!progressedThisPass) {
+                break;
             }
         }
 
@@ -138,8 +133,8 @@ public final class NeoEnergyTransferUtil {
 
         int pulled = 0;
         BlockEntity receiverEntity = level.getBlockEntity(receiverPos);
-        for (Direction direction : Direction.values()) {
-            // Check if receiver cable allows input on this direction
+
+        for (Direction direction : orderedDirections(level, receiverPos)) {
             if (receiverEntity instanceof BaseCableBlockEntity receiverCable) {
                 CableBehavior behavior = receiverCable.getBehavior(direction);
                 if (behavior == CableBehavior.DISABLED || behavior == CableBehavior.OUTPUT) {
@@ -161,6 +156,7 @@ public final class NeoEnergyTransferUtil {
                     Capabilities.Energy.BLOCK,
                     receiverPos.relative(direction),
                     direction.getOpposite());
+
             if (source == null) {
                 continue;
             }
@@ -170,6 +166,7 @@ public final class NeoEnergyTransferUtil {
                 pulled += moved;
             }
         }
+
         return pulled;
     }
 
@@ -184,41 +181,28 @@ public final class NeoEnergyTransferUtil {
             return false;
         }
 
-        // Check if it's one of our cable types
-        if (blockEntity instanceof CopperCableBlockEntity
-                || blockEntity instanceof InsulatedCopperCableBlockEntity
-                || blockEntity instanceof GoldCableBlockEntity
-                || blockEntity instanceof InsulatedGoldCableBlockEntity
-                || blockEntity instanceof FiberGlassCableBlockEntity
-                || blockEntity instanceof ReinforcedFiberGlassCableBlockEntity) {
+        // Internal transfer network blocks.
+        if (blockEntity instanceof BaseCableBlockEntity) {
             return true;
         }
 
-        // Detect transfer blocks from any mod by their behavior:
-        // A transfer block can handle energy on multiple sides simultaneously,
-        // so it will accept energy insertions from adjacent sides.
-        // We detect this by checking if it can accept energy from two different directions.
-        if (blockEntity.getLevel() == null) {
-            return false;
+        // Pipez compatibility.
+        var blockId = BuiltInRegistries.BLOCK.getKey(blockEntity.getBlockState().getBlock());
+        return "pipez".equals(blockId.getNamespace());
+    }
+
+
+
+    private static Direction[] orderedDirections(Level level, BlockPos pos) {
+        Direction[] base = Direction.values();
+        Direction[] ordered = new Direction[base.length];
+
+        int start = Math.floorMod((int) (level.getGameTime() + pos.asLong()), base.length);
+        for (int i = 0; i < base.length; i++) {
+            ordered[i] = base[(start + i) % base.length];
         }
 
-        int acceptingDirections = 0;
-        for (Direction direction : Direction.values()) {
-            EnergyHandler handler = blockEntity.getLevel().getCapability(
-                    Capabilities.Energy.BLOCK,
-                    blockEntity.getBlockPos().relative(direction),
-                    direction.getOpposite());
-            if (handler != null && canInsert(handler)) {
-                acceptingDirections++;
-                // If we found at least 2 adjacent blocks that can accept energy,
-                // this is likely a transfer block (pipe/cable)
-                if (acceptingDirections >= 2) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        return ordered;
     }
 
     private static int move(EnergyHandler from, EnergyHandler to, int amount) {
@@ -236,7 +220,6 @@ public final class NeoEnergyTransferUtil {
     }
 
     private static int clampToInt(long value) {
-        return (int) Math.min(Integer.MAX_VALUE, Math.max(0L, value));
+        return (int) Math.clamp(value, 0L, Integer.MAX_VALUE);
     }
 }
-

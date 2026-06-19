@@ -1,10 +1,13 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": "scalarpower:cobalt_dust",
+  "ingredient": {
+    "tag": "#c:dusts/cobalt"
+  },
   "result": {
     "id": "scalarpower:cobalt_ingot"
   },
   "experience": 0.7,
   "cookingtime": 200
 }
+
 

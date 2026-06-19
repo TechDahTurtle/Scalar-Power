@@ -1,11 +1,16 @@
 {
   "type": "scalarpower:alloy_smelting",
-  "ingredient1": "minecraft:gold_ingot",
-  "ingredient2": "minecraft:copper_ingot",
+  "ingredient1": {
+    "tag": "#c:dusts/gold"
+  },
+  "ingredient2": {
+    "tag": "#c:dusts/copper"
+  },
   "ingredient3": "minecraft:redstone",
   "result": {
     "id": "scalarpower:redium_ingot",
     "count": 2
   }
 }
+
 

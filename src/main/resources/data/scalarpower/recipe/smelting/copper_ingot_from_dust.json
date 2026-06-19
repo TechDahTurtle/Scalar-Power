@@ -1,6 +1,8 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": "scalarpower:copper_dust",
+  "ingredient": {
+    "tag": "#c:dusts/copper"
+  },
   "result": {
     "id": "minecraft:copper_ingot"
   },

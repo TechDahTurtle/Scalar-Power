@@ -1,10 +1,13 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": "scalarpower:redium_dust",
+  "ingredient": {
+    "tag": "#c:dusts/redium"
+  },
   "result": {
     "id": "scalarpower:redium_ingot"
   },
   "experience": 0.7,
   "cookingtime": 200
 }
+
 
