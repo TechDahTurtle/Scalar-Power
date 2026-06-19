@@ -80,7 +80,7 @@
 ## 26.1.2-1.0.9_beta
 - Prevented a crash when taking copper/gold cable shock damage in modpacks with incompatible damage event listeners (Thanks, FTB Essentials)
 
-## 26.1.2-1.0.10_beta (Upcoming)
+## 26.1.2-1.0.11_beta (Upcoming)
 - Fixed License in `gradle.properties`.
 
 ## Planned Features
