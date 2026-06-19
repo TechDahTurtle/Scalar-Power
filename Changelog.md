@@ -80,8 +80,12 @@
 ## 26.1.2-1.0.9_beta
 - Prevented a crash when taking copper/gold cable shock damage in modpacks with incompatible damage event listeners (Thanks, FTB Essentials)
 
-## 26.1.2-1.0.11_beta (Upcoming)
+## 26.1.2-1.0.10_beta 
+- Fixed cross mod interaction
+- Fixed cables and machines with power transfer conflicts.
 - Fixed License in `gradle.properties`.
+
+## 26.1.2-1.0.11_beta (Upcoming)
 
 ## Planned Features
 - Better SPU UI (not drawn in GUI)
